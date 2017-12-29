@@ -1,6 +1,5 @@
 #include<iostream>
-#include"Record.h"
-
+#include"Table.h"
 int main()
 {
 	Integer *i = new Integer;
@@ -17,5 +16,7 @@ int main()
 	rec.Add('s', str);
 	rec.Add('d', d);
 	rec.Show();
+	Table tb;
+	tb.ArrRecord();
 	system("pause");
 }
