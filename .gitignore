@@ -1,1 +1,4 @@
 *.opensdf
+*.exe
+*.bin
+*.pdb
