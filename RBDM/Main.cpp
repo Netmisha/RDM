@@ -20,5 +20,6 @@ int main()
 	rec.Show();
 	Table tb;
 	tb.ArrRecord();
+	tb.Show();
 	system("pause");
 }

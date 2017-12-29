@@ -15,6 +15,7 @@ private:
 public:
 	Table();
 	void ArrRecord();
+	void Show();
 	~Table(){};
 };
 #endif

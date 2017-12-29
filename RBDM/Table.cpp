@@ -50,7 +50,7 @@ void Table::ArrRecord()
 		if (type == 's')
 		{
 			std::string value;
-			std::cin >> value;
+			getline(std::cin, value);
 			String *arg = new String(value);
 			rec->Add(type, arg);
 		}
@@ -59,3 +59,13 @@ void Table::ArrRecord()
 	}
 	table.push_back(rec);
 };
+
+void Table::Show()
+{
+	Record *ptr;
+	for (int i = 0; i < table.size(); i++)
+	{
+		ptr = table[i];
+		ptr->Show();
+	}
+}
