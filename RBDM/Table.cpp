@@ -19,8 +19,6 @@ void Table::ArrRecord()
 			std::cin >> value;
 			if (!std::cin.fail())
 			{
-				std::cin.clear();
-				std::cin.ignore();
 				Integer *arg = new Integer(value);
 				rec->Add(type, arg);
 			}
@@ -38,8 +36,6 @@ void Table::ArrRecord()
 			std::cin >> value;
 			if (!std::cin.fail())
 			{
-				std::cin.clear();
-				std::cin.ignore();
 				Double *arg = new Double(value);
 				rec->Add(type, arg);
 			}
