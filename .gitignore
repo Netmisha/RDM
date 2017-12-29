@@ -1,4 +1,2 @@
 *.opensdf
-*.exe
-*.bin
-*.pdb
+debug/
