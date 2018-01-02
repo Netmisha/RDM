@@ -17,6 +17,7 @@ public:
 	void ArrRecord();
 	void DeleteRecord(unsigned ID);
 	void Show();
+	void Clear();
 	~Table(){};
 };
 #endif

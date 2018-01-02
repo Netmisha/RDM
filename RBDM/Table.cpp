@@ -84,3 +84,15 @@ void Table::Show()
 		ptr->Show();
 	}
 }
+
+void Table::Clear()
+{
+	for (int i = 0; i < table.size(); i++)
+	{
+		Record *temp = new Record;
+		temp = (Record*)table[i];
+		temp->Clear();
+		table.erase(table.begin()+i);
+		table.insert(table.begin()+i,1,temp);
+	}
+}

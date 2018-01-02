@@ -19,6 +19,7 @@ public:
 	void Add(char type, void* value);
 	void Show();
 	void IdReset(int newid);
+	void Clear();
 	~Record(){};
 };
 #endif
