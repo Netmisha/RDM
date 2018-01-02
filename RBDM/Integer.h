@@ -3,7 +3,7 @@
 
 #include"Base.h"
 
-class Integer :public BaseForType
+class Integer : public BaseForType
 {
 private:
 	long value;

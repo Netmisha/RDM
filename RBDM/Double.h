@@ -3,12 +3,11 @@
 
 #include"Base.h"
 
-class Double :public BaseForType
+class Double : public BaseForType
 {
 private:
 	double value;
 public:
-	using BaseForType::Set;
 	Double();
 	Double(double &value);
 	Double(const Double &value);
