@@ -7,12 +7,13 @@ int main()
 	Table tb;
 	tb.ArrRecord();
 	tb.ArrRecord();
+	tb.ArrRecord();
+	tb.ArrRecord();
+	tb.DeleteRecord(-1);
 	tb.Show();
-	Table tb2;
-	tb2.ArrRecord();
+	tb.DeleteRecord(9);
 	tb.Show();
-	Table tb3;
-	tb3.ArrRecord();
-	tb3.Show();
+	tb.DeleteRecord(1);
+	tb.Show();
 	system("pause");
 }

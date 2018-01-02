@@ -67,6 +67,14 @@ void Table::ArrRecord()
 	table.push_back(rec);
 }
 
+void Table::DeleteRecord(unsigned  ID)
+{
+	if (ID > table.size()||ID<1)
+		std::cout << "ID out of range\n";
+	else
+		table.erase(table.begin() + ID - 1);
+}
+
 void Table::Show()
 {
 	Record *ptr;

@@ -15,6 +15,7 @@ private:
 public:
 	Table();
 	void ArrRecord();
+	void DeleteRecord(unsigned ID);
 	void Show();
 	~Table(){};
 };
