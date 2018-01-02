@@ -50,6 +50,7 @@ void Table::ArrRecord()
 		if (type == 's')
 		{
 			std::string value;
+			std::cin.get();
 			getline(std::cin, value);
 			String *arg = new String(value);
 			rec->Add(type, arg);
