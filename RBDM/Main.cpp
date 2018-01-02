@@ -5,11 +5,9 @@
 int main()
 {
 	Table tb;
-	tb.ArrRecord();
-	tb.ArrRecord();
-	tb.Show();
+	tb.AddRecord();
 	Record rc;
 	rc = tb.FindRecord(0);
-	rc.Show();
+	rc.Show(std::cout);
 	system("pause");
 }

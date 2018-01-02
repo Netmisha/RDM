@@ -5,7 +5,7 @@ Table::Table()
 	id = ++TID;
 	name = "table " + std::to_string(id);
 }
-void Table::ArrRecord()
+void Table::AddRecord()
 {
 	Record *rec = new Record();
 	char type;
@@ -15,7 +15,7 @@ void Table::ArrRecord()
 		std::cin >> type;
 		if (type == 'i')
 		{
-			long value;
+			int value;
 			std::cin >> value;
 			if (!std::cin.fail())
 			{
@@ -67,7 +67,7 @@ void Table::ArrRecord()
 	table.push_back(rec);
 }
 
-void Table::DeleteRecord(unsigned  ID)
+void Table::DeleteRecord(unsigned int  ID)
 {
 	if (ID > table.size()||ID<1)
 		std::cout << "ID out of range\n";
@@ -75,24 +75,39 @@ void Table::DeleteRecord(unsigned  ID)
 		table.erase(table.begin() + ID - 1);
 }
 
-Record& Table::FindRecord(unsigned ID)
+Record& Table::FindRecord(unsigned int ID)
 {
-	return *table[ID];
+	if (ID>table.size() || ID < 0)
+	{
+		if (table.size() == 0)
+		{
+			Record *rec = new Record;
+			std::cout << "Table is empty.\nFirst record was created(empty)\n";
+			table.push_back(rec);
+			return *table[0];
+		}
+		std::cout << "ID out of range\n";
+		return *table[0];
+	}
+	
+	else
+		return *table[ID];
+	
 }
 
-void Table::Show()
+void Table::Show(std::ostream &out)
 {
 	Record *ptr;
-	for (unsigned i = 0; i < table.size(); i++)
+	for (unsigned int i = 0; i < table.size(); i++)
 	{
 		ptr = table[i];
-		ptr->Show();
+		ptr->Show(out);
 	}
 }
 
 void Table::Clear()
 {
-	for (unsigned i = 0; i < table.size(); i++)
+	for (unsigned int i = 0; i < table.size(); i++)
 	{
 		Record *temp = new Record;
 		temp = (Record*)table[i];
@@ -103,6 +118,11 @@ void Table::Clear()
 }
 
 void Table::Delete()
+{
+	table.clear();
+}
+
+Table::~Table()
 {
 	table.clear();
 }

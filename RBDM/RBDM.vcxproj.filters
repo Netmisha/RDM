@@ -18,9 +18,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Integer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -41,9 +38,6 @@
     <ClInclude Include="Record.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Base.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Integer.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -54,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Table.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseForType.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,7 +5,7 @@ Integer::Integer()
 	value = 0;
 }
 
-Integer::Integer(long &val)
+Integer::Integer(int &val)
 {
 	 value = val;
 }
@@ -15,19 +15,19 @@ Integer::Integer(const Integer &val)
 	 value = val.value;
 }
 
-void Integer::Set(const long val)
+void Integer::Set()
+{
+	std::cin >> this->value;
+}
+
+void Integer::Set(const int val)
 {
 	 value = val;
 }
 
-void Integer::Set(Integer val)
+void Integer::Show(std::ostream &out)
 {
-	 value = val.value;
-}
-
-void Integer::Show()
-{
-	std::cout << value << std::endl;
+	out << value << " ";
 }
 
 std::ostream& operator<<(std::ostream& os, const Integer& dt)

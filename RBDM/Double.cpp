@@ -20,14 +20,14 @@ void Double::Set(const double val)
 	 value = val;
 }
 
-void Double::Set(Double val)
+void Double::Set()
 {
-	 value = val.value;
+	std::cin >> this->value;
 }
 
-void Double::Show()
+void Double::Show(std::ostream &out)
 {
-	std::cout << value << std::endl;
+	out << value << " ";
 }
 
 std::ostream& operator<<(std::ostream& os, const Double& dt)

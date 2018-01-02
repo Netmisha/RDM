@@ -32,18 +32,12 @@ void Record::Add(char type, void* value)
 	}
 }
 
-void Record::Show()
+void Record::Show(std::ostream &out)
 {
-	for (int i = 0; i < record.size(); i++)
+	for (unsigned int i = 0; i < record.size(); i++)
 	{
-		if (typeid(*record[i]) == typeid(Integer))
-			std::cout << *(Integer*)record[i] << " ";
-		if (typeid(*record[i]) == typeid(Double))
-			std::cout << *(Double*)record[i] << " ";
-		if (typeid(*record[i]) == typeid(String))
-			std::cout << *(String*)record[i] << " ";
+		record[i]->Show(out);
 	}
-	std::cout << std::endl;
 }
 
 void Record::IdReset(int newid)
@@ -53,7 +47,7 @@ void Record::IdReset(int newid)
 
 void Record::Clear()
 {
-	for (unsigned i = 0; i < record.size(); i++)
+	for (unsigned int i = 0; i < record.size(); i++)
 	{
 		if (typeid(*record[i]) == typeid(Integer))
 		{
@@ -80,4 +74,9 @@ void Record::Clear()
 			record.insert(record.begin() + i, 1, temp);
 		}
 	}
+}
+
+Record::~Record()
+{
+	record.clear();
 }

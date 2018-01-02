@@ -20,14 +20,14 @@ void String::Set(const std::string val)
 	 value = val;
 }
 
-void String::Set(String val)
+void String::Set()
 {
-	 value = val.value;
+	std::cin.get();
+	getline(std::cin, this->value);
 }
-
-void String::Show()
+void String::Show(std::ostream &out)
 {
-	std::cout << value << std::endl;
+	out << value << " ";
 }
 
 std::ostream& operator<<(std::ostream& os, const String& dt)

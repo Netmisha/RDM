@@ -1,19 +1,19 @@
 #ifndef Integer_h_
 #define Integer_h_
 
-#include"Base.h"
+#include"BaseForType.h"
 
 class Integer : public BaseForType
 {
 private:
-	long value;
+	int value;
 public:
 	Integer();
-	Integer(long &value);
+	Integer(int &value);
 	Integer(const Integer &value);
-	void Set(const long value) ;
-	void Set(Integer value) ;
-	void Show() override;
+	void Set(const int value) ;
+	void Set()override;
+	void Show(std::ostream &out) override;
 	~Integer(){};
 	friend std::ostream& operator<<(std::ostream& os, const Integer& dt);
 };

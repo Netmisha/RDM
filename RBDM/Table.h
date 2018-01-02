@@ -5,7 +5,7 @@
 #include<vector>
 #include<string>
 
-static int TID = 0;
+static unsigned TID = 0;
 class Table
 {
 private:
@@ -14,12 +14,12 @@ private:
 	std::vector<Record*> table;
 public:
 	Table();
-	void ArrRecord();
-	void DeleteRecord(unsigned ID);
-	Record& FindRecord(unsigned ID);
-	void Show();
+	void AddRecord();
+	void DeleteRecord(unsigned int ID);
+	Record& FindRecord(unsigned int ID);
+	void Show(std::ostream &out);
 	void Clear();
 	void Delete();
-	~Table(){};
+	~Table();
 };
 #endif

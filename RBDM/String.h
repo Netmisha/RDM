@@ -1,7 +1,7 @@
 #ifndef String_h
 #define String_h
 
-#include"Base.h"
+#include"BaseForType.h"
 #include<string>
 
 class String : public BaseForType
@@ -13,8 +13,8 @@ public:
 	String(std::string &value);
 	String(const String &value);
 	void Set(const std::string value);
-	void Set(String value) ;
-	void Show() override;
+	void Set() override;
+	void Show(std::ostream &out) override;
 	~String(){};
 	friend std::ostream& operator<<(std::ostream& os, const String& dt);
 };

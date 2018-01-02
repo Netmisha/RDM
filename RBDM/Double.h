@@ -1,7 +1,7 @@
 #ifndef Double_h_
 #define Double_h_
 
-#include"Base.h"
+#include"BaseForType.h"
 
 class Double : public BaseForType
 {
@@ -12,8 +12,8 @@ public:
 	Double(double &value);
 	Double(const Double &value);
 	void Set(const double value);
-	virtual void Set(Double value);
-	void Show() override;
+	void Set() override;
+	void Show(std::ostream &out) override;
 	~Double(){};
 	friend std::ostream& operator<<(std::ostream& os, const Double& dt);
 };

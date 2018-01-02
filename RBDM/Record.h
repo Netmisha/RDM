@@ -7,7 +7,7 @@
 #include"Double.h"
 #include"String.h"
 
-static int ID = 0;
+static unsigned int ID = 0;
 
 class Record
 {
@@ -16,10 +16,10 @@ private:
 	std::vector<BaseForType*> record;
 public:
 	Record();
-	void Add(char type, void* value);
-	void Show();
+	void Add(char type,void *value);
+	virtual void Show(std::ostream &out);
 	void IdReset(int newid);
 	void Clear();
-	~Record(){};
+	~Record();
 };
 #endif
