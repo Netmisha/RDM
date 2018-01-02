@@ -4,22 +4,15 @@
 
 int main()
 {
-	Integer *i = new Integer;
-	Double *d = new Double;
-	String *str = new String;
-	i->Set(3);
-	i->Show();
-	d->Set(4.4);
-	d->Show();
-	str->Set("hello");
-	str->Show();
-	Record rec;
-	rec.Add('i', i);
-	rec.Add('s', str);
-	rec.Add('d', d);
-	rec.Show();
 	Table tb;
 	tb.ArrRecord();
+	tb.ArrRecord();
 	tb.Show();
+	Table tb2;
+	tb2.ArrRecord();
+	tb.Show();
+	Table tb3;
+	tb3.ArrRecord();
+	tb3.Show();
 	system("pause");
 }

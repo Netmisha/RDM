@@ -3,7 +3,7 @@
 Record::Record()
 {
 	id = ++ID;
-};
+}
 
 void Record::Add(char type, void* value)
 {
@@ -30,7 +30,7 @@ void Record::Add(char type, void* value)
 	default:
 		break;
 	}
-};
+}
 
 void Record::Show()
 {
@@ -44,4 +44,9 @@ void Record::Show()
 			std::cout << *(String*)record[i] << " ";
 	}
 	std::cout << std::endl;
-};
+}
+
+void Record::IdReset(int newid)
+{
+	id = newid;
+}

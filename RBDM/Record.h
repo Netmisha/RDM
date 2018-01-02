@@ -18,6 +18,7 @@ public:
 	Record();
 	void Add(char type, void* value);
 	void Show();
+	void IdReset(int newid);
 	~Record(){};
 };
 #endif
