@@ -8,9 +8,8 @@ int main()
 	tb.ArrRecord();
 	tb.ArrRecord();
 	tb.Show();
-	tb.Clear();
-	tb.Show();
-	tb.Delete();
-	tb.Show();
+	Record rc;
+	rc = tb.FindRecord(0);
+	rc.Show();
 	system("pause");
 }

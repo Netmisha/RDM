@@ -16,6 +16,7 @@ public:
 	Table();
 	void ArrRecord();
 	void DeleteRecord(unsigned ID);
+	Record& FindRecord(unsigned ID);
 	void Show();
 	void Clear();
 	void Delete();

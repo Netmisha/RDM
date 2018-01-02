@@ -75,10 +75,15 @@ void Table::DeleteRecord(unsigned  ID)
 		table.erase(table.begin() + ID - 1);
 }
 
+Record& Table::FindRecord(unsigned ID)
+{
+	return *table[ID];
+}
+
 void Table::Show()
 {
 	Record *ptr;
-	for (int i = 0; i < table.size(); i++)
+	for (unsigned i = 0; i < table.size(); i++)
 	{
 		ptr = table[i];
 		ptr->Show();
