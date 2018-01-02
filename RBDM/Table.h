@@ -18,6 +18,7 @@ public:
 	void DeleteRecord(unsigned ID);
 	void Show();
 	void Clear();
+	void Delete();
 	~Table(){};
 };
 #endif

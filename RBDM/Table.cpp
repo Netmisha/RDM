@@ -87,7 +87,7 @@ void Table::Show()
 
 void Table::Clear()
 {
-	for (int i = 0; i < table.size(); i++)
+	for (unsigned i = 0; i < table.size(); i++)
 	{
 		Record *temp = new Record;
 		temp = (Record*)table[i];
@@ -95,4 +95,9 @@ void Table::Clear()
 		table.erase(table.begin()+i);
 		table.insert(table.begin()+i,1,temp);
 	}
+}
+
+void Table::Delete()
+{
+	table.clear();
 }
