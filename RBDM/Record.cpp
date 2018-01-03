@@ -5,7 +5,7 @@ Record::Record()
 	id = ++ID;
 }
 
-void Record::Add(char type, void* value)
+Record& Record::Add(char type, void* value)
 {
 	switch (type)
 	{
@@ -30,6 +30,7 @@ void Record::Add(char type, void* value)
 	default:
 		break;
 	}
+	return *this;
 }
 
 void Record::Show(std::ostream &out)
@@ -38,6 +39,7 @@ void Record::Show(std::ostream &out)
 	{
 		record[i]->Show(out);
 	}
+	out << "\n";
 }
 
 void Record::IdReset(int newid)
@@ -45,22 +47,7 @@ void Record::IdReset(int newid)
 	id = newid;
 }
 
-Record& Record::Create(std::vector<BaseForType*> vec)
-{
-	Record *temp = new Record;
-	char type;
-	for (unsigned int i = 0; i < vec.size(); i++)
-	{
-		if (typeid(vec[i]) == typeid(int))
-			type = 'i';
-		if (typeid(vec[i]) == typeid(double))
-			type = 'd';
-		if (typeid(vec[i]) == typeid(std::string))
-			type = 's';
-		temp->Add(type,vec[i]);
-	}
-	return *temp;
-}
+
 
 Record::~Record()
 {

@@ -16,10 +16,9 @@ private:
 	std::vector<BaseForType*> record;
 public:
 	Record();
-	void Add(char type,void *value);
+	Record& Add(char type,void *value);
 	virtual void Show(std::ostream &out);
 	void IdReset(int newid);
-	Record& Create(std::vector<BaseForType*> vec);
 	~Record();
 };
 #endif
