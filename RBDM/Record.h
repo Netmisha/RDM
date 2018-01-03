@@ -19,7 +19,7 @@ public:
 	Record& Add(char type,void *value);
 	virtual void Show(std::ostream &out);
 	void IdReset(int newid);
-	void Set(int index);
+	Record& Set(int index);
 	~Record();
 };
 #endif

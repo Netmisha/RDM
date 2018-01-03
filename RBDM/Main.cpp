@@ -27,9 +27,9 @@ int main()
 	tb.Create(colnames,coltypes);
 	tb.AddRecord(std::cin).AddRecord(std::cin);// .AddRecord(std::cin).AddRecord(std::cin);
 	tb.Show(std::cout);
-	rec.Set(1);
+	rec.Set(1).Set(1);
 	rec.Show(std::cout);
-	tb.FindRecord(1, std::cout).Set(1);
+	tb.FindRecord(0, std::cout).Set(1);
 	tb.Show(std::cout);
 	system("pause");
 }
