@@ -23,7 +23,9 @@ void String::Set(const std::string val)
 void String::Set(std::istream &in)
 {
 	in.get();
-	getline(in, this->value);
+	std::string temp;
+	getline(in, temp);
+	value = temp;
 }
 void String::Show(std::ostream &out)
 {

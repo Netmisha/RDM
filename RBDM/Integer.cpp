@@ -17,7 +17,9 @@ Integer::Integer(const Integer &val)
 
 void Integer::Set(std::istream &in)
 {
-	in >> this->value;
+	int temp;
+	in >> temp;
+	value = temp;
 }
 
 void Integer::Set(const int val)

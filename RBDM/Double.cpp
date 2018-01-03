@@ -22,7 +22,9 @@ void Double::Set(const double val)
 
 void Double::Set(std::istream &in)
 {
-	in >> this->value;
+	double temp;
+	in >> temp;
+	value = temp;
 }
 
 void Double::Show(std::ostream &out)

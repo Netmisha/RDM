@@ -17,15 +17,15 @@ int main()
 	rec.Show(std::cout);
 	Table tb;
 	std::vector<std::string> colnames;
-	colnames.push_back("some integer");
 	colnames.push_back("name");
+	colnames.push_back("some integer");
 	colnames.push_back("some double");
 	std::vector<char> coltypes;
-	coltypes.push_back('i');
 	coltypes.push_back('s');
+	coltypes.push_back('i');
 	coltypes.push_back('d');
 	tb.Create(colnames,coltypes);
-	tb.AddRecord(std::cin).AddRecord(std::cin);// .AddRecord(std::cin).AddRecord(std::cin);
+	tb.AddRecord(std::cin).AddRecord(std::cin).AddRecord(std::cin).AddRecord(std::cin);
 	tb.Show(std::cout);
 	rec.Set(1).Set(1);
 	rec.Show(std::cout);

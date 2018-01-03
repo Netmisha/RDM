@@ -1,5 +1,5 @@
 #include"Table.h"
-
+bool strloss = false;
 Table::Table()
 {
 	id = ++TID;
@@ -23,11 +23,13 @@ Table& Table::AddRecord(std::istream &in)
 	int id;
 	for (unsigned int i = 0; i < colname.size(); i++)
 		{
+		
 			type = coltype[count];
 			if (type == 'i')
 			{
+				
 				int value;
-				in >> value;
+				in >> value; 
 				if (!in.fail())
 				{
 					Integer *arg = new Integer(value);
@@ -63,9 +65,12 @@ Table& Table::AddRecord(std::istream &in)
 			if (type == 's')
 			{
 				std::string value;
-				in.get(); //have some problem with get() here if first input is string
+				if (strloss)
+				{
+					strloss = true;
+					in.get(); //have some problem with get() here if first input is string
+				}
 				getline(in, value);
-				
 				String *arg = new String(value);
 				id = table.size() + 1;
 				rec->IdReset(id);
@@ -75,8 +80,9 @@ Table& Table::AddRecord(std::istream &in)
 				
 			}
 			count++;
+			
 		}
-	
+	strloss = true;
 	table.push_back(rec);
 	count = 0;
 	return *this;
