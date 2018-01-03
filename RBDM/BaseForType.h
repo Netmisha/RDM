@@ -7,7 +7,7 @@ class BaseForType
 {
 public:
 	virtual ~BaseForType(){};
-	virtual void Set()=0;
+	virtual void Set(std::istream &in) = 0;
 	virtual void Show(std::ostream &out)=0;
 };
 #endif

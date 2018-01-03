@@ -13,7 +13,7 @@ public:
 	String(std::string &value);
 	String(const String &value);
 	void Set(const std::string value);
-	void Set() override;
+	void Set(std::istream &in) override;
 	void Show(std::ostream &out) override;
 	~String(){};
 	friend std::ostream& operator<<(std::ostream& os, const String& dt);

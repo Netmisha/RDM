@@ -20,9 +20,9 @@ void Double::Set(const double val)
 	 value = val;
 }
 
-void Double::Set()
+void Double::Set(std::istream &in)
 {
-	std::cin >> this->value;
+	in >> this->value;
 }
 
 void Double::Show(std::ostream &out)

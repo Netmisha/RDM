@@ -12,7 +12,7 @@ public:
 	Integer(int &value);
 	Integer(const Integer &value);
 	void Set(const int value) ;
-	void Set()override;
+	void Set(std::istream &in)override;
 	void Show(std::ostream &out) override;
 	~Integer(){};
 	friend std::ostream& operator<<(std::ostream& os, const Integer& dt);

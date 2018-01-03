@@ -15,9 +15,9 @@ Integer::Integer(const Integer &val)
 	 value = val.value;
 }
 
-void Integer::Set()
+void Integer::Set(std::istream &in)
 {
-	std::cin >> this->value;
+	in >> this->value;
 }
 
 void Integer::Set(const int val)

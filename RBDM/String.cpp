@@ -20,10 +20,10 @@ void String::Set(const std::string val)
 	 value = val;
 }
 
-void String::Set()
+void String::Set(std::istream &in)
 {
-	std::cin.get();
-	getline(std::cin, this->value);
+	in.get();
+	getline(in, this->value);
 }
 void String::Show(std::ostream &out)
 {
@@ -32,6 +32,6 @@ void String::Show(std::ostream &out)
 
 std::ostream& operator<<(std::ostream& os, const String& dt)
 {
-	std::cout << dt.value;
+	os << dt.value;
 	return os;
 }

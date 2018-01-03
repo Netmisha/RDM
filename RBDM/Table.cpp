@@ -106,6 +106,7 @@ void Table::Show(std::ostream &out)
 }
 
 
+
 void Table::Delete()
 {
 	table.clear();
