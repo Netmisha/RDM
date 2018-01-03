@@ -45,7 +45,22 @@ void Record::IdReset(int newid)
 	id = newid;
 }
 
-
+Record& Record::Create(std::vector<BaseForType*> vec)
+{
+	Record *temp = new Record;
+	char type;
+	for (unsigned int i = 0; i < vec.size(); i++)
+	{
+		if (typeid(vec[i]) == typeid(int))
+			type = 'i';
+		if (typeid(vec[i]) == typeid(double))
+			type = 'd';
+		if (typeid(vec[i]) == typeid(std::string))
+			type = 's';
+		temp->Add(type,vec[i]);
+	}
+	return *temp;
+}
 
 Record::~Record()
 {

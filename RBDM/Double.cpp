@@ -32,6 +32,6 @@ void Double::Show(std::ostream &out)
 
 std::ostream& operator<<(std::ostream& os, const Double& dt)
 {
-	std::cout << dt.value;
+	os << dt.value;
 	return os;
 }

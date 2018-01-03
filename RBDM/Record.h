@@ -19,6 +19,7 @@ public:
 	void Add(char type,void *value);
 	virtual void Show(std::ostream &out);
 	void IdReset(int newid);
+	Record& Create(std::vector<BaseForType*> vec);
 	~Record();
 };
 #endif
