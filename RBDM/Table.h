@@ -18,7 +18,6 @@ public:
 	void DeleteRecord(unsigned int ID);
 	Record& FindRecord(unsigned int ID);
 	void Show(std::ostream &out);
-	void Clear();
 	void Delete();
 	~Table();
 };

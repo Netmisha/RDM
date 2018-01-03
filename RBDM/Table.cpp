@@ -105,17 +105,6 @@ void Table::Show(std::ostream &out)
 	}
 }
 
-void Table::Clear()
-{
-	for (unsigned int i = 0; i < table.size(); i++)
-	{
-		Record *temp = new Record;
-		temp = (Record*)table[i];
-		temp->Clear();
-		table.erase(table.begin()+i);
-		table.insert(table.begin()+i,1,temp);
-	}
-}
 
 void Table::Delete()
 {

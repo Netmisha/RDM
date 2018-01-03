@@ -19,7 +19,6 @@ public:
 	void Add(char type,void *value);
 	virtual void Show(std::ostream &out);
 	void IdReset(int newid);
-	void Clear();
 	~Record();
 };
 #endif
