@@ -8,7 +8,7 @@ Table::Table()
 }
 Table& Table::Create(std::vector<std::string> names, std::vector<char> coltypes)
 {
-	for (int i = 0; i < names.size(); i++)
+	for (unsigned int i = 0; i < names.size(); i++)
 	{
 		colname.push_back(names[i]);
 		coltype.push_back(coltypes[i]);

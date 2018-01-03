@@ -4,19 +4,6 @@
 
 int main()
 {
-
-	/*Table tb;
-	std::vector<std::string> names;
-	names.push_back("name");
-	names.push_back("int");
-	names.push_back("int");
-	std::vector<char> types;
-	types.push_back('s');
-	types.push_back('i');
-	types.push_back('i');
-	tb.Create(names,types);
-	tb.AddRecord(std::cin).AddRecord(std::cin).AddRecord(std::cin);
-	tb.Show(std::cout);*/
 	Record rec;
 	String *str = new String;
 	str->Set("hello");
@@ -38,7 +25,11 @@ int main()
 	coltypes.push_back('s');
 	coltypes.push_back('d');
 	tb.Create(colnames,coltypes);
-	tb.AddRecord(std::cin).AddRecord(std::cin).AddRecord(std::cin).AddRecord(std::cin);
+	tb.AddRecord(std::cin).AddRecord(std::cin);// .AddRecord(std::cin).AddRecord(std::cin);
+	tb.Show(std::cout);
+	rec.Set(1);
+	rec.Show(std::cout);
+	tb.FindRecord(1, std::cout).Set(1);
 	tb.Show(std::cout);
 	system("pause");
 }
