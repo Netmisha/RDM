@@ -14,6 +14,7 @@ public:
 	void Set(const double val);
 	void Set(std::istream &in) override;
 	void Show(std::ostream &out) override;
+	double& Get();
 	~Double(){};
 	friend std::ostream& operator<<(std::ostream& os, const Double& dt);
 };

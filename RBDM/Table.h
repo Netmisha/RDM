@@ -20,6 +20,7 @@ public:
 	Table& AddRecord(std::istream &in);
 	void DeleteRecord(unsigned int index, std::ostream &out);
 	Record& FindRecord(unsigned int index, std::ostream &out);
+	void FindRecord(std::string value,std::ostream &out);
 	void Show(std::ostream &out);
 	void Delete();
 	void Set(unsigned int colindex,unsigned int rowindex);

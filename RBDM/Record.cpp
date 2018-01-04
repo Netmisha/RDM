@@ -57,6 +57,43 @@ Record& Record::Set(int index)
 	return *this;
 }
 
+bool Record::Find(char type,std::string value)
+{
+	bool check = false;
+	for (int i = 0; i < record.size(); i++)
+	{
+		switch (type)
+		{
+		case 'i':
+		{
+					Integer *temp = (Integer*)record[i];
+					if (std::to_string(temp->Get()) == value)
+						check = true;
+					break;
+		}
+		case 'd':
+		{
+					Double *temp = (Double*)record[i];
+					if (std::to_string(temp->Get()) == value)
+						check = true;
+					break;
+		}
+		case 's':
+		{
+					String *temp = (String*)record[i];
+					if (temp->Get() == value)
+						check = true;
+					break;
+		}
+		default:
+		{
+				   check = false;
+				   break;
+		}
+		}
+	}
+	return check;
+}
 Record::~Record()
 {
 	record.clear();

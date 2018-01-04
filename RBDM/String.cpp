@@ -32,6 +32,10 @@ void String::Show(std::ostream &out)
 	out << value << " ";
 }
 
+std::string& String::Get()
+{
+	return value;
+}
 std::ostream& operator<<(std::ostream& os, const String& dt)
 {
 	os << dt.value;

@@ -32,6 +32,11 @@ void Double::Show(std::ostream &out)
 	out << value << " ";
 }
 
+double& Double::Get()
+{
+	return value;
+}
+
 std::ostream& operator<<(std::ostream& os, const Double& dt)
 {
 	os << dt.value;

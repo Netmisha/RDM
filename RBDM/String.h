@@ -15,6 +15,7 @@ public:
 	void Set(const std::string val);
 	void Set(std::istream &in) override;
 	void Show(std::ostream &out) override;
+	std::string& Get();
 	~String(){};
 	friend std::ostream& operator<<(std::ostream& os, const String& dt);
 };

@@ -113,6 +113,13 @@ Record& Table::FindRecord(unsigned int index, std::ostream &out)
 	
 }
 
+void Table::FindRecord(std::string value,std::ostream &out)
+{
+	for (int i = 0; i < table.size(); i++)
+	{
+		//table[i]->Find();
+	}
+}
 void Table::Show(std::ostream &out)
 {
 	Record *ptr;

@@ -22,7 +22,7 @@ void Integer::Set(std::istream &in)
 	value = temp;
 }
 
-void Integer::Set(const int val)
+void Integer::Set(int val)
 {
 	 value = val;
 }
@@ -32,6 +32,10 @@ void Integer::Show(std::ostream &out)
 	out << value << " ";
 }
 
+int& Integer::Get()
+{
+	return value;
+}
 std::ostream& operator<<(std::ostream& os, const Integer& dt)
 {
 	os << dt.value;
