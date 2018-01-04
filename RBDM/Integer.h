@@ -9,9 +9,9 @@ private:
 	int value;
 public:
 	Integer();
-	Integer(int &value);
-	Integer(const Integer &value);
-	void Set(const int value) ;
+	Integer(int &val);
+	Integer(const Integer &val);
+	void Set(const int val) ;
 	void Set(std::istream &in)override;
 	void Show(std::ostream &out) override;
 	~Integer(){};

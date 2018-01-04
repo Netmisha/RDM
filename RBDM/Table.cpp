@@ -4,7 +4,7 @@ Table::Table()
 {
 	id = ++TID;
 	name = "table " + std::to_string(id);
-	count = 0;
+	//count = 0;
 }
 Table& Table::Create(std::vector<std::string> names, std::vector<char> coltypes)
 {
@@ -24,10 +24,9 @@ Table& Table::AddRecord(std::istream &in)
 	for (unsigned int i = 0; i < colname.size(); i++)
 		{
 		
-			type = coltype[count];
+			type = coltype[i];
 			if (type == 'i')
 			{
-				
 				int value;
 				in >> value; 
 				if (!in.fail())
@@ -79,12 +78,12 @@ Table& Table::AddRecord(std::istream &in)
 				in.ignore(0);
 				
 			}
-			count++;
+			//count++;
 			
 		}
 	strloss = true;
 	table.push_back(rec);
-	count = 0;
+	//count = 0;
 	return *this;
 }
 

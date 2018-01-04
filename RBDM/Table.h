@@ -10,7 +10,7 @@ class Table
 {
 private:
 	int id;
-	int count;
+	//int count;
 	std::string name;
 	std::vector<std::string> colname;
 	std::vector<char> coltype;

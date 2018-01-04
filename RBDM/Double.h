@@ -9,9 +9,9 @@ private:
 	double value;
 public:
 	Double();
-	Double(double &value);
-	Double(const Double &value);
-	void Set(const double value);
+	Double(double &val);
+	Double(const Double &val);
+	void Set(const double val);
 	void Set(std::istream &in) override;
 	void Show(std::ostream &out) override;
 	~Double(){};

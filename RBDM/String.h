@@ -10,9 +10,9 @@ private:
 	std::string value;
 public:
 	String();
-	String(std::string &value);
-	String(const String &value);
-	void Set(const std::string value);
+	String(std::string &val);
+	String(const String &val);
+	void Set(const std::string val);
 	void Set(std::istream &in) override;
 	void Show(std::ostream &out) override;
 	~String(){};

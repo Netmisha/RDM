@@ -49,7 +49,7 @@ void Record::IdReset(int newid)
 
 Record& Record::Set(int index)
 {
-	if (index < record.size())
+	if (index < record.size()&&index>=0)
 	{
 		record[index]->Set(std::cin);
 	}

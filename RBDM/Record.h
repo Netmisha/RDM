@@ -17,7 +17,7 @@ private:
 public:
 	Record();
 	Record& Add(char type,void *value);
-	virtual void Show(std::ostream &out);
+	void Show(std::ostream &out);
 	void IdReset(int newid);
 	Record& Set(int index);
 	~Record();
