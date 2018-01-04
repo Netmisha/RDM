@@ -4,7 +4,6 @@ Table::Table()
 {
 	id = ++TID;
 	name = "table " + std::to_string(id);
-	//count = 0;
 }
 Table& Table::Create(std::vector<std::string> names, std::vector<char> coltypes)
 {
@@ -67,7 +66,7 @@ Table& Table::AddRecord(std::istream &in)
 				if (strloss)
 				{
 					strloss = true;
-					in.get(); //have some problem with get() here if first input is string
+					in.get(); 
 				}
 				getline(in, value);
 				String *arg = new String(value);
@@ -76,28 +75,27 @@ Table& Table::AddRecord(std::istream &in)
 				rec->Add(type, arg);
 				in.clear();
 				in.ignore(0);
-				
 			}
-			//count++;
 			
 		}
 	strloss = true;
 	table.push_back(rec);
-	//count = 0;
 	return *this;
 }
 
-void Table::DeleteRecord(unsigned int  ID, std::ostream &out)
+void Table::DeleteRecord(unsigned int  index, std::ostream &out)
 {
-	if (ID > table.size()||ID<1)
+	index--;
+	if (index > table.size() || index<0)
 		out << "ID out of range\n";
 	else
-		table.erase(table.begin() + ID - 1);
+		table.erase(table.begin() + index);
 }
 
-Record& Table::FindRecord(unsigned int ID, std::ostream &out)
+Record& Table::FindRecord(unsigned int index, std::ostream &out)
 {
-	if (ID>table.size() || ID < 0)
+	index--;
+	if (index>table.size() || index < 0)
 	{
 		if (table.size() == 0)
 		{
@@ -111,7 +109,7 @@ Record& Table::FindRecord(unsigned int ID, std::ostream &out)
 	}
 	
 	else
-		return *table[ID];
+		return *table[index];
 	
 }
 
@@ -130,6 +128,11 @@ void Table::Show(std::ostream &out)
 void Table::Delete()
 {
 	table.clear();
+}
+
+void Table::Set(unsigned int colindex, unsigned int rowindex)
+{
+	table[rowindex-1]->Set(colindex);
 }
 
 Table::~Table()
