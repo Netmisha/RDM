@@ -181,7 +181,7 @@ void Table::FindRecord(std::string value,std::ostream &out)
 {
 	for (int i = 0; i < table.size(); i++)
 	{
-		//table[i]->Find();
+//		table[i]->Find();
 	}
 }
 void Table::Show(std::ostream &out)
@@ -203,7 +203,7 @@ void Table::Delete()
 
 void Table::Set(unsigned int colindex, unsigned int rowindex)
 {
-	table[rowindex-1]->Set(colindex);
+	table[rowindex-1]->Set(colindex,std::cin);
 }
 
 Table::~Table()

@@ -20,8 +20,8 @@ public:
 	Record& Add(std::string value);
 	void Show(std::ostream &out);
 	void IdReset(int newid);
-	Record& Set(int index);
-	bool Find(char type,std::string value);
+	Record& Set(int index,std::istream &in);
+	bool Find(std::string value);
 	~Record();
 };
 #endif

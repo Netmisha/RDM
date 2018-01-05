@@ -24,8 +24,8 @@ int main()
 	//tb.Show(std::cout);
 	/*tb.FindRecord("qwe",std::cout);*/
 	Record rec;
-	rec.Add("1").Add("hello").Add("3.3");
-	std::cout<<rec.Find('i', "3")<<std::endl;
+	rec.Add("hello").Add("3").Add("3.3");
+	std::cout<<rec.Find("3")<<std::endl;
 	rec.Show(std::cout);
 	system("pause");
 }

@@ -98,8 +98,43 @@ Record& Record::Set(int index,std::istream &in)
 	return *this;
 }
 
-bool Record::Find(char type,std::string value)
+bool Record::Find(std::string value)
 {
+	char type;
+	int checki = 1;
+	int checkd1 = 1;
+	int checkd2 = 0;
+	for (int i = 0; i < value.size(); i++)
+	{
+		if (isdigit(value[i]))
+		{
+			checki *= 1;
+			checkd1 *= 1;
+		}
+		else if (value[i] == '.')
+		{
+			checkd2++;
+		}
+		else
+		{
+			checki = 0;
+			checkd1 = 0;
+		}
+		checki *= checki;
+		checkd1 *= checkd1;
+	}
+	if (checkd1&&checkd2 == 1)
+	{
+		type = 'd';
+	}
+	else if (checki)
+	{
+		type = 'i';
+	}
+	else
+	{
+		type = 's';
+	}
 	bool check = false;
 	for (int i = 0; i < record.size(); i++)
 	{
