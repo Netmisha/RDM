@@ -10,31 +10,30 @@ Record& Record::Add(std::string value)
 	char type;
 	int ival;
 	double dval;
-	int checki = 1;;
-	for (int i = 0; i < value.size(); i++)
-	{
-		if (isdigit(value[i]))
-			checki *= 1;
-		else
-			checki = 0;
-		checki *= checki;
-	}
+	int checki = 1;
 	int checkd1 = 1;
 	int checkd2 = 0;
 	for (int i = 0; i < value.size(); i++)
 	{
 		if (isdigit(value[i]))
 		{
+			checki *= 1;
 			checkd1 *= 1;
 		}
-		else if (value[i] != '.'&& checkd2)
+		else if (value[i] == '.')
 		{
 			checkd2++;
 		}
 		else
+		{
+			checki = 0;
 			checkd1 = 0;
+		}
+		checki *= checki;
 		checkd1 *= checkd1;
 	}
+	
+	
 	if (checkd1&&checkd2 == 1)
 	{
 		type = 'd';
