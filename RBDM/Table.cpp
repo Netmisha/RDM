@@ -201,9 +201,9 @@ void Table::Delete()
 	table.clear();
 }
 
-void Table::Set(unsigned int colindex, unsigned int rowindex)
+void Table::Set(unsigned int colindex, unsigned int rowindex,std::istream &in)
 {
-	table[rowindex-1]->Set(colindex,std::cin);
+	table[rowindex-1]->Set(colindex,in);
 }
 
 Table::~Table()
