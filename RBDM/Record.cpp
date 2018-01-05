@@ -1,29 +1,71 @@
 #include"Record.h"
-
+#include<cstdlib>
 Record::Record()
 {
 	id = ++ID;
 }
 
-Record& Record::Add(char type, void* value)
+Record& Record::Add(std::string value)
 {
+	char type;
+	int ival;
+	double dval;
+	int checki = 1;;
+	for (int i = 0; i < value.size(); i++)
+	{
+		if (isdigit(value[i]))
+			checki *= 1;
+		else
+			checki = 0;
+		checki *= checki;
+	}
+	int checkd1 = 1;
+	int checkd2 = 0;
+	for (int i = 0; i < value.size(); i++)
+	{
+		if (isdigit(value[i]))
+		{
+			checkd1 *= 1;
+		}
+		else if (value[i] != '.'&& checkd2)
+		{
+			checkd2++;
+		}
+		else
+			checkd1 = 0;
+		checkd1 *= checkd1;
+	}
+	if (checkd1&&checkd2 == 1)
+	{
+		type = 'd';
+		dval = atof(value.c_str());
+	}
+	else if (checki)
+	{
+		type = 'i';
+		ival = atoi(value.c_str());
+	}
+	else
+	{
+		type = 's';
+	}
 	switch (type)
 	{
 	case 'i':
 	{
-		Integer *cell = (Integer*)value;
+		Integer *cell = new Integer(ival);
 		record.push_back(cell);
 		break;
 	}
 	case 'd':
 	{
-		Double *cell = (Double*)value;
+				Double *cell = new Double(dval);
 		record.push_back(cell);
 		break;
 	}
 	case 's':
 	{
-		String *cell = (String*)value;
+		String *cell = new String(value);
 		record.push_back(cell);
 		break;
 	}
@@ -39,7 +81,7 @@ void Record::Show(std::ostream &out)
 	{
 		record[i]->Show(out);
 	}
-	out << "\n";
+	out << std::endl;
 }
 
 void Record::IdReset(int newid)

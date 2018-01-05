@@ -21,67 +21,131 @@ Table& Table::AddRecord(std::istream &in)
 	char type;
 	int id;
 	for (unsigned int i = 0; i < colname.size(); i++)
+	{
+		std::string value;
+		type = coltype[i];
+		if (type == 'i')
 		{
-		
-			type = coltype[i];
-			if (type == 'i')
+			//int value;
+			getline(in,value);
+			if (!in.fail())
 			{
-				int value;
-				in >> value; 
-				if (!in.fail())
-				{
-					Integer *arg = new Integer(value);
-					id = table.size() + 1;
-					rec->IdReset(id);
-					rec->Add(type, arg);
-				}
-				else
-				{
-					in.clear();
-					in.ignore(0);
-				}
-			}
-			else
-			if (type == 'd')
-			{
-				double value;
-				in >> value;
-				if (!in.fail())
-				{
-					Double *arg = new Double(value);
-					id = table.size() + 1;
-					rec->IdReset(id);
-					rec->Add(type, arg);
-				}
-				else
-				{
-					in.clear();
-					in.ignore(0);
-				}
-			}
-			else
-			if (type == 's')
-			{
-				std::string value;
-				if (strloss)
-				{
-					strloss = true;
-					in.get(); 
-				}
-				getline(in, value);
-				String *arg = new String(value);
 				id = table.size() + 1;
 				rec->IdReset(id);
-				rec->Add(type, arg);
+				rec->Add(value);
+			}
+			else
+			{
 				in.clear();
 				in.ignore(0);
 			}
-			
 		}
+		else
+		if (type == 'd')
+		{
+			//double value;
+			getline(in, value);
+			if (!in.fail())
+			{
+				id = table.size() + 1;
+				rec->IdReset(id);
+				rec->Add(value);
+			}
+			else
+			{
+				in.clear();
+				in.ignore(0);
+			}
+		}
+		else
+		if (type == 's')
+		{
+			//std::string value;
+			if (strloss)
+			{
+				strloss = true;
+				in.get();
+			}
+			getline(in, value);
+			id = table.size() + 1;
+			rec->IdReset(id);
+			rec->Add(value);
+			in.clear();
+			in.ignore(0);
+		}
+
+	}
 	strloss = true;
 	table.push_back(rec);
 	return *this;
 }
+//Table& Table::AddRecord(std::istream &in)
+//{
+//	Record *rec = new Record();
+//	char type;
+//	int id;
+//	for (unsigned int i = 0; i < colname.size(); i++)
+//		{
+//		
+//			type = coltype[i];
+//			if (type == 'i')
+//			{
+//				int value;
+//				in >> value; 
+//				if (!in.fail())
+//				{
+//					Integer *arg = new Integer(value);
+//					id = table.size() + 1;
+//					rec->IdReset(id);
+//					rec->Add(type, arg);
+//				}
+//				else
+//				{
+//					in.clear();
+//					in.ignore(0);
+//				}
+//			}
+//			else
+//			if (type == 'd')
+//			{
+//				double value;
+//				in >> value;
+//				if (!in.fail())
+//				{
+//					Double *arg = new Double(value);
+//					id = table.size() + 1;
+//					rec->IdReset(id);
+//					rec->Add(type, arg);
+//				}
+//				else
+//				{
+//					in.clear();
+//					in.ignore(0);
+//				}
+//			}
+//			else
+//			if (type == 's')
+//			{
+//				std::string value;
+//				if (strloss)
+//				{
+//					strloss = true;
+//					in.get(); 
+//				}
+//				getline(in, value);
+//				String *arg = new String(value);
+//				id = table.size() + 1;
+//				rec->IdReset(id);
+//				rec->Add(type, arg);
+//				in.clear();
+//				in.ignore(0);
+//			}
+//			
+//		}
+//	strloss = true;
+//	table.push_back(rec);
+//	return *this;
+//}
 
 void Table::DeleteRecord(unsigned int  index, std::ostream &out)
 {
