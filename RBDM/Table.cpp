@@ -26,7 +26,6 @@ Table& Table::AddRecord(std::istream &in)
 		type = coltype[i];
 		if (type == 'i')
 		{
-			//int value;
 			getline(in,value);
 			if (!in.fail())
 			{
@@ -177,11 +176,25 @@ Record& Table::FindRecord(unsigned int index, std::ostream &out)
 	
 }
 
+Record& Table::FindRecord(std::string value)
+{
+	for (int i = 0; i < table.size(); i++)
+	{
+		if (table[i]->Find(value))
+		{
+			return *table[i];
+		}
+	}
+}
+
 void Table::FindRecord(std::string value,std::ostream &out)
 {
 	for (int i = 0; i < table.size(); i++)
 	{
-//		table[i]->Find();
+		if (table[i]->Find(value))
+		{
+			table[i]->Show(out);
+		}
 	}
 }
 void Table::Show(std::ostream &out)
