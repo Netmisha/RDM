@@ -88,12 +88,12 @@ void Record::IdReset(int newid)
 	id = newid;
 }
 
-Record& Record::Set(int index)
+Record& Record::Set(int index,std::istream &in)
 {
 	index--;
 	if (index < record.size()&&index>=0)
 	{
-		record[index]->Set(std::cin);
+		record[index]->Set(in);
 	}
 	return *this;
 }
