@@ -7,58 +7,22 @@ Record::Record()
 
 Record& Record::Add(std::string value)
 {
-	char type;
 	int ival;
 	double dval;
-	int checki = 1;
-	int checkd1 = 1;
-	int checkd2 = 0;
-	for (int i = 0; i < value.size(); i++)
-	{
-		if (isdigit(value[i]))
-		{
-			checki *= 1;
-			checkd1 *= 1;
-		}
-		else if (value[i] == '.')
-		{
-			checkd2++;
-		}
-		else
-		{
-			checki = 0;
-			checkd1 = 0;
-		}
-		checki *= checki;
-		checkd1 *= checkd1;
-	}
-	
-	
-	if (checkd1&&checkd2 == 1)
-	{
-		type = 'd';
-		dval = atof(value.c_str());
-	}
-	else if (checki)
-	{
-		type = 'i';
-		ival = atoi(value.c_str());
-	}
-	else
-	{
-		type = 's';
-	}
+	char type=TypeFinder(value);
 	switch (type)
 	{
 	case 'i':
 	{
+		ival = atoi(value.c_str());
 		Integer *cell = new Integer(ival);
 		record.push_back(cell);
 		break;
 	}
 	case 'd':
 	{
-				Double *cell = new Double(dval);
+		dval = atof(value.c_str());
+		Double *cell = new Double(dval);
 		record.push_back(cell);
 		break;
 	}
@@ -100,41 +64,7 @@ Record& Record::Set(int index,std::istream &in)
 
 bool Record::Find(std::string value)
 {
-	char type;
-	int checki = 1;
-	int checkd1 = 1;
-	int checkd2 = 0;
-	for (int i = 0; i < value.size(); i++)
-	{
-		if (isdigit(value[i]))
-		{
-			checki *= 1;
-			checkd1 *= 1;
-		}
-		else if (value[i] == '.')
-		{
-			checkd2++;
-		}
-		else
-		{
-			checki = 0;
-			checkd1 = 0;
-		}
-		checki *= checki;
-		checkd1 *= checkd1;
-	}
-	if (checkd1&&checkd2 == 1)
-	{
-		type = 'd';
-	}
-	else if (checki)
-	{
-		type = 'i';
-	}
-	else
-	{
-		type = 's';
-	}
+	char type=TypeFinder(value);
 	bool check = false;
 	for (int i = 0; i < record.size(); i++)
 	{
@@ -178,4 +108,44 @@ int Record::GetId()
 Record::~Record()
 {
 	record.clear();
+}
+
+char TypeFinder(std::string value)
+{
+	char type;
+	int checki = 1;
+	int checkd1 = 1;
+	int checkd2 = 0;
+	for (int i = 0; i < value.size(); i++)
+	{
+		if (isdigit(value[i]))
+		{
+			checki *= 1;
+			checkd1 *= 1;
+		}
+		else if (value[i] == '.')
+		{
+			checkd2++;
+		}
+		else
+		{
+			checki = 0;
+			checkd1 = 0;
+		}
+		checki *= checki;
+		checkd1 *= checkd1;
+	}
+	if (checkd1&&checkd2 == 1)
+	{
+		type = 'd';
+	}
+	else if (checki)
+	{
+		type = 'i';
+	}
+	else
+	{
+		type = 's';
+	}
+	return type;
 }

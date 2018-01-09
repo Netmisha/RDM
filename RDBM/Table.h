@@ -4,6 +4,7 @@
 #include"Record.h"
 #include<vector>
 #include<string>
+#include<initializer_list>
 
 static unsigned TID = 0;
 class Table
@@ -17,6 +18,7 @@ private:
 public:
 	Table();
 	Table& Create(std::vector<std::string> names, std::vector<char> coltypes);
+	Table& Create(std::initializer_list<std::string> l);
 	Table& AddRecord(std::istream &in);
 	void DeleteRecord(unsigned int index);
 	Record& FindRecord(unsigned int index, std::ostream &out);

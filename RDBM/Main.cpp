@@ -21,5 +21,8 @@ int main()
 	tb.FindRecord("3",std::cout);
 	tb.DeleteRecord(1);
 	tb.Show(std::cout);
+	Table tb2;
+	tb2.Create({ "srting name", "int int" });
+	tb2.Show(std::cout);
 	system("pause");
 }

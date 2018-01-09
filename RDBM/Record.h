@@ -25,4 +25,5 @@ public:
 	int GetId();
 	~Record();
 };
+char TypeFinder(std::string value);
 #endif

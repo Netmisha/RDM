@@ -1,4 +1,5 @@
 #include"Table.h"
+#include<sstream>
 bool strloss = false;
 Table::Table()
 {
@@ -14,7 +15,22 @@ Table& Table::Create(std::vector<std::string> names, std::vector<char> coltypes)
 	}
 	return *this;
 }
-
+Table& Table::Create(std::initializer_list<std::string> l)
+{
+	std::string text;
+	for (auto p=l.begin(); p != l.end(); p++)
+	{
+		text = *p;
+		std::istringstream iss(text);
+		std::vector<std::string> results(std::istream_iterator<std::string>{iss},
+			std::istream_iterator<std::string>());
+		colname.push_back(results[1]);
+		char type=TypeFinder(text);
+		std::string value = results[1];
+		coltype.push_back(type);
+	}
+	return *this;
+}
 Table& Table::AddRecord(std::istream &in)
 {
 	Record *rec = new Record();
@@ -42,7 +58,6 @@ Table& Table::AddRecord(std::istream &in)
 		else
 		if (type == 'd')
 		{
-			//double value;
 			getline(in, value);
 			if (!in.fail())
 			{
@@ -59,7 +74,6 @@ Table& Table::AddRecord(std::istream &in)
 		else
 		if (type == 's')
 		{
-			//std::string value;
 			if (strloss)
 			{
 				strloss = true;
@@ -78,73 +92,7 @@ Table& Table::AddRecord(std::istream &in)
 	table.push_back(rec);
 	return *this;
 }
-//Table& Table::AddRecord(std::istream &in)
-//{
-//	Record *rec = new Record();
-//	char type;
-//	int id;
-//	for (unsigned int i = 0; i < colname.size(); i++)
-//		{
-//		
-//			type = coltype[i];
-//			if (type == 'i')
-//			{
-//				int value;
-//				in >> value; 
-//				if (!in.fail())
-//				{
-//					Integer *arg = new Integer(value);
-//					id = table.size() + 1;
-//					rec->IdReset(id);
-//					rec->Add(type, arg);
-//				}
-//				else
-//				{
-//					in.clear();
-//					in.ignore(0);
-//				}
-//			}
-//			else
-//			if (type == 'd')
-//			{
-//				double value;
-//				in >> value;
-//				if (!in.fail())
-//				{
-//					Double *arg = new Double(value);
-//					id = table.size() + 1;
-//					rec->IdReset(id);
-//					rec->Add(type, arg);
-//				}
-//				else
-//				{
-//					in.clear();
-//					in.ignore(0);
-//				}
-//			}
-//			else
-//			if (type == 's')
-//			{
-//				std::string value;
-//				if (strloss)
-//				{
-//					strloss = true;
-//					in.get(); 
-//				}
-//				getline(in, value);
-//				String *arg = new String(value);
-//				id = table.size() + 1;
-//				rec->IdReset(id);
-//				rec->Add(type, arg);
-//				in.clear();
-//				in.ignore(0);
-//			}
-//			
-//		}
-//	strloss = true;
-//	table.push_back(rec);
-//	return *this;
-//}
+
 
 void Table::DeleteRecord(unsigned int  index)
 {
