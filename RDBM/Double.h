@@ -13,6 +13,7 @@ public:
 	Double(const Double &val);
 	void Set(const double val);
 	void Set(std::istream &in) override;
+	void Set(std::string& val)override;
 	void Show(std::ostream &out) override;
 	double& Get();
 	~Double(){};

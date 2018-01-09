@@ -27,6 +27,12 @@ void String::Set(std::istream &in)
 	getline(in, temp);
 	value = temp;
 }
+
+void String::Set(std::string& val)
+{
+	value = val;
+}
+
 void String::Show(std::ostream &out)
 {
 	out << value << " ";

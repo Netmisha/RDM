@@ -14,6 +14,7 @@ public:
 	String(const String &val);
 	void Set(const std::string val);
 	void Set(std::istream &in) override;
+	void Set(std::string& val)override;
 	void Show(std::ostream &out) override;
 	std::string Get();
 	~String(){};

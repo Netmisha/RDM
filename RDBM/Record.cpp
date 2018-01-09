@@ -70,12 +70,28 @@ Record& Record::Set(unsigned int index, std::istream &in)
 {
 	index--;
 	if (index < record.size()&&index>=0)
-	{
 		record[index]->Set(in);
+	return *this;
+}
+Record& Record::Set(unsigned int index,std::string value)
+{
+	index--;
+	char type;
+	if (typeid(*record[index]) == typeid(Integer))
+		type = 'i';
+	else if (typeid(*record[index]) == typeid(Double))
+		type = 'd';
+	else
+		type = 's';
+	if (TypeFinder(value) == type || type == 's')
+	{
+		if (index < record.size() && index >= 0)
+		{
+			record[index]->Set(value);
+		}
 	}
 	return *this;
 }
-
 bool Record::Find(const std::string& value)
 {
 	char type=TypeFinder(value);

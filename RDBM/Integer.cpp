@@ -26,6 +26,11 @@ void Integer::Set(const int val)
 {
 	 value = val;
 }
+void Integer::Set(std::string& val)
+{
+	int temp = atoi(val.c_str());
+	value = temp;
+}
 
 void Integer::Show(std::ostream &out)
 {

@@ -20,6 +20,7 @@ public:
 	void Show(std::ostream &out);
 	void IdReset(int newid);
 	Record& Set(unsigned int index, std::istream &in);
+	Record& Set(unsigned int index, std::string value);
 	bool Find(const std::string& value);
 	int GetId();
 	~Record();

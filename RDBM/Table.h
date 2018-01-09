@@ -23,10 +23,11 @@ public:
 	Table& AddRecord(std::initializer_list<std::string> list);
 	void DeleteRecord(unsigned int index);
 	Record& FindRecord(unsigned int index, std::ostream &out);
-	Record& FindRecord(const std::string& value);
+	Record* FindRecord(const std::string& value);
 	void FindRecords(const std::string& value,std::ostream &out);
 	void Show(std::ostream &out);
 	void Delete();
+	
 	void Set(unsigned int colindex,unsigned int rowindex,std::istream &in);
 	~Table();
 };

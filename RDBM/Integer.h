@@ -13,6 +13,7 @@ public:
 	Integer(const Integer &val);
 	void Set(const int val) ;
 	void Set(std::istream &in)override;
+	void Set(std::string& val)override;
 	void Show(std::ostream &out) override;
 	int& Get();
 	~Integer(){};

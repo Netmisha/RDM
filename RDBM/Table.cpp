@@ -158,16 +158,16 @@ Record& Table::FindRecord(unsigned int index, std::ostream &out)
 	
 }
 
-Record& Table::FindRecord(const std::string& value)
+Record* Table::FindRecord(const std::string& value)
 {
 	for (unsigned int i = 0; i < table.size(); i++)
 	{
 		if (table[i]->Find(value))
 		{
-			return *table[i];
+			return table[i];
 		}
 	}
-	//return ?
+	return nullptr;
 }
 
 void Table::FindRecords(const std::string& value,std::ostream &out)
