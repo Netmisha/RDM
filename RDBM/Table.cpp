@@ -15,11 +15,11 @@ Table& Table::Create(std::vector<std::string> names, std::vector<char> coltypes)
 	}
 	return *this;
 }
-Table& Table::Create(std::initializer_list<std::string> l)
+Table& Table::Create(std::initializer_list<std::string> list)
 {
 	std::string text;
 	char type;
-	for (auto p=l.begin(); p != l.end(); p++)
+	for (auto p=list.begin(); p != list.end(); p++)
 	{
 		text = *p;
 		std::istringstream iss(text);
@@ -112,7 +112,22 @@ Table& Table::AddRecord(std::istream &in)
 	return *this;
 }
 
-
+Table& Table::AddRecord(std::initializer_list<std::string> list)
+{
+	Record *rec = new Record;
+	
+	std::string text;
+	std::string temp;
+	auto p = list.begin();
+	for (unsigned int i = 0; i < colname.size(); i++)
+	{
+		temp = *p;
+		rec->Add(temp);
+		p++;
+	}
+	table.push_back(rec);
+	return *this;
+}
 void Table::DeleteRecord(unsigned int  index)
 {
 	for (unsigned int i = 0; i<table.size(); i++)
