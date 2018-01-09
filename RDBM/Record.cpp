@@ -102,29 +102,29 @@ bool Record::Find(const std::string& value)
 		{
 		case 'i':
 		{
-					Integer *temp = (Integer*)record[i];
-					if (std::to_string(temp->Get()) == value)
-						check = true;
-					break;
+			Integer *temp = (Integer*)record[i];
+			if (std::to_string(temp->Get()) == value)
+				check = true;
+			break;
 		}
 		case 'd':
 		{
-					Double *temp = (Double*)record[i];
-					if (std::to_string(temp->Get()) == value)
-						check = true;
-					break;
+			Double *temp = (Double*)record[i];
+			if (std::to_string(temp->Get()) == value)
+				check = true;
+			break;
 		}
 		case 's':
 		{
-					String *temp = (String*)record[i];
-					if (temp->Get() == value)
-						check = true;
-					break;
+			String *temp = (String*)record[i];
+			if (temp->Get() == value)
+				check = true;
+			break;
 		}
 		default:
 		{
-				   check = false;
-				   break;
+			check = false;
+			   break;
 		}
 		}
 	}
