@@ -18,6 +18,7 @@ Table& Table::Create(std::vector<std::string> names, std::vector<char> coltypes)
 Table& Table::Create(std::initializer_list<std::string> l)
 {
 	std::string text;
+	char type;
 	for (auto p=l.begin(); p != l.end(); p++)
 	{
 		text = *p;
@@ -25,7 +26,12 @@ Table& Table::Create(std::initializer_list<std::string> l)
 		std::vector<std::string> results(std::istream_iterator<std::string>{iss},
 			std::istream_iterator<std::string>());
 		colname.push_back(results[1]);
-		char type=TypeFinder(text);
+		if (results[0] == "int" || results[0] == "integer")
+			type = 'i';
+		else if (results[0] == "double")
+			type = 'd';
+		else
+			type = 's';
 		std::string value = results[1];
 		coltype.push_back(type);
 	}
@@ -161,6 +167,11 @@ void Table::FindRecords(const std::string& value,std::ostream &out)
 }
 void Table::Show(std::ostream &out)
 {
+	for (unsigned int i = 0; i < colname.size(); i++)
+	{
+		out << colname[i] << "  ";
+	}
+	out << std::endl;
 	Record *ptr;
 	for (unsigned int i = 0; i < table.size(); i++)
 	{
