@@ -6,7 +6,7 @@ Table::Table()
 	id = ++TID;
 	name = "table " + std::to_string(id);
 }
-Table& Table::Create(std::vector<std::string> names, std::vector<char> coltypes)
+Table& Table::Create(std::vector<std::string>& names, std::vector<char>& coltypes)
 {
 	for (unsigned int i = 0; i < names.size(); i++)
 	{
