@@ -22,7 +22,7 @@ void Integer::Set(std::istream &in)
 	value = temp;
 }
 
-void Integer::Set(int val)
+void Integer::Set(const int val)
 {
 	 value = val;
 }

@@ -11,7 +11,7 @@ public:
 	Integer();
 	Integer(int &val);
 	Integer(const Integer &val);
-	void Set( int val) ;
+	void Set(const int val) ;
 	void Set(std::istream &in)override;
 	void Show(std::ostream &out) override;
 	int& Get();

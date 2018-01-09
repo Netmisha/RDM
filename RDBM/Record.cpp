@@ -5,7 +5,7 @@ Record::Record()
 	id = ++ID;
 }
 
-Record& Record::Add(std::string value)
+Record& Record::Add(const std::string &value)
 {
 	int ival;
 	double dval;
@@ -14,16 +14,30 @@ Record& Record::Add(std::string value)
 	{
 	case 'i':
 	{
-		ival = atoi(value.c_str());
-		Integer *cell = new Integer(ival);
-		record.push_back(cell);
+		if (TypeFinder(value) == 'i')
+		{
+			ival = atoi(value.c_str());
+			Integer *cell = new Integer(ival);
+			record.push_back(cell);
+		}
+		else
+		{
+			record.push_back((Integer*)0);
+		}
 		break;
 	}
 	case 'd':
 	{
-		dval = atof(value.c_str());
-		Double *cell = new Double(dval);
-		record.push_back(cell);
+		if (TypeFinder(value) == 'd' || TypeFinder(value) == 'i')
+		{
+			dval = atof(value.c_str());
+			Double *cell = new Double(dval);
+			record.push_back(cell);
+		}
+		else
+		{
+			record.push_back((Double*)0);
+		}
 		break;
 	}
 	case 's':
@@ -52,7 +66,7 @@ void Record::IdReset(int newid)
 	id = newid;
 }
 
-Record& Record::Set(int index,std::istream &in)
+Record& Record::Set(unsigned int index, std::istream &in)
 {
 	index--;
 	if (index < record.size()&&index>=0)
@@ -62,11 +76,11 @@ Record& Record::Set(int index,std::istream &in)
 	return *this;
 }
 
-bool Record::Find(std::string value)
+bool Record::Find(const std::string& value)
 {
 	char type=TypeFinder(value);
 	bool check = false;
-	for (int i = 0; i < record.size(); i++)
+	for (unsigned int i = 0; i < record.size(); i++)
 	{
 		switch (type)
 		{
@@ -116,7 +130,7 @@ char TypeFinder(std::string value)
 	int checki = 1;
 	int checkd1 = 1;
 	int checkd2 = 0;
-	for (int i = 0; i < value.size(); i++)
+	for (unsigned int i = 0; i < value.size(); i++)
 	{
 		if (isdigit(value[i]))
 		{
@@ -135,7 +149,7 @@ char TypeFinder(std::string value)
 		checki *= checki;
 		checkd1 *= checkd1;
 	}
-	if (checkd1&&checkd2 == 1)
+	if (checkd1==1&&checkd2 == 1)
 	{
 		type = 'd';
 	}

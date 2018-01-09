@@ -34,45 +34,58 @@ Table& Table::Create(std::initializer_list<std::string> l)
 Table& Table::AddRecord(std::istream &in)
 {
 	Record *rec = new Record();
-	char type;
 	int id;
 	for (unsigned int i = 0; i < colname.size(); i++)
 	{
 		std::string value;
-		type = coltype[i];
-		if (type == 'i')
+		if (coltype[i] == 'i')
 		{
 			getline(in,value);
-			if (!in.fail())
+			if (TypeFinder(value) == 'i')
 			{
-				id = table.size() + 1;
-				rec->IdReset(id);
-				rec->Add(value);
+
+				if (!in.fail())
+				{
+					id = table.size() + 1;
+					rec->IdReset(id);
+					rec->Add(value);
+				}
+				else
+				{
+					in.clear();
+					in.ignore(0);
+				}
 			}
 			else
 			{
-				in.clear();
-				in.ignore(0);
+				rec->Add(std::to_string(0));
 			}
 		}
 		else
-		if (type == 'd')
+		if (coltype[i] == 'd')
 		{
 			getline(in, value);
-			if (!in.fail())
+			if (TypeFinder(value) == 'd' || TypeFinder(value) == 'i')
 			{
-				id = table.size() + 1;
-				rec->IdReset(id);
-				rec->Add(value);
+				if (!in.fail())
+				{
+					id = table.size() + 1;
+					rec->IdReset(id);
+					rec->Add(value);
+				}
+				else
+				{
+					in.clear();
+					in.ignore(0);
+				}
 			}
 			else
 			{
-				in.clear();
-				in.ignore(0);
+				rec->Add(std::to_string(0.0));
 			}
 		}
 		else
-		if (type == 's')
+		if (coltype[i] == 's')
 		{
 			if (strloss)
 			{
@@ -96,7 +109,7 @@ Table& Table::AddRecord(std::istream &in)
 
 void Table::DeleteRecord(unsigned int  index)
 {
-	for (int i = 0; i<table.size(); i++)
+	for (unsigned int i = 0; i<table.size(); i++)
 	{
 		if (table[i]->GetId()==index)
 			table.erase(table.begin());
@@ -124,20 +137,21 @@ Record& Table::FindRecord(unsigned int index, std::ostream &out)
 	
 }
 
-Record& Table::FindRecord(std::string value)
+Record& Table::FindRecord(const std::string& value)
 {
-	for (int i = 0; i < table.size(); i++)
+	for (unsigned int i = 0; i < table.size(); i++)
 	{
 		if (table[i]->Find(value))
 		{
 			return *table[i];
 		}
 	}
+	//return ?
 }
 
-void Table::FindRecord(std::string value,std::ostream &out)
+void Table::FindRecords(const std::string& value,std::ostream &out)
 {
-	for (int i = 0; i < table.size(); i++)
+	for (unsigned int i = 0; i < table.size(); i++)
 	{
 		if (table[i]->Find(value))
 		{

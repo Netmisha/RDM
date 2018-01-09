@@ -13,15 +13,14 @@ class Record
 {
 private:
 	int id;
-	
-public:
 	std::vector<BaseForType*> record;
+public:
 	Record();
-	Record& Add(std::string value);
+	Record& Add(const std::string& value);
 	void Show(std::ostream &out);
 	void IdReset(int newid);
-	Record& Set(int index,std::istream &in);
-	bool Find(std::string value);
+	Record& Set(unsigned int index, std::istream &in);
+	bool Find(const std::string& value);
 	int GetId();
 	~Record();
 };

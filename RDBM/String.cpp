@@ -5,7 +5,7 @@ String::String()
 	value = " ";
 }
 
-String::String( std::string &val)
+String::String(const std::string &val)
 {
 	 value = val;
 }
@@ -32,7 +32,7 @@ void String::Show(std::ostream &out)
 	out << value << " ";
 }
 
-std::string& String::Get()
+std::string String::Get()
 {
 	return value;
 }
