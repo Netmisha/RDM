@@ -18,7 +18,7 @@ public:
 	Record();
 	Record& Add(const std::string& value);
 	void Show(std::ostream &out);
-	void IdReset(int newid);
+	//void IdReset(int newid);
 	Record& Set(unsigned int index, std::istream &in);
 	Record& Set(unsigned int index, std::string value);
 	bool Find(const std::string& value);

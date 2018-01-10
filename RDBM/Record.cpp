@@ -61,10 +61,10 @@ void Record::Show(std::ostream &out)
 	out << std::endl;
 }
 
-void Record::IdReset(int newid)
-{
-	id = newid;
-}
+//void Record::IdReset(int newid)
+//{
+//	id = newid;
+//}
 
 Record& Record::Set(unsigned int index, std::istream &in)
 {

@@ -53,7 +53,7 @@ Table& Table::AddRecord(std::istream &in)
 				if (!in.fail())
 				{
 					id = table.size() + 1;
-					rec->IdReset(id);
+					//rec->IdReset(id);
 					rec->Add(value);
 				}
 				else
@@ -76,7 +76,7 @@ Table& Table::AddRecord(std::istream &in)
 				if (!in.fail())
 				{
 					id = table.size() + 1;
-					rec->IdReset(id);
+					//rec->IdReset(id);
 					rec->Add(value);
 				}
 				else
@@ -100,7 +100,7 @@ Table& Table::AddRecord(std::istream &in)
 			}
 			getline(in, value);
 			id = table.size() + 1;
-			rec->IdReset(id);
+			//rec->IdReset(id);
 			rec->Add(value);
 			in.clear();
 			in.ignore(0);
