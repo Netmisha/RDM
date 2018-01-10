@@ -28,7 +28,8 @@ public:
 	void FindRecords(const std::string& value,std::ostream &out);
 	void Show(std::ostream &out);
 	void Delete();
-	void Set(unsigned int colindex,unsigned int rowindex,std::istream &in);
+	void Set(unsigned int rowindex, unsigned int colindex, std::istream &in);
+	void Set(unsigned int rowindex, unsigned int colindex, std::string value);
 	~Table();
 };
 #endif

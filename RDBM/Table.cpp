@@ -223,9 +223,14 @@ void Table::Delete()
 	table.clear();
 }
 
-void Table::Set(unsigned int colindex, unsigned int rowindex,std::istream &in)
+void Table::Set(unsigned int rowindex, unsigned int colindex, std::istream &in)
 {
 	table[rowindex-1]->Set(colindex,in);
+}
+
+void Table::Set(unsigned int rowindex, unsigned int colindex, std::string value)
+{
+	table[rowindex - 1]->Set(colindex, value);
 }
 
 Table::~Table()
