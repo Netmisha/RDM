@@ -128,6 +128,27 @@ Table& Table::AddRecord(std::initializer_list<std::string> list)
 	table.push_back(rec);
 	return *this;
 }
+
+Table& Table::AddColumn(std::string type, std::string name)
+{
+	colname.push_back(name);
+	if (type == "int" || type == "integer")
+		coltype.push_back('i');
+	else if (type == "double")
+		coltype.push_back('d');
+	else
+		coltype.push_back('s');
+	for (unsigned int i = 0; i < table.size(); i++)
+	{
+		if (type == "int" || type == "integer")
+			table[i]->Add("0");
+		else if (type == "double")
+			table[i]->Add("0.0");
+		else
+		table[i]->Add("_");
+	}
+	return *this;
+}
 void Table::DeleteRecord(unsigned int  index)
 {
 	for (unsigned int i = 0; i<table.size(); i++)

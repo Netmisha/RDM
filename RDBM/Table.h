@@ -17,10 +17,11 @@ private:
 	std::vector<Record*> table;
 public:
 	Table();
-	Table& Create(std::vector<std::string> names, std::vector<char> coltypes);
+	Table& Create(std::vector<std::string>& names, std::vector<char>& coltypes);
 	Table& Create(std::initializer_list<std::string> list);
 	Table& AddRecord(std::istream &in);
 	Table& AddRecord(std::initializer_list<std::string> list);
+	Table& AddColumn(std::string type, std::string name);
 	void DeleteRecord(unsigned int index);
 	Record& FindRecord(unsigned int index, std::ostream &out);
 	Record* FindRecord(const std::string& value);
