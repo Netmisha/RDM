@@ -22,15 +22,15 @@ public:
 	Table& AddRecord(std::istream &in);
 	Table& AddRecord(std::initializer_list<std::string> list);
 	Table& AddColumn(std::string type, std::string name);
-	void DeleteRecord(unsigned int index);
+	Table& DeleteRecord(unsigned int index);
 	Record& FindRecord(unsigned int index, std::ostream &out);
 	Record* FindRecord(const std::string& value);
-	void FindRecords(const std::string& value,std::ostream &out);
-	void Show(std::ostream &out);
-	void Delete();
-	void Set(unsigned int rowindex, unsigned int colindex, std::istream &in);
-	void Set(unsigned int rowindex, unsigned int colindex, std::string value);
-	void Set(unsigned int rowindex, std::string column, std::string value);
+	Table& FindRecords(const std::string& value, std::ostream &out);
+	Table& Show(std::ostream &out);
+	Table& Delete();
+	Table& Set(unsigned int rowindex, unsigned int colindex, std::istream &in);
+	Table& Set(unsigned int rowindex, unsigned int colindex, std::string value);
+	Table& Set(unsigned int rowindex, std::string column, std::string value);
 	~Table();
 };
 #endif

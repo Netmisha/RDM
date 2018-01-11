@@ -146,13 +146,14 @@ Table& Table::AddColumn(std::string type, std::string name)
 	}
 	return *this;
 }
-void Table::DeleteRecord(unsigned int  index)
+Table& Table::DeleteRecord(unsigned int  index)
 {
 	for (unsigned int i = 0; i<table.size(); i++)
 	{
 		if (table[i]->GetId()==index)
 			table.erase(table.begin());
 	}
+	return *this;
 }
 
 Record& Table::FindRecord(unsigned int index, std::ostream &out)
@@ -188,7 +189,7 @@ Record* Table::FindRecord(const std::string& value)
 	return nullptr;
 }
 
-void Table::FindRecords(const std::string& value,std::ostream &out)
+Table& Table::FindRecords(const std::string& value, std::ostream &out)
 {
 	for (unsigned int i = 0; i < table.size(); i++)
 	{
@@ -197,8 +198,9 @@ void Table::FindRecords(const std::string& value,std::ostream &out)
 			table[i]->Show(out);
 		}
 	}
+	return *this;
 }
-void Table::Show(std::ostream &out)
+Table& Table::Show(std::ostream &out)
 {
 	for (unsigned int i = 0; i < colname.size(); i++)
 	{
@@ -211,26 +213,30 @@ void Table::Show(std::ostream &out)
 		ptr = table[i];
 		ptr->Show(out);
 	}
+	return *this;
 }
 
 
 
-void Table::Delete()
+Table& Table::Delete()
 {
 	table.clear();
+	return *this;
 }
 
-void Table::Set(unsigned int rowindex, unsigned int colindex, std::istream &in)
+Table& Table::Set(unsigned int rowindex, unsigned int colindex, std::istream &in)
 {
 	table[rowindex-1]->Set(colindex,in);
+	return *this;
 }
 
-void Table::Set(unsigned int rowindex, unsigned int colindex, std::string value)
+Table& Table::Set(unsigned int rowindex, unsigned int colindex, std::string value)
 {
 	table[rowindex - 1]->Set(colindex, value);
+	return *this;
 }
 
-void Table::Set(unsigned int rowindex, std::string column, std::string value)
+Table& Table::Set(unsigned int rowindex, std::string column, std::string value)
 {
 	rowindex--;
 	for (unsigned int i = 0; i < colname.size(); i++)
@@ -238,6 +244,7 @@ void Table::Set(unsigned int rowindex, std::string column, std::string value)
 		if (colname[i] == column)
 			table[rowindex]->Set(i+1,value);
 	}
+	return *this;
 }
 Table::~Table()
 {

@@ -52,13 +52,14 @@ Record& Record::Add(const std::string &value)
 	return *this;
 }
 
-void Record::Show(std::ostream &out)
+Record& Record::Show(std::ostream &out)
 {
 	for (unsigned int i = 0; i < record.size(); i++)
 	{
 		record[i]->Show(out);
 	}
 	out << std::endl;
+	return *this;
 }
 
 
