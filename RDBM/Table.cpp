@@ -156,7 +156,7 @@ Table& Table::DeleteRecord(unsigned int  index)
 	return *this;
 }
 
-Record& Table::FindRecord(unsigned int index, std::ostream &out)
+Record* Table::FindRecord(unsigned int index, std::ostream &out)
 {
 	index--;
 	if (index>table.size() || index < 0)
@@ -164,16 +164,14 @@ Record& Table::FindRecord(unsigned int index, std::ostream &out)
 		if (table.size() == 0)
 		{
 			Record *rec = new Record;
-			out << "Table is empty.\nFirst record was created(empty)\n";
-			table.push_back(rec);
-			return *table[0];
+			return nullptr;
 		}
 		out << "ID out of range\n";
-		return *table[0];
+		return table[0];
 	}
 	
 	else
-		return *table[index];
+		return table[index];
 	
 }
 
@@ -246,6 +244,75 @@ Table& Table::Set(unsigned int rowindex, std::string column, std::string value)
 	}
 	return *this;
 }
+
+Table& Table::AddTable(const Table& source)
+{
+	int count=colname.size();
+	for (unsigned int i = 0; i < source.colname.size(); i++)
+	{
+		colname.push_back(source.colname[i]);
+		coltype.push_back(source.coltype[i]);
+	}
+	count = table.size();
+	for (unsigned int i = 0; i < count; i++)
+	{
+		
+		for (unsigned int j = count; j < colname.size(); j++)
+		{
+			switch (coltype[j])
+			{
+			case 'i':
+			{
+						table[i]->Add("0");
+						break;
+			}
+			case 'd':
+			{
+						table[i]->Add("0.0");
+						break;
+			case 's':
+			{
+						table[i]->Add("_");
+						break;
+			}
+			}
+			default:
+				break;
+			}
+		}
+	}
+	for (unsigned int i = table.size(); i < source.table.size(); i++)
+	{
+		Record *rec = new Record;
+		table.push_back(rec);
+		for (unsigned int j = 0; j < colname.size(); j++)
+		{
+			switch (coltype[j])
+			{
+			case 'i':
+			{
+						table[i]->Add("0");
+						break;
+			}
+			case 'd':
+			{
+						table[i]->Add("0.0");
+						break;
+			case 's':
+			{
+						table[i]->Add("_");
+						break;
+			}
+			}
+			default:
+				break;
+			}
+		}
+	}
+	return *this;
+
+}
+
 Table::~Table()
 {
 	table.clear();
