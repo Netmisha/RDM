@@ -30,6 +30,7 @@ public:
 	void Delete();
 	void Set(unsigned int rowindex, unsigned int colindex, std::istream &in);
 	void Set(unsigned int rowindex, unsigned int colindex, std::string value);
+	void Set(unsigned int rowindex, std::string column, std::string value);
 	~Table();
 };
 #endif

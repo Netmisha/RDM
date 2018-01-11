@@ -61,10 +61,7 @@ void Record::Show(std::ostream &out)
 	out << std::endl;
 }
 
-//void Record::IdReset(int newid)
-//{
-//	id = newid;
-//}
+
 
 Record& Record::Set(unsigned int index, std::istream &in)
 {
@@ -83,7 +80,22 @@ Record& Record::Set(unsigned int index,std::string value)
 		type = 'd';
 	else
 		type = 's';
-	if (TypeFinder(value) == type || type == 's')
+	if ((TypeFinder(value) == 'i' || TypeFinder(value) == 'd')&& type=='i')
+	{
+		if (index < record.size() && index >= 0)
+		{
+			int temp = atoi(value.c_str());
+			record[index]->Set(std::to_string(temp));
+		}
+	}
+	else if ((TypeFinder(value) == 'i' || TypeFinder(value) == 'd') && type == 'd')
+	{
+		if (index < record.size() && index >= 0)
+		{
+			double temp = atof(value.c_str());
+			record[index]->Set(std::to_string(temp));
+		}
+	}else	if (TypeFinder(value) == type || type == 's')
 	{
 		if (index < record.size() && index >= 0)
 		{

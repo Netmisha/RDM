@@ -53,7 +53,6 @@ Table& Table::AddRecord(std::istream &in)
 				if (!in.fail())
 				{
 					id = table.size() + 1;
-					//rec->IdReset(id);
 					rec->Add(value);
 				}
 				else
@@ -76,7 +75,6 @@ Table& Table::AddRecord(std::istream &in)
 				if (!in.fail())
 				{
 					id = table.size() + 1;
-					//rec->IdReset(id);
 					rec->Add(value);
 				}
 				else
@@ -100,7 +98,6 @@ Table& Table::AddRecord(std::istream &in)
 			}
 			getline(in, value);
 			id = table.size() + 1;
-			//rec->IdReset(id);
 			rec->Add(value);
 			in.clear();
 			in.ignore(0);
@@ -233,6 +230,15 @@ void Table::Set(unsigned int rowindex, unsigned int colindex, std::string value)
 	table[rowindex - 1]->Set(colindex, value);
 }
 
+void Table::Set(unsigned int rowindex, std::string column, std::string value)
+{
+	rowindex--;
+	for (unsigned int i = 0; i < colname.size(); i++)
+	{
+		if (colname[i] == column)
+			table[rowindex]->Set(i+1,value);
+	}
+}
 Table::~Table()
 {
 	table.clear();

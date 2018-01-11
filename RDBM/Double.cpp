@@ -29,7 +29,7 @@ void Double::Set(std::istream &in)
 
 void Double::Set(std::string& val)
 {
-	int temp = atoi(val.c_str());
+	double temp = atof(val.c_str());
 	value = temp;
 }
 void Double::Show(std::ostream &out)
