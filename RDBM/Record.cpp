@@ -52,19 +52,17 @@ Record& Record::Add(const std::string &value)
 	return *this;
 }
 
-void Record::Show(std::ostream &out)
+Record& Record::Show(std::ostream &out)
 {
 	for (unsigned int i = 0; i < record.size(); i++)
 	{
 		record[i]->Show(out);
 	}
 	out << std::endl;
+	return *this;
 }
 
-void Record::IdReset(int newid)
-{
-	id = newid;
-}
+
 
 Record& Record::Set(unsigned int index, std::istream &in)
 {
@@ -83,7 +81,22 @@ Record& Record::Set(unsigned int index,std::string value)
 		type = 'd';
 	else
 		type = 's';
-	if (TypeFinder(value) == type || type == 's')
+	if ((TypeFinder(value) == 'i' || TypeFinder(value) == 'd')&& type=='i')
+	{
+		if (index < record.size() && index >= 0)
+		{
+			int temp = atoi(value.c_str());
+			record[index]->Set(std::to_string(temp));
+		}
+	}
+	else if ((TypeFinder(value) == 'i' || TypeFinder(value) == 'd') && type == 'd')
+	{
+		if (index < record.size() && index >= 0)
+		{
+			double temp = atof(value.c_str());
+			record[index]->Set(std::to_string(temp));
+		}
+	}else	if (TypeFinder(value) == type || type == 's')
 	{
 		if (index < record.size() && index >= 0)
 		{
@@ -130,7 +143,11 @@ bool Record::Find(const std::string& value)
 	}
 	return check;
 }
-
+void Record::Resize()
+{
+	BaseForType* ptr;
+	record.insert(record.begin(),ptr);
+}
 int Record::GetId()
 {
 	return id;

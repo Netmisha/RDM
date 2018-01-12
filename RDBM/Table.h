@@ -17,17 +17,21 @@ private:
 	std::vector<Record*> table;
 public:
 	Table();
-	Table& Create(std::vector<std::string> names, std::vector<char> coltypes);
+	Table& Create(std::vector<std::string>& names, std::vector<char>& coltypes);
 	Table& Create(std::initializer_list<std::string> list);
 	Table& AddRecord(std::istream &in);
 	Table& AddRecord(std::initializer_list<std::string> list);
-	void DeleteRecord(unsigned int index);
-	Record& FindRecord(unsigned int index, std::ostream &out);
+	Table& AddColumn(const std::string& type, const std::string& name);
+	Table& DeleteRecord(unsigned int index);
+	Record* FindRecord(unsigned int index);
 	Record* FindRecord(const std::string& value);
-	void FindRecords(const std::string& value,std::ostream &out);
-	void Show(std::ostream &out);
-	void Delete();
-	void Set(unsigned int colindex,unsigned int rowindex,std::istream &in);
+	Table& FindRecords(const std::string& value, std::ostream &out);
+	Table& Show(std::ostream &out);
+	Table& Delete();
+	Table& Set(unsigned int rowindex, unsigned int colindex, std::istream &in);
+	Table* Set(unsigned int rowindex, unsigned int colindex, std::string& value);
+	Table* Set(unsigned int rowindex, std::string column, std::string value);
+	Table& AddTable(const Table& source);
 	~Table();
 };
 #endif

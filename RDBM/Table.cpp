@@ -30,7 +30,7 @@ Table& Table::Create(std::initializer_list<std::string> list)
 			type = 'i';
 		else if (results[0] == "double")
 			type = 'd';
-		else
+		else if (results[0]=="string")
 			type = 's';
 		std::string value = results[1];
 		coltype.push_back(type);
@@ -53,7 +53,6 @@ Table& Table::AddRecord(std::istream &in)
 				if (!in.fail())
 				{
 					id = table.size() + 1;
-					rec->IdReset(id);
 					rec->Add(value);
 				}
 				else
@@ -76,7 +75,6 @@ Table& Table::AddRecord(std::istream &in)
 				if (!in.fail())
 				{
 					id = table.size() + 1;
-					rec->IdReset(id);
 					rec->Add(value);
 				}
 				else
@@ -100,7 +98,6 @@ Table& Table::AddRecord(std::istream &in)
 			}
 			getline(in, value);
 			id = table.size() + 1;
-			rec->IdReset(id);
 			rec->Add(value);
 			in.clear();
 			in.ignore(0);
@@ -128,34 +125,49 @@ Table& Table::AddRecord(std::initializer_list<std::string> list)
 	table.push_back(rec);
 	return *this;
 }
-void Table::DeleteRecord(unsigned int  index)
+
+Table& Table::AddColumn(const std::string& type, const std::string& name)
+{
+	colname.push_back(name);
+	if (type == "int" || type == "integer")
+		coltype.push_back('i');
+	else if (type == "double")
+		coltype.push_back('d');
+	else if (type == "string")
+		coltype.push_back('s');
+	for (unsigned int i = 0; i < table.size(); i++)
+	{
+		if (type == "int" || type == "integer")
+			table[i]->Add("0");
+		else if (type == "double")
+			table[i]->Add("0.0");
+		else if (type == "string")
+			table[i]->Add("_");
+	}
+	return *this;
+}
+Table& Table::DeleteRecord(unsigned int  index)
 {
 	for (unsigned int i = 0; i<table.size(); i++)
 	{
 		if (table[i]->GetId()==index)
 			table.erase(table.begin());
 	}
+	return *this;
 }
 
-Record& Table::FindRecord(unsigned int index, std::ostream &out)
+Record* Table::FindRecord(unsigned int index)
 {
 	index--;
-	if (index>table.size() || index < 0)
+	if (index>table.size())
 	{
 		if (table.size() == 0)
 		{
-			Record *rec = new Record;
-			out << "Table is empty.\nFirst record was created(empty)\n";
-			table.push_back(rec);
-			return *table[0];
+			return nullptr;
 		}
-		out << "ID out of range\n";
-		return *table[0];
 	}
-	
 	else
-		return *table[index];
-	
+		return table[index];
 }
 
 Record* Table::FindRecord(const std::string& value)
@@ -170,7 +182,7 @@ Record* Table::FindRecord(const std::string& value)
 	return nullptr;
 }
 
-void Table::FindRecords(const std::string& value,std::ostream &out)
+Table& Table::FindRecords(const std::string& value, std::ostream &out)
 {
 	for (unsigned int i = 0; i < table.size(); i++)
 	{
@@ -179,8 +191,9 @@ void Table::FindRecords(const std::string& value,std::ostream &out)
 			table[i]->Show(out);
 		}
 	}
+	return *this;
 }
-void Table::Show(std::ostream &out)
+Table& Table::Show(std::ostream &out)
 {
 	for (unsigned int i = 0; i < colname.size(); i++)
 	{
@@ -193,18 +206,117 @@ void Table::Show(std::ostream &out)
 		ptr = table[i];
 		ptr->Show(out);
 	}
+	return *this;
 }
 
 
 
-void Table::Delete()
+Table& Table::Delete()
 {
 	table.clear();
+	return *this;
 }
 
-void Table::Set(unsigned int colindex, unsigned int rowindex,std::istream &in)
+Table& Table::Set(unsigned int rowindex, unsigned int colindex, std::istream &in)
 {
 	table[rowindex-1]->Set(colindex,in);
+	return *this;
+}
+
+Table* Table::Set(unsigned int rowindex, unsigned int colindex, std::string& value)
+{
+	if (rowindex > 0 && rowindex < table.size())
+	{
+		table[rowindex - 1]->Set(colindex, value);
+		return this;
+	}
+	else
+		return nullptr;
+}
+
+Table* Table::Set(unsigned int rowindex, std::string column, std::string value)
+{
+	if (rowindex > 0 && rowindex < table.size())
+	{
+		rowindex--;
+		for (unsigned int i = 0; i < colname.size(); i++)
+		{
+			if (colname[i] == column)
+				table[rowindex]->Set(i + 1, value);
+		}
+		return this;
+	}
+	else
+		return nullptr;
+}
+
+Table& Table::AddTable(const Table& source)
+{
+	int count=colname.size();
+	int count2 = count;
+	for (unsigned int i = 0; i < source.colname.size(); i++)
+	{
+		colname.push_back(source.colname[i]);
+		coltype.push_back(source.coltype[i]);
+	}
+	count = table.size();
+	for (int i = 0; i < count; i++)
+	{
+		
+		for (unsigned int j = count2; j < colname.size(); j++)
+		{
+			switch (coltype[j])
+			{
+			case 'i':
+			{
+				table[i]->Add("0");
+				break;
+			}
+			case 'd':
+			{
+				table[i]->Add("0.0");
+				break;
+			case 's':
+			{
+				table[i]->Add("_");
+				break;
+			}
+			}
+			default:
+				break;
+			}
+		}
+	}
+	for (unsigned int i = table.size(); i < source.table.size(); i++)
+	{
+		Record *rec = new Record;
+		table.push_back(rec);
+		for (unsigned int j = 0; j < colname.size(); j++)
+		{
+			switch (coltype[j])
+			{
+			case 'i':
+			{
+				table[i]->Add("0");
+				break;
+			}
+			case 'd':
+			{
+				table[i]->Add("0.0");
+				break;
+			case 's':
+			{
+				table[i]->Add("_");
+				break;
+			}
+			}
+			default:
+				break;
+			}
+		}
+	}
+	return *this;
+
 }
 
 Table::~Table()
