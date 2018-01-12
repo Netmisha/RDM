@@ -30,7 +30,7 @@ Table& Table::Create(std::initializer_list<std::string> list)
 			type = 'i';
 		else if (results[0] == "double")
 			type = 'd';
-		else
+		else if (results[0]=="string")
 			type = 's';
 		std::string value = results[1];
 		coltype.push_back(type);
@@ -166,10 +166,7 @@ Record* Table::FindRecord(unsigned int index, std::ostream &out)
 			Record *rec = new Record;
 			return nullptr;
 		}
-		out << "ID out of range\n";
-		return table[0];
 	}
-	
 	else
 		return table[index];
 	
