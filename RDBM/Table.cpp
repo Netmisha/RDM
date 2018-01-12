@@ -133,7 +133,7 @@ Table& Table::AddColumn(const std::string& type, const std::string& name)
 		coltype.push_back('i');
 	else if (type == "double")
 		coltype.push_back('d');
-	else
+	else if (type == "string")
 		coltype.push_back('s');
 	for (unsigned int i = 0; i < table.size(); i++)
 	{
