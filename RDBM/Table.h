@@ -21,7 +21,7 @@ public:
 	Table& Create(std::initializer_list<std::string> list);
 	Table& AddRecord(std::istream &in);
 	Table& AddRecord(std::initializer_list<std::string> list);
-	Table& AddColumn(std::string type, std::string name);
+	Table& AddColumn(const std::string& type, const std::string& name);
 	Table& DeleteRecord(unsigned int index);
 	Record* FindRecord(unsigned int index, std::ostream &out);
 	Record* FindRecord(const std::string& value);
@@ -29,8 +29,8 @@ public:
 	Table& Show(std::ostream &out);
 	Table& Delete();
 	Table& Set(unsigned int rowindex, unsigned int colindex, std::istream &in);
-	Table& Set(unsigned int rowindex, unsigned int colindex, std::string value);
-	Table& Set(unsigned int rowindex, std::string column, std::string value);
+	Table* Set(unsigned int rowindex, unsigned int colindex, std::string& value);
+	Table* Set(unsigned int rowindex, std::string column, std::string value);
 	Table& AddTable(const Table& source);
 	~Table();
 };

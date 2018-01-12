@@ -126,7 +126,7 @@ Table& Table::AddRecord(std::initializer_list<std::string> list)
 	return *this;
 }
 
-Table& Table::AddColumn(std::string type, std::string name)
+Table& Table::AddColumn(const std::string& type, const std::string& name)
 {
 	colname.push_back(name);
 	if (type == "int" || type == "integer")
@@ -141,8 +141,8 @@ Table& Table::AddColumn(std::string type, std::string name)
 			table[i]->Add("0");
 		else if (type == "double")
 			table[i]->Add("0.0");
-		else
-		table[i]->Add("_");
+		else if (type == "string")
+			table[i]->Add("_");
 	}
 	return *this;
 }
@@ -228,26 +228,37 @@ Table& Table::Set(unsigned int rowindex, unsigned int colindex, std::istream &in
 	return *this;
 }
 
-Table& Table::Set(unsigned int rowindex, unsigned int colindex, std::string value)
+Table* Table::Set(unsigned int rowindex, unsigned int colindex, std::string& value)
 {
-	table[rowindex - 1]->Set(colindex, value);
-	return *this;
+	if (rowindex > 0 && rowindex < table.size())
+	{
+		table[rowindex - 1]->Set(colindex, value);
+		return this;
+	}
+	else
+		return nullptr;
 }
 
-Table& Table::Set(unsigned int rowindex, std::string column, std::string value)
+Table* Table::Set(unsigned int rowindex, std::string column, std::string value)
 {
-	rowindex--;
-	for (unsigned int i = 0; i < colname.size(); i++)
+	if (rowindex > 0 && rowindex < table.size())
 	{
-		if (colname[i] == column)
-			table[rowindex]->Set(i+1,value);
+		rowindex--;
+		for (unsigned int i = 0; i < colname.size(); i++)
+		{
+			if (colname[i] == column)
+				table[rowindex]->Set(i + 1, value);
+		}
+		return this;
 	}
-	return *this;
+	else
+		return nullptr;
 }
 
 Table& Table::AddTable(const Table& source)
 {
 	int count=colname.size();
+	int count2 = count;
 	for (unsigned int i = 0; i < source.colname.size(); i++)
 	{
 		colname.push_back(source.colname[i]);
@@ -257,23 +268,23 @@ Table& Table::AddTable(const Table& source)
 	for (unsigned int i = 0; i < count; i++)
 	{
 		
-		for (unsigned int j = count; j < colname.size(); j++)
+		for (unsigned int j = count2; j < colname.size(); j++)
 		{
 			switch (coltype[j])
 			{
 			case 'i':
 			{
-						table[i]->Add("0");
-						break;
+				table[i]->Add("0");
+				break;
 			}
 			case 'd':
 			{
-						table[i]->Add("0.0");
-						break;
+				table[i]->Add("0.0");
+				break;
 			case 's':
 			{
-						table[i]->Add("_");
-						break;
+				table[i]->Add("_");
+				break;
 			}
 			}
 			default:
@@ -291,17 +302,17 @@ Table& Table::AddTable(const Table& source)
 			{
 			case 'i':
 			{
-						table[i]->Add("0");
-						break;
+				table[i]->Add("0");
+				break;
 			}
 			case 'd':
 			{
-						table[i]->Add("0.0");
-						break;
+				table[i]->Add("0.0");
+				break;
 			case 's':
 			{
-						table[i]->Add("_");
-						break;
+				table[i]->Add("_");
+				break;
 			}
 			}
 			default:
