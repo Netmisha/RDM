@@ -156,10 +156,10 @@ Table& Table::DeleteRecord(unsigned int  index)
 	return *this;
 }
 
-Record* Table::FindRecord(unsigned int index, std::ostream &out)
+Record* Table::FindRecord(unsigned int index)
 {
 	index--;
-	if (index>table.size() || index < 0)
+	if (index>table.size())
 	{
 		if (table.size() == 0)
 		{
@@ -260,7 +260,7 @@ Table& Table::AddTable(const Table& source)
 		coltype.push_back(source.coltype[i]);
 	}
 	count = table.size();
-	for (unsigned int i = 0; i < count; i++)
+	for (int i = 0; i < count; i++)
 	{
 		
 		for (unsigned int j = count2; j < colname.size(); j++)

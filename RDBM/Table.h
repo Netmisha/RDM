@@ -23,7 +23,7 @@ public:
 	Table& AddRecord(std::initializer_list<std::string> list);
 	Table& AddColumn(const std::string& type, const std::string& name);
 	Table& DeleteRecord(unsigned int index);
-	Record* FindRecord(unsigned int index, std::ostream &out);
+	Record* FindRecord(unsigned int index);
 	Record* FindRecord(const std::string& value);
 	Table& FindRecords(const std::string& value, std::ostream &out);
 	Table& Show(std::ostream &out);

@@ -14,5 +14,6 @@ int main()
 	tb2.AddRecord({ "9", "str" }).AddRecord({ "4", "trs" }).AddColumn("int","int").Show(std::cout);
 	tb2.AddTable(tb).AddColumn("int", "i").Show(std::cout);
 	tb2.AddRecord({ "3", "q", "4", "w","3","4.4","3" }).Show(std::cout);
+	tb2.FindRecord(2)->Show(std::cout);
 	system("pause");
 }
