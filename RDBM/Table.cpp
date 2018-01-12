@@ -163,13 +163,11 @@ Record* Table::FindRecord(unsigned int index, std::ostream &out)
 	{
 		if (table.size() == 0)
 		{
-			Record *rec = new Record;
 			return nullptr;
 		}
 	}
 	else
 		return table[index];
-	
 }
 
 Record* Table::FindRecord(const std::string& value)
