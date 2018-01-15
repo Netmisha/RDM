@@ -287,34 +287,6 @@ Table& Table::AddTable(const Table& source)
 			}
 		}
 	}
-	for (unsigned int i = table.size(); i < source.table.size(); i++)
-	{
-		Record *rec = new Record;
-		table.push_back(rec);
-		for (unsigned int j = 0; j < colname.size(); j++)
-		{
-			switch (coltype[j])
-			{
-			case 'i':
-			{
-				table[i]->Add("0");
-				break;
-			}
-			case 'd':
-			{
-				table[i]->Add("0.0");
-				break;
-			case 's':
-			{
-				table[i]->Add("_");
-				break;
-			}
-			}
-			default:
-				break;
-			}
-		}
-	}
 	return *this;
 
 }

@@ -12,8 +12,11 @@ int main()
 	Table tb2;
 	tb2.Create({"int int","string str"});
 	tb2.AddRecord({ "9", "str" }).AddRecord({ "4", "trs" }).AddColumn("int","int").Show(std::cout);
+	std::cout << std::endl;
 	tb2.AddTable(tb).AddColumn("int", "i").Show(std::cout);
+	std::cout << std::endl;
 	tb2.AddRecord({ "3", "q", "4", "w","3","4.4","3" }).Show(std::cout);
+	std::cout << std::endl;
 	tb2.FindRecord(2)->Show(std::cout);
 	system("pause");
 }
