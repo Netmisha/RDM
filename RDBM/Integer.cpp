@@ -41,10 +41,9 @@ int& Integer::Get()
 {
 	return value;
 }
-void* Integer::Getv(int x )
+void* Integer::Getv()
 {
-	int *ptr = &value;
-	return ptr;
+	return &value;
 }
 std::ostream& operator<<(std::ostream& os, const Integer& dt)
 {

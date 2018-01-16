@@ -42,10 +42,9 @@ std::string String::Get()
 {
 	return value;
 }
-void* String::Getv(int x )
+void* String::Getv()
 {
-	std::string *ptr = &value;
-	return ptr;
+	return &value;
 }
 std::ostream& operator<<(std::ostream& os, const String& dt)
 {
