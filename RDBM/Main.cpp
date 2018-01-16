@@ -20,8 +20,9 @@ int main()
 	tb2.FindRecord(2);
 	tb2.Show(std::cout);
 	XMLDecl();
-	//AddStructure(tb2);
 	AddStructure(tb);
+	AddData(tb);
 	AddStructure(tb2);
+	AddData(tb2);
 	system("pause");
 }

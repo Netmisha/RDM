@@ -293,7 +293,7 @@ Table& Table::AddTable(const Table& source)
 	return *this;
 
 }
-std::vector<std::string> Table::GetCName()
+std::vector<std::string>& Table::GetCName()
 {
 	return colname;
 }
@@ -314,6 +314,16 @@ const char* Table::GetName()const
 unsigned int Table::Size()
 {
 	return table.size();
+}
+Record* Table::GetRecord(unsigned int index)
+{
+	index--;
+	if (index < 0)
+		return nullptr;
+	else if (index>table.size())
+		return nullptr;
+	else
+		return table[index];
 }
 Table::~Table()
 {

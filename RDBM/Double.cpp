@@ -42,6 +42,11 @@ double& Double::Get()
 	return value;
 }
 
+void* Double::Getv(int x)
+{
+	double *ptr = &value;
+	return ptr;
+}
 std::ostream& operator<<(std::ostream& os, const Double& dt)
 {
 	os << dt.value;

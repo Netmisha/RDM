@@ -16,6 +16,7 @@ public:
 	void Set(std::string& val)override;
 	void Show(std::ostream &out) override;
 	int& Get();
+	void* Getv(int x = 0)override;
 	~Integer(){};
 	friend std::ostream& operator<<(std::ostream& os, const Integer& dt);
 };

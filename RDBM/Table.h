@@ -32,11 +32,12 @@ public:
 	Table* Set(unsigned int rowindex, unsigned int colindex, std::string& value);
 	Table* Set(unsigned int rowindex, std::string column, std::string value);
 	Table& AddTable(const Table& source);
-	std::vector<std::string> GetCName();
+	std::vector<std::string>& GetCName();
 	std::vector<char>& GetCType();
 	int GetID()const;
 	const char* GetName()const;
 	unsigned int Size();
+	Record* GetRecord(unsigned int index);
 	~Table();
 };
 #endif
