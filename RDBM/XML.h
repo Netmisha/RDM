@@ -3,7 +3,7 @@
 #include"Debug\tinyxml.h"
 #include"Table.h"
 
-void XMLBegin()
+void XMLDecl()
 {
 	TiXmlDocument doc;
 	doc.LoadFile("dbstructure.xml");
@@ -22,7 +22,6 @@ void AddStructure(Table& source)
 	table->SetAttribute("name",source.GetName());
 	table->SetAttribute("ID", source.GetID());
 	root->LinkEndChild(table);
-	//doc.LinkEndChild(root);
 	TiXmlElement *record = new TiXmlElement("Record");
 	std::vector<char> ctype=source.GetCType();
 	std::vector<std::string> cname = source.GetCName();
@@ -50,9 +49,7 @@ void AddStructure(Table& source)
 			record->LinkEndChild(new TiXmlText("string"));
 			table->LinkEndChild(record);
 		}
-		//root->LinkEndChild(table);
 	}
-	//doc.LinkEndChild(root);
 	doc.SaveFile("dbstructure.xml");
 }
 void AddData(Table& source)

@@ -19,7 +19,7 @@ int main()
 	std::cout << std::endl;
 	tb2.FindRecord(2);
 	tb2.Show(std::cout);
-	XMLBegin();
+	XMLDecl();
 	//AddStructure(tb2);
 	AddStructure(tb);
 	AddStructure(tb2);
