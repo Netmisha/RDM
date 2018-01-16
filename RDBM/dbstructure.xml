@@ -1,0 +1,26 @@
+<Table name="table 2" ID="2">
+    <Record ID="1">integer</Record>
+    <Record ID="2">string</Record>
+    <Record ID="3">integer</Record>
+    <Record ID="4">string</Record>
+    <Record ID="5">integer</Record>
+    <Record ID="6">double</Record>
+    <Record ID="7">integer</Record>
+</Table>
+<Table name="table 1" ID="1">
+    <Record ID="1">string</Record>
+    <Record ID="2">integer</Record>
+    <Record ID="3">double</Record>
+</Table>
+<Table name="table 3" ID="3">
+    <Record ID="1">integer</Record>
+    <Record ID="2">string</Record>
+    <Record ID="3">integer</Record>
+    <Record ID="4">string</Record>
+    <Record ID="5">integer</Record>
+    <Record ID="6">double</Record>
+    <Record ID="7">integer</Record>
+    <Record ID="8">string</Record>
+    <Record ID="9">integer</Record>
+    <Record ID="10">double</Record>
+</Table>

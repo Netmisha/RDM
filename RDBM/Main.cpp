@@ -1,5 +1,5 @@
 #include<iostream>
-
+#include"XML.h"
 #include"Table.h"
 
 int main()
@@ -17,6 +17,15 @@ int main()
 	std::cout << std::endl;
 	tb2.AddRecord({ "3", "q", "4", "w","3","4.4","3" }).Show(std::cout);
 	std::cout << std::endl;
-	tb2.FindRecord(2)->Show(std::cout);
+	tb2.FindRecord(2);
+	tb2.Show(std::cout);
+	//TiXmlDocument doc;
+	//doc.LoadFile("dbstructure.xml");
+	AddStructure(tb2);
+	AddStructure(tb);
+	Table tb3;
+
+	tb3.AddTable(tb2).AddTable(tb);
+	AddStructure(tb3);
 	system("pause");
 }

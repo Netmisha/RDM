@@ -159,15 +159,18 @@ Table& Table::DeleteRecord(unsigned int  index)
 Record* Table::FindRecord(unsigned int index)
 {
 	index--;
-	if (index>table.size())
+	if (table.size() == 0)
 	{
-		if (table.size() == 0)
-		{
-			return nullptr;
-		}
+		return nullptr;
 	}
 	else
-		return table[index];
+	for (unsigned int i = 0; i < table.size(); i++)
+	{
+		if (table[i]->GetId() == index)
+			return table[index];
+		else
+			return nullptr;
+	}
 }
 
 Record* Table::FindRecord(const std::string& value)
@@ -290,7 +293,28 @@ Table& Table::AddTable(const Table& source)
 	return *this;
 
 }
-
+std::vector<std::string> Table::GetCName()
+{
+	return colname;
+}
+std::vector<char>& Table::GetCType()
+{
+	return coltype;
+}
+int Table::GetID()const
+{
+	return id;
+}
+const char* Table::GetName()const
+{
+	const char* cname;
+	cname = name.c_str();
+	return cname;
+}
+unsigned int Table::Size()
+{
+	return table.size();
+}
 Table::~Table()
 {
 	table.clear();
