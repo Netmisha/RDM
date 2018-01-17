@@ -22,7 +22,7 @@ void XMLDecl()
 	doc2.SaveFile("dbstructure.xml");
 }
 
-bool check(Table& tb)
+bool NeedsToBeUpdated(Table& tb)
 {
 	TiXmlDocument doc;
 	doc.LoadFile("dbstructure.xml");
@@ -43,14 +43,14 @@ bool check(Table& tb)
 				const char *at3 = str.c_str();
 				if (strcmp(at, at3) == 0)
 				{
-					return false;
+					return true;
 				}
 				table = table->NextSiblingElement();
 			}
 		}
 
 	}
-	return true;
+	return false;
 }
 
 void AddStructure(Table& source)
@@ -63,7 +63,7 @@ void AddStructure(Table& source)
 		TiXmlElement *record = new TiXmlElement("Record");
 		std::vector<char> ctype = source.GetCType();
 		std::vector<std::string> cname = source.GetCName();
-		if (check(source) == false)
+		if (NeedsToBeUpdated(source) == true)
 		{
 			TiXmlElement *table = root->FirstChildElement("Table");
 
@@ -139,7 +139,7 @@ void AddData(Table& source)
 	TiXmlElement *root = doc.RootElement();
 	if (NULL != root)
 	{
-		if (check(source) == false)
+		if (NeedsToBeUpdated(source) == true)
 		{
 			TiXmlElement *table = root->FirstChildElement("Table");
 
@@ -215,7 +215,7 @@ void AddData(Table& source)
 	doc.SaveFile("dbdata.xml");
 }
 
-Table* BuildTable(Table& tb)
+Table* BuildTable(Table& tb,std::ostream& out)
 {
 	TiXmlDocument doc;
 	doc.LoadFile("dbstructure.xml");
@@ -234,9 +234,9 @@ Table* BuildTable(Table& tb)
 				while (record)
 				{
 					TiXmlElement *type = record->FirstChildElement("Type");
-					std::cout << type->GetText() << " ";
+					out << type->GetText() << " ";
 					TiXmlElement *name = record->FirstChildElement("Name");
-					std::cout << name->GetText() << " ";
+					out << name->GetText() << " ";
 					names.push_back(name->GetText());
 					std::string stype = type->GetText();
 					if (stype == "Integer")
@@ -247,7 +247,7 @@ Table* BuildTable(Table& tb)
 						types.push_back('s');
 					record = record->NextSiblingElement();
 				}
-				std::cout << std::endl;
+				out << std::endl;
 				table = table->NextSiblingElement();
 			}
 		}
@@ -255,6 +255,7 @@ Table* BuildTable(Table& tb)
 	tb.Create(names, types);
 	doc.LoadFile("dbdata.xml");
 	root = doc.RootElement();
+	std::vector<std::string> recvalue;
 	if (NULL != root)
 	{
 		TiXmlElement *table = root->FirstChildElement("Table");
@@ -268,13 +269,16 @@ Table* BuildTable(Table& tb)
 					TiXmlElement *value = record->FirstChildElement("Value");
 					while (value)
 					{
-						std::cout << value->GetText() << " ";
+						recvalue.push_back(value->GetText());
+						out << value->GetText() << " ";
 						value = value->NextSiblingElement();
 					}
+					tb.AddRecord(recvalue);
+					recvalue.clear();
 					record = record->NextSiblingElement();
 					std::cout << std::endl;
 				}
-				std::cout << std::endl;
+				out << std::endl;
 				table = table->NextSiblingElement();
 			}
 		}

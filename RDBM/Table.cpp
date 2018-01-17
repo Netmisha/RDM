@@ -109,13 +109,25 @@ Table& Table::AddRecord(std::istream &in)
 	return *this;
 }
 
-Table& Table::AddRecord(std::initializer_list<std::string> list)
+//Table& Table::AddRecord(std::initializer_list<std::string> list)
+//{
+//	Record *rec = new Record;
+//	std::string temp;
+//	auto p = list.begin();
+//	for (unsigned int i = 0; i < colname.size(); i++)
+//	{
+//		temp = *p;
+//		rec->Add(temp);
+//		p++;
+//	}
+//	table.push_back(rec);
+//	return *this;
+//}
+Table& Table::AddRecord(std::vector<std::string> slist)
 {
 	Record *rec = new Record;
-	
-	std::string text;
 	std::string temp;
-	auto p = list.begin();
+	auto p = slist.begin();
 	for (unsigned int i = 0; i < colname.size(); i++)
 	{
 		temp = *p;
@@ -125,7 +137,6 @@ Table& Table::AddRecord(std::initializer_list<std::string> list)
 	table.push_back(rec);
 	return *this;
 }
-
 Table& Table::AddColumn(const std::string& type, const std::string& name)
 {
 	colname.push_back(name);

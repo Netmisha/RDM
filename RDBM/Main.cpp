@@ -19,13 +19,19 @@ int main()
 	std::cout << std::endl;
 	tb2.FindRecord(2);
 	tb2.Show(std::cout);
+	std::vector<std::string> vec;
+	vec.push_back("name4");
+	vec.push_back("4");
+	vec.push_back("4.4");
+	tb.AddRecord(vec);
+	tb.Show(std::cout);
 	XMLDecl();
+	Table tb3;
+	AddStructure(tb3);
 	AddStructure(tb2);
 	AddData(tb2);
-	AddData(tb2);
-	//AddStructure(tb);
-	AddData(tb2);
-	Table tb3;
-	//BuildTable(tb3);
+	BuildTable(tb3,std::cout);
+	tb3.Show(std::cout);
+	AddStructure(tb3);
 	system("pause");
 }

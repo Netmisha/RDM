@@ -30,6 +30,48 @@
             <Name>i</Name>
         </Record>
     </Table>
+    <Table name="table 3" ID="3">
+        <Record ID="1">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Record>
+        <Record ID="2">
+            <Type>String</Type>
+            <Name>str</Name>
+        </Record>
+        <Record ID="3">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Record>
+        <Record ID="4">
+            <Type>String</Type>
+            <Name>name</Name>
+        </Record>
+        <Record ID="5">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Record>
+        <Record ID="6">
+            <Type>Double</Type>
+            <Name>double</Name>
+        </Record>
+        <Record ID="7">
+            <Type>Integer</Type>
+            <Name>i</Name>
+        </Record>
+    </Table>
 </List>
+<?xml version="1.0" encoding="UTF-8" ?>
+<List />
+<?xml version="1.0" encoding="UTF-8" ?>
+<List />
+<?xml version="1.0" encoding="UTF-8" ?>
+<List />
+<?xml version="1.0" encoding="UTF-8" ?>
+<List />
+<?xml version="1.0" encoding="UTF-8" ?>
+<List />
+<?xml version="1.0" encoding="UTF-8" ?>
+<List />
 <?xml version="1.0" encoding="UTF-8" ?>
 <List />
