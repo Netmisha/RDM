@@ -43,7 +43,7 @@ int& Integer::Get()
 }
 void* Integer::Getv()
 {
-	return &value;
+	return (void*)&value;
 }
 std::ostream& operator<<(std::ostream& os, const Integer& dt)
 {

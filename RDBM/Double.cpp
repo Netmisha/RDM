@@ -44,7 +44,7 @@ double& Double::Get()
 
 void* Double::Getv()
 {
-	return &value;
+	return (void*)&value;
 }
 std::ostream& operator<<(std::ostream& os, const Double& dt)
 {
