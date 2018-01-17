@@ -20,9 +20,13 @@ int main()
 	tb2.FindRecord(2);
 	tb2.Show(std::cout);
 	XMLDecl();
+	//AddStructure(tb2);
+	//AddData(tb2);
 	AddStructure(tb);
-	AddData(tb);
-	AddStructure(tb2);
-	AddData(tb2);
+	//AddData(tb2);
+	Table tb3;
+	//BuildTable(tb3);
+	check(tb);
+	AddStructure(tb);
 	system("pause");
 }
