@@ -60,15 +60,38 @@ void AddStructure(Table& source)
 	TiXmlElement *root = doc.RootElement();
 	if (NULL != root)
 	{
-		if (check(source))
+		TiXmlElement *record = new TiXmlElement("Record");
+		std::vector<char> ctype = source.GetCType();
+		std::vector<std::string> cname = source.GetCName();
+		bool bcheck = check(source);
+		if (bcheck == false)
 		{
+			TiXmlElement *table = root->FirstChildElement("Table");
+
+			while (table)
+			{
+				const char *at = table->Attribute("ID");
+				int at2 = source.GetID();
+				std::string str = std::to_string(at2);
+				const char *at3 = str.c_str();
+				if (strcmp(at, at3) == 0)
+				{
+					root->RemoveChild(table);
+					break;
+				}
+				else
+				{
+					table = table->NextSiblingElement();
+				}
+			}
+			
+		}
+		
 			TiXmlElement *table = new TiXmlElement("Table");
 			table->SetAttribute("name", source.GetName());
 			table->SetAttribute("ID", source.GetID());
 			root->LinkEndChild(table);
-			TiXmlElement *record = new TiXmlElement("Record");
-			std::vector<char> ctype = source.GetCType();
-			std::vector<std::string> cname = source.GetCName();
+			
 			for (unsigned int i = 0; i < source.GetCName().size(); i++)
 			{
 				if (ctype[i] == 'i')
@@ -83,7 +106,7 @@ void AddStructure(Table& source)
 					record->LinkEndChild(name);
 					table->LinkEndChild(record);
 				}
-				if (ctype[i] == 'd')
+				else if (ctype[i] == 'd')
 				{
 					record = new TiXmlElement("Record");
 					record->SetAttribute("ID", i + 1);
@@ -95,7 +118,7 @@ void AddStructure(Table& source)
 					record->LinkEndChild(name);
 					table->LinkEndChild(record);
 				}
-				if (ctype[i] == 's')
+				else if (ctype[i] == 's')
 				{
 					record = new TiXmlElement("Record");
 					record->SetAttribute("ID", i + 1);
@@ -108,27 +131,6 @@ void AddStructure(Table& source)
 					table->LinkEndChild(record);
 				}
 			}
-		}
-		else
-		{
-			TiXmlElement *table = root->FirstChildElement("Table");
-			while (table)
-			{
-				const char *at = table->Attribute("ID");
-				int at2 = source.GetID();
-				std::string str = std::to_string(at2);
-				const char *at3 = str.c_str();
-				if (strcmp(at, at3) == 0)
-				{
-
-				}
-				else
-				{
-					table = table->NextSiblingElement(); /// -?mb root->next
-					std::cout << "got it\n";
-				}
-			}
-		}
 	}
 	doc.SaveFile("dbstructure.xml");
 }

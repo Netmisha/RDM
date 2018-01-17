@@ -27,6 +27,8 @@ int main()
 	Table tb3;
 	//BuildTable(tb3);
 	check(tb);
+	AddStructure(tb2);
+	AddStructure(tb);
 	AddStructure(tb);
 	system("pause");
 }
