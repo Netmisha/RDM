@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
+<List>
+    <Table name="table 2" ID="2">
+        <Record>
+            <Value>9</Value>
+            <Value>str</Value>
+            <Value>0</Value>
+            <Value>_</Value>
+            <Value>0</Value>
+            <Value>0.000000</Value>
+            <Value>0</Value>
+        </Record>
+        <Record>
+            <Value>4</Value>
+            <Value>trs</Value>
+            <Value>0</Value>
+            <Value>_</Value>
+            <Value>0</Value>
+            <Value>0.000000</Value>
+            <Value>0</Value>
+        </Record>
+        <Record>
+            <Value>3</Value>
+            <Value>q</Value>
+            <Value>4</Value>
+            <Value>w</Value>
+            <Value>3</Value>
+            <Value>4.400000</Value>
+            <Value>3</Value>
+        </Record>
+    </Table>
+</List>
 <?xml version="1.0" encoding="UTF-8" ?>
 <List />
