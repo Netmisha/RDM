@@ -237,7 +237,11 @@ Table* BuildTable(Table& tb,int id)
 			const char *at = table->Attribute("ID");
 			std::string str = std::to_string(id);
 			if (strcmp(at, str.c_str()) != 0)
+<<<<<<< HEAD
 				table = table->NextSiblingElement(); ///
+=======
+				table = root->NextSiblingElement();
+>>>>>>> 3501ebea5ff5c6a398aa24a2d60bebb9146a56d2
 			else
 			{
 				if (NULL != table)
@@ -284,7 +288,11 @@ Table* BuildTable(Table& tb,int id)
 			const char *at = table->Attribute("ID");
 			std::string str = std::to_string(id);
 			if (strcmp(at, str.c_str()) != 0)
+<<<<<<< HEAD
 				table=table->NextSiblingElement(); ///
+=======
+				table=root->NextSiblingElement();
+>>>>>>> 3501ebea5ff5c6a398aa24a2d60bebb9146a56d2
 			else
 			{
 				if (NULL != table)
@@ -316,8 +324,11 @@ Table* BuildTable(Table& tb,int id)
 			
 		}
 	}
+<<<<<<< HEAD
 	AddStructure(tb);
 	AddData(tb);
+=======
+>>>>>>> 3501ebea5ff5c6a398aa24a2d60bebb9146a56d2
 	return &tb;
 }
 
