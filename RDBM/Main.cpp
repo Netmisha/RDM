@@ -36,5 +36,16 @@ int main()
 	AddData(tb3);
 	Table tb5;
 	BuildTable(tb5,4);
+	tb5.AddTable(tb2);
+	AddData(tb);
+	AddStructure(tb);
+	AddData(tb2);
+	AddStructure(tb2);
+	AddData(tb3);
+	AddStructure(tb3);
+	AddData(tb4);
+	AddStructure(tb4);
+	AddData(tb5);
+	AddStructure(tb5);
 	system("pause");
 }

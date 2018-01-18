@@ -165,13 +165,16 @@ void AddData(Table& source)
 		table->SetAttribute("ID", source.GetID());
 		root->LinkEndChild(table);
 		TiXmlElement *record = new TiXmlElement("Record");
+		record->SetAttribute("ID",1);
 		std::vector<char> ctype = source.GetCType();
 		std::vector<std::string> cname = source.GetCName();
 		void* temp;
 		for (unsigned int j = 1; j < source.Size() + 1; j++)
 		{
 			TiXmlElement *value = new TiXmlElement("Value");
+			value->SetAttribute("ID", 1);
 			record = new TiXmlElement("Record");
+			record->SetAttribute("ID", j);
 			for (unsigned int i = 0; i < source.GetCName().size(); i++)
 			{
 				if (ctype[i] == 'i')
@@ -183,6 +186,7 @@ void AddData(Table& source)
 					if (i != source.GetCName().size() - 1)
 					{
 						value = new TiXmlElement("Value");
+						value->SetAttribute("ID", i + 2);
 					}
 				}
 				else if (ctype[i] == 'd')
@@ -194,6 +198,7 @@ void AddData(Table& source)
 					if (i != source.GetCName().size() - 1)
 					{
 						value = new TiXmlElement("Value");
+						value->SetAttribute("ID", i + 2);
 					}
 				}
 				else if (ctype[i] == 's')
@@ -205,6 +210,7 @@ void AddData(Table& source)
 					if (i != source.GetCName().size() - 1)
 					{
 						value = new TiXmlElement("Value");
+						value->SetAttribute("ID", i + 2);
 					}
 				}
 			}
