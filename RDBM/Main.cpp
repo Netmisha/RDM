@@ -26,14 +26,15 @@ int main()
 	tb.AddRecord(vec);
 	tb.Show(std::cout);
 	std::cout << "----------------------------\n";
-	XMLDecl();
+	//XMLDecl();
 	Table tb3;
-	BuildTable(tb3, std::cout, 1);
-	tb3.AddColumn("integer","number");
-	vec.push_back("5");
-	tb3.AddRecord(vec);
-	AddStructure(tb3);
+	Table tb4;
+	tb4.Create({ "int int", "string str" });
+	tb4.AddRecord({ "1", "str" }).AddRecord({ "2", "str2" });
+	BuildTable(tb3, 2);
+	tb3.AddRecord({ "3", "q", "4", "w", "3", "4.4", "3" });
 	AddData(tb3);
-	tb3.Show(std::cout);
+	Table tb5;
+	BuildTable(tb5,4);
 	system("pause");
 }

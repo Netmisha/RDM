@@ -51,42 +51,62 @@
             <Value>3</Value>
         </Record>
     </Table>
+    <Table name="table 4" ID="4">
+        <Record>
+            <Value>1</Value>
+            <Value>str</Value>
+        </Record>
+        <Record>
+            <Value>2</Value>
+            <Value>str2</Value>
+        </Record>
+    </Table>
     <Table name="table 3" ID="3">
         <Record>
-            <Value>name1</Value>
-            <Value>1</Value>
-            <Value>2.200000</Value>
+            <Value>9</Value>
+            <Value>str</Value>
+            <Value>0</Value>
+            <Value>_</Value>
+            <Value>0</Value>
+            <Value>0.000000</Value>
             <Value>0</Value>
         </Record>
         <Record>
-            <Value>name2</Value>
-            <Value>2</Value>
-            <Value>5.600000</Value>
+            <Value>4</Value>
+            <Value>trs</Value>
+            <Value>0</Value>
+            <Value>_</Value>
+            <Value>0</Value>
+            <Value>0.000000</Value>
             <Value>0</Value>
         </Record>
         <Record>
-            <Value>name3</Value>
             <Value>3</Value>
-            <Value>4.200000</Value>
-            <Value>0</Value>
+            <Value>q</Value>
+            <Value>4</Value>
+            <Value>w</Value>
+            <Value>3</Value>
+            <Value>4.400000</Value>
+            <Value>3</Value>
         </Record>
         <Record>
-            <Value>name4</Value>
+            <Value>3</Value>
+            <Value>q</Value>
             <Value>4</Value>
+            <Value>w</Value>
+            <Value>3</Value>
             <Value>4.400000</Value>
-            <Value>0</Value>
+            <Value>3</Value>
+        </Record>
+    </Table>
+    <Table name="table 5" ID="5">
+        <Record>
+            <Value>1</Value>
+            <Value>str</Value>
         </Record>
         <Record>
-            <Value>name4</Value>
-            <Value>4</Value>
-            <Value>4.400000</Value>
-            <Value>5</Value>
+            <Value>2</Value>
+            <Value>str2</Value>
         </Record>
     </Table>
 </List>
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
