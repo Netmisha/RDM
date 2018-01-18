@@ -52,7 +52,6 @@
         </Record>
     </Table>
     <Table name="table 3" ID="3">
-<<<<<<< HEAD
         <Record ID="1">
             <Value ID="1">9</Value>
             <Value ID="2">str</Value>
@@ -122,32 +121,6 @@
             <Value ID="7">0</Value>
             <Value ID="8">0.000000</Value>
             <Value ID="9">0</Value>
-=======
-        <Record>
-            <Value>name1</Value>
-            <Value>1</Value>
-            <Value>2.200000</Value>
-        </Record>
-        <Record>
-            <Value>name2</Value>
-            <Value>2</Value>
-            <Value>5.600000</Value>
-        </Record>
-        <Record>
-            <Value>name3</Value>
-            <Value>3</Value>
-            <Value>4.200000</Value>
-        </Record>
-        <Record>
-            <Value>name4</Value>
-            <Value>4</Value>
-            <Value>4.400000</Value>
-        </Record>
-        <Record>
-            <Value>name4</Value>
-            <Value>4</Value>
-            <Value>4.400000</Value>
->>>>>>> 3501ebea5ff5c6a398aa24a2d60bebb9146a56d2
         </Record>
     </Table>
 </List>

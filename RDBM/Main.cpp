@@ -28,7 +28,6 @@ int main()
 	std::cout << "----------------------------\n";
 	//XMLDecl();
 	Table tb3;
-<<<<<<< HEAD
 	Table tb4;
 	tb4.Create({ "int int", "string str" });
 	tb4.AddRecord({ "1", "str" }).AddRecord({ "2", "str2" });
@@ -42,11 +41,6 @@ int main()
 	AddStructure(tb);
 	AddData(tb2);
 	AddStructure(tb2);
-=======
-	BuildTable(tb3, 2);
-	tb3.AddRecord(vec);
-	AddStructure(tb3);
->>>>>>> 3501ebea5ff5c6a398aa24a2d60bebb9146a56d2
 	AddData(tb3);
 	AddStructure(tb3);
 	AddData(tb4);

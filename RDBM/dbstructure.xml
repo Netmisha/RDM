@@ -117,12 +117,9 @@
             <Type>Double</Type>
             <Name>double</Name>
         </Column>
-<<<<<<< HEAD
         <Column ID="9">
             <Type>Integer</Type>
             <Name>i</Name>
         </Column>
-=======
->>>>>>> 3501ebea5ff5c6a398aa24a2d60bebb9146a56d2
     </Table>
 </List>
