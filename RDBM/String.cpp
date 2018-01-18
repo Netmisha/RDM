@@ -42,6 +42,10 @@ std::string String::Get()
 {
 	return value;
 }
+void* String::Getv()
+{
+	return (void*)&value;
+}
 std::ostream& operator<<(std::ostream& os, const String& dt)
 {
 	os << dt.value;

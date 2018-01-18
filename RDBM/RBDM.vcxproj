@@ -77,6 +77,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Debug\tinystr.cpp" />
+    <ClCompile Include="Debug\tinyxml.cpp" />
+    <ClCompile Include="Debug\tinyxmlerror.cpp" />
+    <ClCompile Include="Debug\tinyxmlparser.cpp" />
     <ClCompile Include="Double.cpp" />
     <ClCompile Include="Integer.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -86,11 +90,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseForType.h" />
+    <ClInclude Include="Debug\tinystr.h" />
+    <ClInclude Include="Debug\tinyxml.h" />
     <ClInclude Include="Double.h" />
     <ClInclude Include="Integer.h" />
     <ClInclude Include="Record.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="Table.h" />
+    <ClInclude Include="XML.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

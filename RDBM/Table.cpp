@@ -109,13 +109,12 @@ Table& Table::AddRecord(std::istream &in)
 	return *this;
 }
 
-Table& Table::AddRecord(std::initializer_list<std::string> list)
+
+Table& Table::AddRecord(std::vector<std::string> slist)
 {
 	Record *rec = new Record;
-	
-	std::string text;
 	std::string temp;
-	auto p = list.begin();
+	auto p = slist.begin();
 	for (unsigned int i = 0; i < colname.size(); i++)
 	{
 		temp = *p;
@@ -125,7 +124,6 @@ Table& Table::AddRecord(std::initializer_list<std::string> list)
 	table.push_back(rec);
 	return *this;
 }
-
 Table& Table::AddColumn(const std::string& type, const std::string& name)
 {
 	colname.push_back(name);
@@ -159,15 +157,18 @@ Table& Table::DeleteRecord(unsigned int  index)
 Record* Table::FindRecord(unsigned int index)
 {
 	index--;
-	if (index>table.size())
+	if (table.size() == 0)
 	{
-		if (table.size() == 0)
-		{
-			return nullptr;
-		}
+		return nullptr;
 	}
 	else
-		return table[index];
+	for (unsigned int i = 0; i < table.size(); i++)
+	{
+		if (table[i]->GetId() == index)
+			return table[index];
+		else
+			return nullptr;
+	}
 }
 
 Record* Table::FindRecord(const std::string& value)
@@ -287,38 +288,41 @@ Table& Table::AddTable(const Table& source)
 			}
 		}
 	}
-	for (unsigned int i = table.size(); i < source.table.size(); i++)
-	{
-		Record *rec = new Record;
-		table.push_back(rec);
-		for (unsigned int j = 0; j < colname.size(); j++)
-		{
-			switch (coltype[j])
-			{
-			case 'i':
-			{
-				table[i]->Add("0");
-				break;
-			}
-			case 'd':
-			{
-				table[i]->Add("0.0");
-				break;
-			case 's':
-			{
-				table[i]->Add("_");
-				break;
-			}
-			}
-			default:
-				break;
-			}
-		}
-	}
 	return *this;
 
 }
-
+std::vector<std::string>& Table::GetCName()
+{
+	return colname;
+}
+std::vector<char>& Table::GetCType()
+{
+	return coltype;
+}
+int Table::GetID()const
+{
+	return id;
+}
+const char* Table::GetName()const
+{
+	const char* cname;
+	cname = name.c_str();
+	return cname;
+}
+unsigned int Table::Size()
+{
+	return table.size();
+}
+Record* Table::GetRecord(unsigned int index)
+{
+	index--;
+	if (index < 0)
+		return nullptr;
+	else if (index>table.size())
+		return nullptr;
+	else
+		return table[index];
+}
 Table::~Table()
 {
 	table.clear();

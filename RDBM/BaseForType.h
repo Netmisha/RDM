@@ -10,5 +10,6 @@ public:
 	virtual void Set(std::istream &in) = 0;
 	virtual void Set(std::string& value) = 0;
 	virtual void Show(std::ostream &out) = 0;
+	virtual void* Getv() = 0;
 };
 #endif

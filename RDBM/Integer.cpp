@@ -41,6 +41,10 @@ int& Integer::Get()
 {
 	return value;
 }
+void* Integer::Getv()
+{
+	return (void*)&value;
+}
 std::ostream& operator<<(std::ostream& os, const Integer& dt)
 {
 	os << dt.value;
