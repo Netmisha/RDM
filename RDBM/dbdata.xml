@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <List>
+    <Table name="table 1" ID="1">
+        <Record>
+            <Value>name1</Value>
+            <Value>1</Value>
+            <Value>2.200000</Value>
+        </Record>
+        <Record>
+            <Value>name2</Value>
+            <Value>2</Value>
+            <Value>5.600000</Value>
+        </Record>
+        <Record>
+            <Value>name3</Value>
+            <Value>3</Value>
+            <Value>4.200000</Value>
+        </Record>
+        <Record>
+            <Value>name4</Value>
+            <Value>4</Value>
+            <Value>4.400000</Value>
+        </Record>
+    </Table>
     <Table name="table 2" ID="2">
         <Record>
             <Value>9</Value>
@@ -29,19 +51,39 @@
             <Value>3</Value>
         </Record>
     </Table>
+    <Table name="table 3" ID="3">
+        <Record>
+            <Value>name1</Value>
+            <Value>1</Value>
+            <Value>2.200000</Value>
+            <Value>0</Value>
+        </Record>
+        <Record>
+            <Value>name2</Value>
+            <Value>2</Value>
+            <Value>5.600000</Value>
+            <Value>0</Value>
+        </Record>
+        <Record>
+            <Value>name3</Value>
+            <Value>3</Value>
+            <Value>4.200000</Value>
+            <Value>0</Value>
+        </Record>
+        <Record>
+            <Value>name4</Value>
+            <Value>4</Value>
+            <Value>4.400000</Value>
+            <Value>0</Value>
+        </Record>
+        <Record>
+            <Value>name4</Value>
+            <Value>4</Value>
+            <Value>4.400000</Value>
+            <Value>5</Value>
+        </Record>
+    </Table>
 </List>
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
 <?xml version="1.0" encoding="UTF-8" ?>
 <List />
 <?xml version="1.0" encoding="UTF-8" ?>

@@ -25,13 +25,15 @@ int main()
 	vec.push_back("4.4");
 	tb.AddRecord(vec);
 	tb.Show(std::cout);
+	std::cout << "----------------------------\n";
 	XMLDecl();
 	Table tb3;
+	BuildTable(tb3, std::cout, 1);
+	tb3.AddColumn("integer","number");
+	vec.push_back("5");
+	tb3.AddRecord(vec);
 	AddStructure(tb3);
-	AddStructure(tb2);
-	AddData(tb2);
-	BuildTable(tb3,std::cout);
+	AddData(tb3);
 	tb3.Show(std::cout);
-	AddStructure(tb3);
 	system("pause");
 }

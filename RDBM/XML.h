@@ -60,7 +60,7 @@ void AddStructure(Table& source)
 	TiXmlElement *root = doc.RootElement();
 	if (NULL != root)
 	{
-		TiXmlElement *record = new TiXmlElement("Record");
+		TiXmlElement *record = new TiXmlElement("Column");
 		std::vector<char> ctype = source.GetCType();
 		std::vector<std::string> cname = source.GetCName();
 		if (NeedsToBeUpdated(source) == true)
@@ -92,21 +92,23 @@ void AddStructure(Table& source)
 
 		for (unsigned int i = 0; i < source.GetCName().size(); i++)
 		{
+			record = new TiXmlElement("Column");
+			record->SetAttribute("ID", i + 1);
+			TiXmlElement *type = new TiXmlElement("Type");
+			TiXmlElement *name = new TiXmlElement("Name");
 			if (ctype[i] == 'i')
 			{
-				record = new TiXmlElement("Record");
-				record->SetAttribute("ID", i + 1);
-				TiXmlElement *type = new TiXmlElement("Type");
+				
 				type->LinkEndChild(new TiXmlText("Integer"));
 				record->LinkEndChild(type);
-				TiXmlElement *name = new TiXmlElement("Name");
+			
 				name->LinkEndChild(new TiXmlText(cname[i].c_str()));
 				record->LinkEndChild(name);
 				table->LinkEndChild(record);
 			}
 			else if (ctype[i] == 'd')
 			{
-				record = new TiXmlElement("Record");
+				record = new TiXmlElement("Column");
 				record->SetAttribute("ID", i + 1);
 				TiXmlElement *type = new TiXmlElement("Type");
 				type->LinkEndChild(new TiXmlText("Double"));
@@ -118,7 +120,7 @@ void AddStructure(Table& source)
 			}
 			else if (ctype[i] == 's')
 			{
-				record = new TiXmlElement("Record");
+				record = new TiXmlElement("Column");
 				record->SetAttribute("ID", i + 1);
 				TiXmlElement *type = new TiXmlElement("Type");
 				type->LinkEndChild(new TiXmlText("String"));
@@ -215,7 +217,7 @@ void AddData(Table& source)
 	doc.SaveFile("dbdata.xml");
 }
 
-Table* BuildTable(Table& tb,std::ostream& out)
+Table* BuildTable(Table& tb,std::ostream& out,int id)
 {
 	TiXmlDocument doc;
 	doc.LoadFile("dbstructure.xml");
@@ -226,30 +228,50 @@ Table* BuildTable(Table& tb,std::ostream& out)
 	if (NULL != root)
 	{
 		TiXmlElement *table = root->FirstChildElement("Table");
-		if (NULL != table)
+
+		while (table)
 		{
-			while (table)
+
+			const char *at = table->Attribute("ID");
+			std::string str = std::to_string(id);
+			const char *at3 = str.c_str();
+			if (strcmp(at, at3) != 0)
+				table = root->NextSiblingElement();
+			else
 			{
-				TiXmlElement *record = table->FirstChildElement("Record");
-				while (record)
+				if (NULL != table)
 				{
-					TiXmlElement *type = record->FirstChildElement("Type");
-					out << type->GetText() << " ";
-					TiXmlElement *name = record->FirstChildElement("Name");
-					out << name->GetText() << " ";
-					names.push_back(name->GetText());
-					std::string stype = type->GetText();
-					if (stype == "Integer")
-						types.push_back('i');
-					else if (stype == "Double")
-						types.push_back('d');
-					else if (stype == "String")
-						types.push_back('s');
-					record = record->NextSiblingElement();
+					while (table)
+					{
+						TiXmlElement *record = table->FirstChildElement("Column");
+						while (record)
+						{
+							TiXmlElement *type = record->FirstChildElement("Type");
+							out << type->GetText() << " ";
+							TiXmlElement *name = record->FirstChildElement("Name");
+							out << name->GetText() << " ";
+							names.push_back(name->GetText());
+							std::string stype = type->GetText();
+							if (stype == "Integer")
+								types.push_back('i');
+							else if (stype == "Double")
+								types.push_back('d');
+							else if (stype == "String")
+								types.push_back('s');
+							record = record->NextSiblingElement();
+						}
+						out << std::endl;
+						table = table->NextSiblingElement();
+						const char *at = table->Attribute("ID");
+						std::string str = std::to_string(id);
+						const char *at3 = str.c_str();
+						if (strcmp(at, at3) != 0)
+							break;
+					}
 				}
-				out << std::endl;
-				table = table->NextSiblingElement();
+				break;
 			}
+			
 		}
 	}
 	tb.Create(names, types);
@@ -259,28 +281,47 @@ Table* BuildTable(Table& tb,std::ostream& out)
 	if (NULL != root)
 	{
 		TiXmlElement *table = root->FirstChildElement("Table");
-		if (NULL != table)
+		while (table)
 		{
-			while (table)
+
+			const char *at = table->Attribute("ID");
+			std::string str = std::to_string(id);
+			const char *at3 = str.c_str();
+			if (strcmp(at, at3) != 0)
+				table=root->NextSiblingElement();
+			else
 			{
-				TiXmlElement *record = table->FirstChildElement("Record");
-				while (record)
+				if (NULL != table)
 				{
-					TiXmlElement *value = record->FirstChildElement("Value");
-					while (value)
+					while (table)
 					{
-						recvalue.push_back(value->GetText());
-						out << value->GetText() << " ";
-						value = value->NextSiblingElement();
+						TiXmlElement *record = table->FirstChildElement("Record");
+						while (record)
+						{
+							TiXmlElement *value = record->FirstChildElement("Value");
+							while (value)
+							{
+								recvalue.push_back(value->GetText());
+								out << value->GetText() << " ";
+								value = value->NextSiblingElement();
+							}
+							tb.AddRecord(recvalue);
+							recvalue.clear();
+							record = record->NextSiblingElement();
+							std::cout << std::endl;
+						}
+						out << std::endl;
+						table = table->NextSiblingElement();
+						const char *at = table->Attribute("ID");
+						std::string str = std::to_string(id);
+						const char *at3 = str.c_str();
+						if (strcmp(at, at3) != 0)
+							break;
 					}
-					tb.AddRecord(recvalue);
-					recvalue.clear();
-					record = record->NextSiblingElement();
-					std::cout << std::endl;
 				}
-				out << std::endl;
-				table = table->NextSiblingElement();
+				break;
 			}
+			
 		}
 	}
 	return nullptr;

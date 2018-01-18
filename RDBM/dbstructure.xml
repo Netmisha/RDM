@@ -1,74 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <List>
-    <Table name="table 2" ID="2">
-        <Record ID="1">
-            <Type>Integer</Type>
-            <Name>int</Name>
-        </Record>
-        <Record ID="2">
-            <Type>String</Type>
-            <Name>str</Name>
-        </Record>
-        <Record ID="3">
-            <Type>Integer</Type>
-            <Name>int</Name>
-        </Record>
-        <Record ID="4">
+    <Table name="table 1" ID="1">
+        <Column ID="1">
             <Type>String</Type>
             <Name>name</Name>
-        </Record>
-        <Record ID="5">
+        </Column>
+        <Column ID="2">
             <Type>Integer</Type>
             <Name>int</Name>
-        </Record>
-        <Record ID="6">
+        </Column>
+        <Column ID="3">
             <Type>Double</Type>
             <Name>double</Name>
-        </Record>
-        <Record ID="7">
+        </Column>
+    </Table>
+    <Table name="table 2" ID="2">
+        <Column ID="1">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="2">
+            <Type>String</Type>
+            <Name>str</Name>
+        </Column>
+        <Column ID="3">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="4">
+            <Type>String</Type>
+            <Name>name</Name>
+        </Column>
+        <Column ID="5">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="6">
+            <Type>Double</Type>
+            <Name>double</Name>
+        </Column>
+        <Column ID="7">
             <Type>Integer</Type>
             <Name>i</Name>
-        </Record>
+        </Column>
     </Table>
     <Table name="table 3" ID="3">
-        <Record ID="1">
-            <Type>Integer</Type>
-            <Name>int</Name>
-        </Record>
-        <Record ID="2">
-            <Type>String</Type>
-            <Name>str</Name>
-        </Record>
-        <Record ID="3">
-            <Type>Integer</Type>
-            <Name>int</Name>
-        </Record>
-        <Record ID="4">
+        <Column ID="1">
             <Type>String</Type>
             <Name>name</Name>
-        </Record>
-        <Record ID="5">
+        </Column>
+        <Column ID="2">
             <Type>Integer</Type>
             <Name>int</Name>
-        </Record>
-        <Record ID="6">
+        </Column>
+        <Column ID="3">
             <Type>Double</Type>
             <Name>double</Name>
-        </Record>
-        <Record ID="7">
+        </Column>
+        <Column ID="4">
             <Type>Integer</Type>
-            <Name>i</Name>
-        </Record>
+            <Name>number</Name>
+        </Column>
     </Table>
 </List>
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
 <?xml version="1.0" encoding="UTF-8" ?>
 <List />
 <?xml version="1.0" encoding="UTF-8" ?>
