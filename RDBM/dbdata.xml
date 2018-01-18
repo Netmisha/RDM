@@ -56,37 +56,26 @@
             <Value>name1</Value>
             <Value>1</Value>
             <Value>2.200000</Value>
-            <Value>0</Value>
         </Record>
         <Record>
             <Value>name2</Value>
             <Value>2</Value>
             <Value>5.600000</Value>
-            <Value>0</Value>
         </Record>
         <Record>
             <Value>name3</Value>
             <Value>3</Value>
             <Value>4.200000</Value>
-            <Value>0</Value>
         </Record>
         <Record>
             <Value>name4</Value>
             <Value>4</Value>
             <Value>4.400000</Value>
-            <Value>0</Value>
         </Record>
         <Record>
             <Value>name4</Value>
             <Value>4</Value>
             <Value>4.400000</Value>
-            <Value>5</Value>
         </Record>
     </Table>
 </List>
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />
-<?xml version="1.0" encoding="UTF-8" ?>
-<List />

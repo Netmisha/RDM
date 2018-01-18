@@ -20,7 +20,6 @@ public:
 	Table& Create(std::vector<std::string>& names, std::vector<char>& coltypes);
 	Table& Create(std::initializer_list<std::string> list);
 	Table& AddRecord(std::istream &in);
-	//Table& AddRecord(std::initializer_list<std::string> list);
 	Table& AddRecord(std::vector<std::string> slist);
 	Table& AddColumn(const std::string& type, const std::string& name);
 	Table& DeleteRecord(unsigned int index);

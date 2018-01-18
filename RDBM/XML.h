@@ -40,8 +40,7 @@ bool NeedsToBeUpdated(Table& tb)
 				const char *at = table->Attribute("ID");
 				int at2 = tb.GetID();
 				std::string str = std::to_string(at2);
-				const char *at3 = str.c_str();
-				if (strcmp(at, at3) == 0)
+				if (strcmp(at, str.c_str()) == 0)
 				{
 					return true;
 				}
@@ -72,8 +71,7 @@ void AddStructure(Table& source)
 				const char *at = table->Attribute("ID");
 				int at2 = source.GetID();
 				std::string str = std::to_string(at2);
-				const char *at3 = str.c_str();
-				if (strcmp(at, at3) == 0)
+				if (strcmp(at, str.c_str()) == 0)
 				{
 					root->RemoveChild(table);
 					break;
@@ -150,8 +148,7 @@ void AddData(Table& source)
 				const char *at = table->Attribute("ID");
 				int at2 = source.GetID();
 				std::string str = std::to_string(at2);
-				const char *at3 = str.c_str();
-				if (strcmp(at, at3) == 0)
+				if (strcmp(at, str.c_str()) == 0)
 				{
 					root->RemoveChild(table);
 					break;
@@ -217,7 +214,7 @@ void AddData(Table& source)
 	doc.SaveFile("dbdata.xml");
 }
 
-Table* BuildTable(Table& tb,std::ostream& out,int id)
+Table* BuildTable(Table& tb,int id)
 {
 	TiXmlDocument doc;
 	doc.LoadFile("dbstructure.xml");
@@ -234,8 +231,7 @@ Table* BuildTable(Table& tb,std::ostream& out,int id)
 
 			const char *at = table->Attribute("ID");
 			std::string str = std::to_string(id);
-			const char *at3 = str.c_str();
-			if (strcmp(at, at3) != 0)
+			if (strcmp(at, str.c_str()) != 0)
 				table = root->NextSiblingElement();
 			else
 			{
@@ -247,9 +243,7 @@ Table* BuildTable(Table& tb,std::ostream& out,int id)
 						while (record)
 						{
 							TiXmlElement *type = record->FirstChildElement("Type");
-							out << type->GetText() << " ";
 							TiXmlElement *name = record->FirstChildElement("Name");
-							out << name->GetText() << " ";
 							names.push_back(name->GetText());
 							std::string stype = type->GetText();
 							if (stype == "Integer")
@@ -260,12 +254,10 @@ Table* BuildTable(Table& tb,std::ostream& out,int id)
 								types.push_back('s');
 							record = record->NextSiblingElement();
 						}
-						out << std::endl;
 						table = table->NextSiblingElement();
 						const char *at = table->Attribute("ID");
 						std::string str = std::to_string(id);
-						const char *at3 = str.c_str();
-						if (strcmp(at, at3) != 0)
+						if (strcmp(at, str.c_str()) != 0)
 							break;
 					}
 				}
@@ -286,8 +278,7 @@ Table* BuildTable(Table& tb,std::ostream& out,int id)
 
 			const char *at = table->Attribute("ID");
 			std::string str = std::to_string(id);
-			const char *at3 = str.c_str();
-			if (strcmp(at, at3) != 0)
+			if (strcmp(at, str.c_str()) != 0)
 				table=root->NextSiblingElement();
 			else
 			{
@@ -302,20 +293,16 @@ Table* BuildTable(Table& tb,std::ostream& out,int id)
 							while (value)
 							{
 								recvalue.push_back(value->GetText());
-								out << value->GetText() << " ";
 								value = value->NextSiblingElement();
 							}
 							tb.AddRecord(recvalue);
 							recvalue.clear();
 							record = record->NextSiblingElement();
-							std::cout << std::endl;
 						}
-						out << std::endl;
 						table = table->NextSiblingElement();
 						const char *at = table->Attribute("ID");
 						std::string str = std::to_string(id);
-						const char *at3 = str.c_str();
-						if (strcmp(at, at3) != 0)
+						if (strcmp(at, str.c_str()) != 0)
 							break;
 					}
 				}
@@ -324,7 +311,7 @@ Table* BuildTable(Table& tb,std::ostream& out,int id)
 			
 		}
 	}
-	return nullptr;
+	return &tb;
 }
 
 #endif

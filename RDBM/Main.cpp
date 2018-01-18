@@ -26,11 +26,9 @@ int main()
 	tb.AddRecord(vec);
 	tb.Show(std::cout);
 	std::cout << "----------------------------\n";
-	XMLDecl();
+	//XMLDecl();
 	Table tb3;
-	BuildTable(tb3, std::cout, 1);
-	tb3.AddColumn("integer","number");
-	vec.push_back("5");
+	BuildTable(tb3, 2);
 	tb3.AddRecord(vec);
 	AddStructure(tb3);
 	AddData(tb3);
