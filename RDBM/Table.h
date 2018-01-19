@@ -4,7 +4,6 @@
 #include"Record.h"
 #include<vector>
 #include<string>
-#include<initializer_list>
 
 static unsigned TID = 0;
 class Table
