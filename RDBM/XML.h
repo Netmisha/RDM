@@ -261,10 +261,13 @@ Table* BuildTable(Table& tb,unsigned int id)
 							record = record->NextSiblingElement();
 						}
 						table = table->NextSiblingElement();
-						const char *at = table->Attribute("ID");
-						std::string str = std::to_string(id);
-						if (strcmp(at, str.c_str()) != 0)
-							break;
+						if (NULL != table)
+						{
+							const char *at = table->Attribute("ID");
+							std::string str = std::to_string(id);
+							if (strcmp(at, str.c_str()) != 0)
+								break;
+						}
 					}
 				}
 				break;
@@ -305,10 +308,13 @@ Table* BuildTable(Table& tb,unsigned int id)
 							record = record->NextSiblingElement();
 						}
 						table = table->NextSiblingElement();
-						const char *at = table->Attribute("ID");
-						std::string str = std::to_string(id);
-						if (strcmp(at, str.c_str()) != 0)
-							break;
+						if (NULL != table)
+						{
+							const char *at = table->Attribute("ID");
+							std::string str = std::to_string(id);
+							if (strcmp(at, str.c_str()) != 0)
+								break;
+						}
 					}
 				}
 				break;
