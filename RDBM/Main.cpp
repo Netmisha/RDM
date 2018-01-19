@@ -51,10 +51,6 @@ int main()
 	tb3.AddColumn("int","some_int");
 	AddData(tb3);
 	AddStructure(tb3);
-	DeleteTable(1);
-	DeleteTable(2);
-	DeleteTable(3);
-	DeleteTable(4);
-	DeleteTable(5);
+	Clear();
 	system("pause");
 }
