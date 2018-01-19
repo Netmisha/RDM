@@ -251,7 +251,7 @@ Table* Table::Set(unsigned int rowindex, std::string column, std::string value)
 		return nullptr;
 }
 
-Table& Table::AddTable(const Table& source)
+Table& Table::AddTable(const Table source)
 {
 	int count=colname.size();
 	int count2 = count;

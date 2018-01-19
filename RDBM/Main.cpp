@@ -47,5 +47,9 @@ int main()
 	AddStructure(tb4);
 	AddData(tb5);
 	AddStructure(tb5);
+	tb3.AddTable(tb3);
+	tb3.AddColumn("int","some_int");
+	AddData(tb3);
+	AddStructure(tb3);
 	system("pause");
 }
