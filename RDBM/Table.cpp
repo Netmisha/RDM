@@ -253,11 +253,12 @@ Table* Table::Set(unsigned int rowindex, std::string column, std::string value)
 		return nullptr;
 }
 
-Table& Table::AddTable(const Table source)
+Table& Table::AddTable(const Table& source)
 {
 	int count=colname.size();
 	int count2 = count;
-	for (unsigned int i = 0; i < source.colname.size(); i++)
+	int SourceColNameSize = source.colname.size();
+	for (unsigned int i = 0; i < SourceColNameSize; i++)
 	{
 		colname.push_back(source.colname[i]);
 		coltype.push_back(source.coltype[i]);
