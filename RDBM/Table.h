@@ -24,10 +24,10 @@ public:
 	Table& DeleteRecord(unsigned int index);
 	Record* FindRecord(unsigned int index);
 	Record* FindRecord(const std::string& value);
-	Table& FindRecords(const std::string& value, std::ostream &out);
+	void FindRecords(const std::string& value, std::ostream &out);
 	Table& Show(std::ostream &out);
 	Table& Delete();
-	Table& Set(unsigned int rowindex, unsigned int colindex, std::istream &in);
+	Table& Set(unsigned int rowindex, unsigned int colindex, std::istream& in);
 	Table* Set(unsigned int rowindex, unsigned int colindex, std::string& value);
 	Table* Set(unsigned int rowindex, std::string column, std::string value);
 	Table& AddTable(const Table& source);

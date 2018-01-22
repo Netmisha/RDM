@@ -143,11 +143,6 @@ bool Record::Find(const std::string& value)
 	}
 	return check;
 }
-void Record::Resize()
-{
-	BaseForType* ptr;
-	record.insert(record.begin(),ptr);
-}
 int Record::GetId()
 {
 	return id;
