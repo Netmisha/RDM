@@ -162,12 +162,14 @@ Record* Table::FindRecord(unsigned int index)
 		return nullptr;
 	}
 	else
-	for (unsigned int i = 0; i < table.size(); i++)
 	{
-		if (table[i]->GetId() == index)
-			return table[index];
-		else
-			return nullptr;
+
+		for (unsigned int i = 0; i < table.size(); i++)
+		{
+			if (table[i]->GetId() == index)
+				return table[index];
+		}
+		return nullptr;
 	}
 }
 
@@ -183,7 +185,7 @@ Record* Table::FindRecord(const std::string& value)
 	return nullptr;
 }
 
-Table& Table::FindRecords(const std::string& value, std::ostream &out)
+void Table::FindRecords(const std::string& value, std::ostream &out)
 {
 	for (unsigned int i = 0; i < table.size(); i++)
 	{
@@ -192,7 +194,6 @@ Table& Table::FindRecords(const std::string& value, std::ostream &out)
 			table[i]->Show(out);
 		}
 	}
-	return *this;
 }
 Table& Table::Show(std::ostream &out)
 {
@@ -255,7 +256,8 @@ Table& Table::AddTable(const Table& source)
 {
 	int count=colname.size();
 	int count2 = count;
-	for (unsigned int i = 0; i < source.colname.size(); i++)
+	int SourceColNameSize = source.colname.size();
+	for (unsigned int i = 0; i < SourceColNameSize; i++)
 	{
 		colname.push_back(source.colname[i]);
 		coltype.push_back(source.coltype[i]);

@@ -13,7 +13,6 @@ class Record
 {
 private:
 	int id;
-	
 public:
 	std::vector<BaseForType*> record;
 	Record();
@@ -22,7 +21,6 @@ public:
 	Record& Set(unsigned int index, std::istream &in);
 	Record& Set(unsigned int index, std::string value);
 	bool Find(const std::string& value);
-	void Resize();
 	int GetId();
 	~Record();
 };

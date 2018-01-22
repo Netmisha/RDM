@@ -132,6 +132,7 @@ void AddStructure(Table& source)
 	}
 	doc.SaveFile("dbstructure.xml");
 }
+
 void AddData(Table& source)
 {
 	TiXmlDocument doc;
@@ -220,7 +221,7 @@ void AddData(Table& source)
 	doc.SaveFile("dbdata.xml");
 }
 
-Table* BuildTable(Table& tb,int id)
+Table* BuildTable(Table& tb,unsigned int id)
 {
 	TiXmlDocument doc;
 	doc.LoadFile("dbstructure.xml");
@@ -260,10 +261,13 @@ Table* BuildTable(Table& tb,int id)
 							record = record->NextSiblingElement();
 						}
 						table = table->NextSiblingElement();
-						const char *at = table->Attribute("ID");
-						std::string str = std::to_string(id);
-						if (strcmp(at, str.c_str()) != 0)
-							break;
+						if (NULL != table)
+						{
+							const char *at = table->Attribute("ID");
+							std::string str = std::to_string(id);
+							if (strcmp(at, str.c_str()) != 0)
+								break;
+						}
 					}
 				}
 				break;
@@ -280,11 +284,10 @@ Table* BuildTable(Table& tb,int id)
 		TiXmlElement *table = root->FirstChildElement("Table");
 		while (table)
 		{
-
 			const char *at = table->Attribute("ID");
 			std::string str = std::to_string(id);
 			if (strcmp(at, str.c_str()) != 0)
-				table=table->NextSiblingElement(); ///
+				table=table->NextSiblingElement(); 
 			else
 			{
 				if (NULL != table)
@@ -305,15 +308,17 @@ Table* BuildTable(Table& tb,int id)
 							record = record->NextSiblingElement();
 						}
 						table = table->NextSiblingElement();
-						const char *at = table->Attribute("ID");
-						std::string str = std::to_string(id);
-						if (strcmp(at, str.c_str()) != 0)
-							break;
+						if (NULL != table)
+						{
+							const char *at = table->Attribute("ID");
+							std::string str = std::to_string(id);
+							if (strcmp(at, str.c_str()) != 0)
+								break;
+						}
 					}
 				}
 				break;
 			}
-			
 		}
 	}
 	AddStructure(tb);
@@ -321,4 +326,70 @@ Table* BuildTable(Table& tb,int id)
 	return &tb;
 }
 
+void DeleteTable(unsigned int id)
+{
+	TiXmlDocument doc;
+	doc.LoadFile("dbstructure.xml");
+	TiXmlElement *root = doc.RootElement();
+	TiXmlElement *table = root->FirstChildElement("Table");
+	while (table)
+	{
+		const char *at = table->Attribute("ID");
+		std::string str = std::to_string(id);
+		if (strcmp(at, str.c_str()) == 0)
+		{
+			root->RemoveChild(table);
+			break;
+		}
+		else
+		{
+			table = table->NextSiblingElement();
+		}
+	}
+	doc.SaveFile("dbstructure.xml");
+
+	doc.LoadFile("dbdata.xml");
+	root = doc.RootElement();
+	table = root->FirstChildElement("Table");
+	while (table)
+	{
+		const char *at = table->Attribute("ID");
+		std::string str = std::to_string(id);
+		if (strcmp(at, str.c_str()) == 0)
+		{
+			root->RemoveChild(table);
+			break;
+		}
+		else
+		{
+			table = table->NextSiblingElement();
+		}
+	}
+	doc.SaveFile("dbdata.xml");
+}
+
+void Clear()
+{
+	TiXmlDocument doc;
+	doc.LoadFile("dbstructure.xml");
+	TiXmlElement *root = doc.RootElement();
+	TiXmlElement *table = root->FirstChildElement("Table");
+	while (table)
+	{
+		root->RemoveChild(table);
+		table = root->FirstChildElement();
+
+	}
+	doc.SaveFile("dbstructure.xml");
+
+	doc.LoadFile("dbdata.xml");
+	root = doc.RootElement();
+	table = root->FirstChildElement("Table");
+	while (table)
+	{
+		root->RemoveChild(table);
+		table = root->FirstChildElement();
+	}
+	doc.SaveFile("dbdata.xml");
+}
 #endif
