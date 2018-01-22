@@ -185,7 +185,7 @@ Record* Table::FindRecord(const std::string& value)
 	return nullptr;
 }
 
-Table& Table::FindRecords(const std::string& value, std::ostream &out)
+void Table::FindRecords(const std::string& value, std::ostream &out)
 {
 	for (unsigned int i = 0; i < table.size(); i++)
 	{
