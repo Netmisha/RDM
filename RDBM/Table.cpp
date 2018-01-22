@@ -194,7 +194,6 @@ void Table::FindRecords(const std::string& value, std::ostream &out)
 			table[i]->Show(out);
 		}
 	}
-	return *this;
 }
 Table& Table::Show(std::ostream &out)
 {
