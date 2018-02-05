@@ -1,0 +1,35 @@
+﻿Build started 2/2/2018 1:00:19 PM.
+     1>Project "C:\Users\vitaliy.pyza\RDBM\Console\Console.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\vitaliy.pyza\RDBM\Console /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
+         Source.cpp
+     1>c:\users\vitaliy.pyza\rdbm\console\MyString.h(10): warning C4251: 'String::value' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'String'
+     1>c:\users\vitaliy.pyza\rdbm\console\Record.h(17): warning C4251: 'Record::record' : class 'std::vector<BaseForType *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Record'
+                 with
+                 [
+                     _Ty=BaseForType *
+                 ]
+     1>c:\users\vitaliy.pyza\rdbm\console\Table.h(13): warning C4251: 'Table::name' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Table'
+     1>c:\users\vitaliy.pyza\rdbm\console\Table.h(14): warning C4251: 'Table::colname' : class 'std::vector<std::string,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Table'
+                 with
+                 [
+                     _Ty=std::string
+                 ]
+     1>c:\users\vitaliy.pyza\rdbm\console\Table.h(15): warning C4251: 'Table::coltype' : class 'std::vector<char,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Table'
+     1>c:\users\vitaliy.pyza\rdbm\console\Table.h(16): warning C4251: 'Table::table' : class 'std::vector<Record *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Table'
+                 with
+                 [
+                     _Ty=Record *
+                 ]
+     1>Source.cpp(133): warning C4018: '<' : signed/unsigned mismatch
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\vitaliy.pyza\RDBM\Console\Release\Console.exe" /INCREMENTAL:NO /NOLOGO DBdll.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\vitaliy.pyza\RDBM\Console\Release\Console.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\vitaliy.pyza\RDBM\Console\Release\Console.lib" /MACHINE:X86 /SAFESEH Release\Source.obj
+            Creating library C:\Users\vitaliy.pyza\RDBM\Console\Release\Console.lib and object C:\Users\vitaliy.pyza\RDBM\Console\Release\Console.exp
+         Generating code
+         Finished generating code
+         Console.vcxproj -> C:\Users\vitaliy.pyza\RDBM\Console\Release\Console.exe
+     1>Done Building Project "C:\Users\vitaliy.pyza\RDBM\Console\Console.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.73

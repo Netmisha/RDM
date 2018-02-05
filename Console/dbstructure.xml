@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<List>
+    <Table name="third" ID="1">
+        <Column ID="1">
+            <Type>String</Type>
+            <Name>name</Name>
+        </Column>
+    </Table>
+    <Table name="second_table" ID="2">
+        <Column ID="1">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="2">
+            <Type>Double</Type>
+            <Name>double</Name>
+        </Column>
+    </Table>
+    <Table name="third" ID="3">
+        <Column ID="1">
+            <Type>String</Type>
+            <Name>name</Name>
+        </Column>
+    </Table>
+    <Table name="fourth" ID="4">
+        <Column ID="1">
+            <Type>Integer</Type>
+            <Name>int2</Name>
+        </Column>
+    </Table>
+    <Table name="fifth" ID="5">
+        <Column ID="1">
+            <Type>Integer</Type>
+            <Name>int3</Name>
+        </Column>
+    </Table>
+    <Table name="test" ID="6">
+        <Column ID="1">
+            <Type>String</Type>
+            <Name>test</Name>
+        </Column>
+    </Table>
+    <Table name="test2" ID="7">
+        <Column ID="1">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="2">
+            <Type>Double</Type>
+            <Name>dbl</Name>
+        </Column>
+    </Table>
+    <Table name="fifth" ID="8">
+        <Column ID="1">
+            <Type>String</Type>
+            <Name>text</Name>
+        </Column>
+        <Column ID="2">
+            <Type>String</Type>
+            <Name>xz</Name>
+        </Column>
+    </Table>
+    <Table name="testxz" ID="9">
+        <Column ID="1">
+            <Type>String</Type>
+            <Name>xz</Name>
+        </Column>
+        <Column ID="2">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+    </Table>
+</List>

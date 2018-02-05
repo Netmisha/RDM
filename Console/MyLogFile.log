@@ -1,0 +1,505 @@
+Mon Feb 05 18:45:58 2018  [INFO]: Table object constructor called, name=third ID=1
+Mon Feb 05 18:45:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:45:58 2018  [INFO]: Table object Create() called, name=third ID=1
+Mon Feb 05 18:45:58 2018  [INFO]: Table object AddRecord() called, name=third ID=1
+Mon Feb 05 18:45:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:45:58 2018  [INFO]: Table object constructor called, name=second_table ID=2
+Mon Feb 05 18:45:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:45:58 2018  [INFO]: Table object Create() called, name=second_table ID=2
+Mon Feb 05 18:45:58 2018  [INFO]: Table object AddRecord() called, name=second_table ID=2
+Mon Feb 05 18:45:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:45:58 2018  [INFO]: Table object constructor called, name=third ID=3
+Mon Feb 05 18:45:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:45:58 2018  [INFO]: Table object Create() called, name=third ID=3
+Mon Feb 05 18:45:58 2018  [INFO]: Table object AddRecord() called, name=third ID=3
+Mon Feb 05 18:45:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:45:58 2018  [INFO]: Table object constructor called, name=fourth ID=4
+Mon Feb 05 18:45:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:45:58 2018  [INFO]: Table object Create() called, name=fourth ID=4
+Mon Feb 05 18:45:58 2018  [INFO]: Table object AddRecord() called, name=fourth ID=4
+Mon Feb 05 18:45:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:45:58 2018  [INFO]: Table object constructor called, name=fifth ID=5
+Mon Feb 05 18:45:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:45:58 2018  [INFO]: Table object Create() called, name=fifth ID=5
+Mon Feb 05 18:45:58 2018  [INFO]: Table object AddRecord() called, name=fifth ID=5
+Mon Feb 05 18:45:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:45:58 2018  [INFO]: Table object constructor called, name=test ID=6
+Mon Feb 05 18:45:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:45:58 2018  [INFO]: Table object Create() called, name=test ID=6
+Mon Feb 05 18:45:58 2018  [INFO]: Table object AddRecord() called, name=test ID=6
+Mon Feb 05 18:45:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:45:58 2018  [INFO]: Table object constructor called, name=test2 ID=7
+Mon Feb 05 18:45:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:45:58 2018  [INFO]: Table object Create() called, name=test2 ID=7
+Mon Feb 05 18:45:58 2018  [INFO]: Table object AddRecord() called, name=test2 ID=7
+Mon Feb 05 18:45:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=test2 ID=7
+Mon Feb 05 18:45:58 2018  [INFO]: Table object constructor called, name=fifth ID=8
+Mon Feb 05 18:45:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:45:58 2018  [INFO]: Table object Create() called, name=fifth ID=8
+Mon Feb 05 18:45:58 2018  [INFO]: Table object AddRecord() called, name=fifth ID=8
+Mon Feb 05 18:45:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=fifth ID=8
+Mon Feb 05 18:45:58 2018  [INFO]: Table object constructor called, name=testxz ID=9
+Mon Feb 05 18:45:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:45:58 2018  [INFO]: Table object Create() called, name=testxz ID=9
+Mon Feb 05 18:45:58 2018  [INFO]: Table object AddRecord() called, name=testxz ID=9
+Mon Feb 05 18:45:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:45:58 2018  [INFO]: Table object AddRecord() called, name=testxz ID=9
+Mon Feb 05 18:45:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:45:58 2018  [INFO]: Table object destructor called, name=testxz ID=9
+Mon Feb 05 18:45:58 2018  [INFO]: Table object constructor called, name=table 10 ID=10
+Mon Feb 05 18:46:11 2018  [INFO]: Table object GetID() called, name=third ID=1
+Mon Feb 05 18:46:11 2018  [INFO]: Table object GetID() called, name=second_table ID=2
+Mon Feb 05 18:46:11 2018  [INFO]: Table object GetID() called, name=third ID=3
+Mon Feb 05 18:46:11 2018  [INFO]: Table object GetID() called, name=fourth ID=4
+Mon Feb 05 18:46:11 2018  [INFO]: Table object GetID() called, name=fifth ID=5
+Mon Feb 05 18:46:11 2018  [INFO]: Table object GetID() called, name=test ID=6
+Mon Feb 05 18:46:11 2018  [INFO]: Table object GetID() called, name=test2 ID=7
+Mon Feb 05 18:46:11 2018  [INFO]: Table object GetID() called, name=fifth ID=8
+Mon Feb 05 18:46:11 2018  [INFO]: Table object GetID() called, name=testxz ID=9
+Mon Feb 05 18:46:11 2018  [INFO]: Table object Show() called, name=fourth ID=4
+Mon Feb 05 18:46:11 2018  [INFO]: Table object GetID() called, name=fourth ID=4
+Mon Feb 05 18:48:58 2018  [INFO]: Table object constructor called, name=third ID=1
+Mon Feb 05 18:48:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:48:58 2018  [INFO]: Table object Create() called, name=third ID=1
+Mon Feb 05 18:48:58 2018  [INFO]: Table object AddRecord() called, name=third ID=1
+Mon Feb 05 18:48:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:48:58 2018  [INFO]: Table object constructor called, name=second_table ID=2
+Mon Feb 05 18:48:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:48:58 2018  [INFO]: Table object Create() called, name=second_table ID=2
+Mon Feb 05 18:48:58 2018  [INFO]: Table object AddRecord() called, name=second_table ID=2
+Mon Feb 05 18:48:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:48:58 2018  [INFO]: Table object constructor called, name=third ID=3
+Mon Feb 05 18:48:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:48:58 2018  [INFO]: Table object Create() called, name=third ID=3
+Mon Feb 05 18:48:58 2018  [INFO]: Table object AddRecord() called, name=third ID=3
+Mon Feb 05 18:48:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:48:58 2018  [INFO]: Table object constructor called, name=fourth ID=4
+Mon Feb 05 18:48:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:48:58 2018  [INFO]: Table object Create() called, name=fourth ID=4
+Mon Feb 05 18:48:58 2018  [INFO]: Table object AddRecord() called, name=fourth ID=4
+Mon Feb 05 18:48:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:48:58 2018  [INFO]: Table object constructor called, name=fifth ID=5
+Mon Feb 05 18:48:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:48:58 2018  [INFO]: Table object Create() called, name=fifth ID=5
+Mon Feb 05 18:48:58 2018  [INFO]: Table object AddRecord() called, name=fifth ID=5
+Mon Feb 05 18:48:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:48:58 2018  [INFO]: Table object constructor called, name=test ID=6
+Mon Feb 05 18:48:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:48:58 2018  [INFO]: Table object Create() called, name=test ID=6
+Mon Feb 05 18:48:58 2018  [INFO]: Table object AddRecord() called, name=test ID=6
+Mon Feb 05 18:48:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:48:58 2018  [INFO]: Table object constructor called, name=test2 ID=7
+Mon Feb 05 18:48:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:48:58 2018  [INFO]: Table object Create() called, name=test2 ID=7
+Mon Feb 05 18:48:58 2018  [INFO]: Table object AddRecord() called, name=test2 ID=7
+Mon Feb 05 18:48:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=test2 ID=7
+Mon Feb 05 18:48:58 2018  [INFO]: Table object constructor called, name=fifth ID=8
+Mon Feb 05 18:48:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:48:58 2018  [INFO]: Table object Create() called, name=fifth ID=8
+Mon Feb 05 18:48:58 2018  [INFO]: Table object AddRecord() called, name=fifth ID=8
+Mon Feb 05 18:48:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=fifth ID=8
+Mon Feb 05 18:48:58 2018  [INFO]: Table object constructor called, name=testxz ID=9
+Mon Feb 05 18:48:58 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:48:58 2018  [INFO]: Table object Create() called, name=testxz ID=9
+Mon Feb 05 18:48:58 2018  [INFO]: Table object AddRecord() called, name=testxz ID=9
+Mon Feb 05 18:48:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:48:58 2018  [INFO]: Table object AddRecord() called, name=testxz ID=9
+Mon Feb 05 18:48:58 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:48:58 2018  [INFO]: Table object destructor called, name=testxz ID=9
+Mon Feb 05 18:48:58 2018  [INFO]: Table object constructor called, name=table 10 ID=10
+Mon Feb 05 18:50:12 2018  [INFO]: Table object constructor called, name=third ID=1
+Mon Feb 05 18:50:12 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:50:12 2018  [INFO]: Table object Create() called, name=third ID=1
+Mon Feb 05 18:50:12 2018  [INFO]: Table object AddRecord() called, name=third ID=1
+Mon Feb 05 18:50:12 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:50:12 2018  [INFO]: Table object constructor called, name=second_table ID=2
+Mon Feb 05 18:50:12 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:50:12 2018  [INFO]: Table object Create() called, name=second_table ID=2
+Mon Feb 05 18:50:12 2018  [INFO]: Table object AddRecord() called, name=second_table ID=2
+Mon Feb 05 18:50:12 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:50:12 2018  [INFO]: Table object constructor called, name=third ID=3
+Mon Feb 05 18:50:12 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:50:12 2018  [INFO]: Table object Create() called, name=third ID=3
+Mon Feb 05 18:50:12 2018  [INFO]: Table object AddRecord() called, name=third ID=3
+Mon Feb 05 18:50:12 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:50:12 2018  [INFO]: Table object constructor called, name=fourth ID=4
+Mon Feb 05 18:50:12 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:50:12 2018  [INFO]: Table object Create() called, name=fourth ID=4
+Mon Feb 05 18:50:12 2018  [INFO]: Table object AddRecord() called, name=fourth ID=4
+Mon Feb 05 18:50:12 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:50:12 2018  [INFO]: Table object constructor called, name=fifth ID=5
+Mon Feb 05 18:50:12 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:50:12 2018  [INFO]: Table object Create() called, name=fifth ID=5
+Mon Feb 05 18:50:12 2018  [INFO]: Table object AddRecord() called, name=fifth ID=5
+Mon Feb 05 18:50:12 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:50:12 2018  [INFO]: Table object constructor called, name=test ID=6
+Mon Feb 05 18:50:12 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:50:12 2018  [INFO]: Table object Create() called, name=test ID=6
+Mon Feb 05 18:50:12 2018  [INFO]: Table object AddRecord() called, name=test ID=6
+Mon Feb 05 18:50:12 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:50:12 2018  [INFO]: Table object constructor called, name=test2 ID=7
+Mon Feb 05 18:50:12 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:50:12 2018  [INFO]: Table object Create() called, name=test2 ID=7
+Mon Feb 05 18:50:12 2018  [INFO]: Table object AddRecord() called, name=test2 ID=7
+Mon Feb 05 18:50:12 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=test2 ID=7
+Mon Feb 05 18:50:12 2018  [INFO]: Table object constructor called, name=fifth ID=8
+Mon Feb 05 18:50:12 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:50:12 2018  [INFO]: Table object Create() called, name=fifth ID=8
+Mon Feb 05 18:50:12 2018  [INFO]: Table object AddRecord() called, name=fifth ID=8
+Mon Feb 05 18:50:12 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=fifth ID=8
+Mon Feb 05 18:50:12 2018  [INFO]: Table object constructor called, name=testxz ID=9
+Mon Feb 05 18:50:12 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:50:12 2018  [INFO]: Table object Create() called, name=testxz ID=9
+Mon Feb 05 18:50:12 2018  [INFO]: Table object AddRecord() called, name=testxz ID=9
+Mon Feb 05 18:50:12 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:50:12 2018  [INFO]: Table object AddRecord() called, name=testxz ID=9
+Mon Feb 05 18:50:12 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:50:12 2018  [INFO]: Table object destructor called, name=testxz ID=9
+Mon Feb 05 18:50:12 2018  [INFO]: Table object constructor called, name=table 10 ID=10
+Mon Feb 05 18:51:27 2018  [INFO]: Table object constructor called, name=third ID=1
+Mon Feb 05 18:51:27 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:51:27 2018  [INFO]: Table object Create() called, name=third ID=1
+Mon Feb 05 18:51:27 2018  [INFO]: Table object AddRecord() called, name=third ID=1
+Mon Feb 05 18:51:27 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:51:27 2018  [INFO]: Table object constructor called, name=second_table ID=2
+Mon Feb 05 18:51:27 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:51:27 2018  [INFO]: Table object Create() called, name=second_table ID=2
+Mon Feb 05 18:51:27 2018  [INFO]: Table object AddRecord() called, name=second_table ID=2
+Mon Feb 05 18:51:27 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:51:27 2018  [INFO]: Table object constructor called, name=third ID=3
+Mon Feb 05 18:51:27 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:51:27 2018  [INFO]: Table object Create() called, name=third ID=3
+Mon Feb 05 18:51:27 2018  [INFO]: Table object AddRecord() called, name=third ID=3
+Mon Feb 05 18:51:27 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:51:27 2018  [INFO]: Table object constructor called, name=fourth ID=4
+Mon Feb 05 18:51:27 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:51:27 2018  [INFO]: Table object Create() called, name=fourth ID=4
+Mon Feb 05 18:51:27 2018  [INFO]: Table object AddRecord() called, name=fourth ID=4
+Mon Feb 05 18:51:27 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:51:27 2018  [INFO]: Table object constructor called, name=fifth ID=5
+Mon Feb 05 18:51:27 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:51:27 2018  [INFO]: Table object Create() called, name=fifth ID=5
+Mon Feb 05 18:51:27 2018  [INFO]: Table object AddRecord() called, name=fifth ID=5
+Mon Feb 05 18:51:27 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:51:27 2018  [INFO]: Table object constructor called, name=test ID=6
+Mon Feb 05 18:51:27 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:51:27 2018  [INFO]: Table object Create() called, name=test ID=6
+Mon Feb 05 18:51:27 2018  [INFO]: Table object AddRecord() called, name=test ID=6
+Mon Feb 05 18:51:27 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:51:27 2018  [INFO]: Table object constructor called, name=test2 ID=7
+Mon Feb 05 18:51:27 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:51:27 2018  [INFO]: Table object Create() called, name=test2 ID=7
+Mon Feb 05 18:51:27 2018  [INFO]: Table object AddRecord() called, name=test2 ID=7
+Mon Feb 05 18:51:27 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=test2 ID=7
+Mon Feb 05 18:51:27 2018  [INFO]: Table object constructor called, name=fifth ID=8
+Mon Feb 05 18:51:27 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:51:27 2018  [INFO]: Table object Create() called, name=fifth ID=8
+Mon Feb 05 18:51:27 2018  [INFO]: Table object AddRecord() called, name=fifth ID=8
+Mon Feb 05 18:51:27 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=fifth ID=8
+Mon Feb 05 18:51:27 2018  [INFO]: Table object constructor called, name=testxz ID=9
+Mon Feb 05 18:51:27 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:51:27 2018  [INFO]: Table object Create() called, name=testxz ID=9
+Mon Feb 05 18:51:27 2018  [INFO]: Table object AddRecord() called, name=testxz ID=9
+Mon Feb 05 18:51:27 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:51:27 2018  [INFO]: Table object AddRecord() called, name=testxz ID=9
+Mon Feb 05 18:51:27 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:51:27 2018  [INFO]: Table object destructor called, name=testxz ID=9
+Mon Feb 05 18:51:27 2018  [INFO]: Table object constructor called, name=table 10 ID=10
+Mon Feb 05 18:51:49 2018  [ERROR]: error testtest 
+Mon Feb 05 18:53:13 2018  [INFO]: Table object constructor called, name=third ID=1
+Mon Feb 05 18:53:13 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:53:13 2018  [INFO]: Table object Create() called, name=third ID=1
+Mon Feb 05 18:53:13 2018  [INFO]: Table object AddRecord() called, name=third ID=1
+Mon Feb 05 18:53:13 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:53:13 2018  [INFO]: Table object constructor called, name=second_table ID=2
+Mon Feb 05 18:53:13 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:53:13 2018  [INFO]: Table object Create() called, name=second_table ID=2
+Mon Feb 05 18:53:13 2018  [INFO]: Table object AddRecord() called, name=second_table ID=2
+Mon Feb 05 18:53:13 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:53:13 2018  [INFO]: Table object constructor called, name=third ID=3
+Mon Feb 05 18:53:13 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:53:13 2018  [INFO]: Table object Create() called, name=third ID=3
+Mon Feb 05 18:53:13 2018  [INFO]: Table object AddRecord() called, name=third ID=3
+Mon Feb 05 18:53:13 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:53:13 2018  [INFO]: Table object constructor called, name=fourth ID=4
+Mon Feb 05 18:53:13 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:53:13 2018  [INFO]: Table object Create() called, name=fourth ID=4
+Mon Feb 05 18:53:13 2018  [INFO]: Table object AddRecord() called, name=fourth ID=4
+Mon Feb 05 18:53:13 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:53:13 2018  [INFO]: Table object constructor called, name=fifth ID=5
+Mon Feb 05 18:53:13 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:53:13 2018  [INFO]: Table object Create() called, name=fifth ID=5
+Mon Feb 05 18:53:13 2018  [INFO]: Table object AddRecord() called, name=fifth ID=5
+Mon Feb 05 18:53:13 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:53:13 2018  [INFO]: Table object constructor called, name=test ID=6
+Mon Feb 05 18:53:13 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:53:13 2018  [INFO]: Table object Create() called, name=test ID=6
+Mon Feb 05 18:53:13 2018  [INFO]: Table object AddRecord() called, name=test ID=6
+Mon Feb 05 18:53:13 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:53:13 2018  [INFO]: Table object constructor called, name=test2 ID=7
+Mon Feb 05 18:53:13 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:53:13 2018  [INFO]: Table object Create() called, name=test2 ID=7
+Mon Feb 05 18:53:13 2018  [INFO]: Table object AddRecord() called, name=test2 ID=7
+Mon Feb 05 18:53:13 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=test2 ID=7
+Mon Feb 05 18:53:13 2018  [INFO]: Table object constructor called, name=fifth ID=8
+Mon Feb 05 18:53:13 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:53:13 2018  [INFO]: Table object Create() called, name=fifth ID=8
+Mon Feb 05 18:53:13 2018  [INFO]: Table object AddRecord() called, name=fifth ID=8
+Mon Feb 05 18:53:13 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=fifth ID=8
+Mon Feb 05 18:53:13 2018  [INFO]: Table object constructor called, name=testxz ID=9
+Mon Feb 05 18:53:13 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:53:13 2018  [INFO]: Table object Create() called, name=testxz ID=9
+Mon Feb 05 18:53:13 2018  [INFO]: Table object AddRecord() called, name=testxz ID=9
+Mon Feb 05 18:53:13 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:53:13 2018  [INFO]: Table object AddRecord() called, name=testxz ID=9
+Mon Feb 05 18:53:13 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:53:13 2018  [INFO]: Table object destructor called, name=testxz ID=9
+Mon Feb 05 18:53:13 2018  [INFO]: Table object constructor called, name=table 10 ID=10
+Mon Feb 05 18:53:24 2018  [ERROR]: error test
+Mon Feb 05 18:54:01 2018  [ERROR]: error second test
+Mon Feb 05 18:55:09 2018  [INFO]: info test
+Mon Feb 05 18:55:45 2018  [INFO]: Table object constructor called, name=third ID=1
+Mon Feb 05 18:55:45 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:55:45 2018  [INFO]: Table object Create() called, name=third ID=1
+Mon Feb 05 18:55:45 2018  [INFO]: Table object AddRecord() called, name=third ID=1
+Mon Feb 05 18:55:45 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:55:45 2018  [INFO]: Table object constructor called, name=second_table ID=2
+Mon Feb 05 18:55:45 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:55:45 2018  [INFO]: Table object Create() called, name=second_table ID=2
+Mon Feb 05 18:55:45 2018  [INFO]: Table object AddRecord() called, name=second_table ID=2
+Mon Feb 05 18:55:45 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:55:45 2018  [INFO]: Table object constructor called, name=third ID=3
+Mon Feb 05 18:55:45 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:55:45 2018  [INFO]: Table object Create() called, name=third ID=3
+Mon Feb 05 18:55:45 2018  [INFO]: Table object AddRecord() called, name=third ID=3
+Mon Feb 05 18:55:45 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:55:45 2018  [INFO]: Table object constructor called, name=fourth ID=4
+Mon Feb 05 18:55:45 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:55:45 2018  [INFO]: Table object Create() called, name=fourth ID=4
+Mon Feb 05 18:55:45 2018  [INFO]: Table object AddRecord() called, name=fourth ID=4
+Mon Feb 05 18:55:45 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:55:45 2018  [INFO]: Table object constructor called, name=fifth ID=5
+Mon Feb 05 18:55:45 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:55:45 2018  [INFO]: Table object Create() called, name=fifth ID=5
+Mon Feb 05 18:55:45 2018  [INFO]: Table object AddRecord() called, name=fifth ID=5
+Mon Feb 05 18:55:45 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:55:45 2018  [INFO]: Table object constructor called, name=test ID=6
+Mon Feb 05 18:55:45 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:55:45 2018  [INFO]: Table object Create() called, name=test ID=6
+Mon Feb 05 18:55:45 2018  [INFO]: Table object AddRecord() called, name=test ID=6
+Mon Feb 05 18:55:45 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:55:45 2018  [INFO]: Table object constructor called, name=test2 ID=7
+Mon Feb 05 18:55:45 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:55:45 2018  [INFO]: Table object Create() called, name=test2 ID=7
+Mon Feb 05 18:55:45 2018  [INFO]: Table object AddRecord() called, name=test2 ID=7
+Mon Feb 05 18:55:45 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=test2 ID=7
+Mon Feb 05 18:55:45 2018  [INFO]: Table object constructor called, name=fifth ID=8
+Mon Feb 05 18:55:45 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:55:45 2018  [INFO]: Table object Create() called, name=fifth ID=8
+Mon Feb 05 18:55:45 2018  [INFO]: Table object AddRecord() called, name=fifth ID=8
+Mon Feb 05 18:55:45 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=fifth ID=8
+Mon Feb 05 18:55:45 2018  [INFO]: Table object constructor called, name=testxz ID=9
+Mon Feb 05 18:55:45 2018  [INFO]: BuildTable() called //XML
+Mon Feb 05 18:55:45 2018  [INFO]: Table object Create() called, name=testxz ID=9
+Mon Feb 05 18:55:45 2018  [INFO]: Table object AddRecord() called, name=testxz ID=9
+Mon Feb 05 18:55:45 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:55:45 2018  [INFO]: Table object AddRecord() called, name=testxz ID=9
+Mon Feb 05 18:55:45 2018  [INFO]: Record object create,default constructor
+Mon Feb 05 18:55:45 2018  [INFO]: Table object destructor called, name=testxz ID=9
+Mon Feb 05 18:55:45 2018  [INFO]: Table object constructor called, name=table 10 ID=10
+Mon Feb 05 18:55:58 2018  [INFO]: test text 
+Mon Feb 05 18:56:23 2018  [ALARM]: LOG_LEVEL changed to TRACE
+Mon Feb 05 18:56:53 2018  [INFO]: Table object GetID() called, name=third ID=1
+Mon Feb 05 18:56:53 2018  [INFO]: Table object GetID() called, name=second_table ID=2
+Mon Feb 05 18:56:53 2018  [INFO]: Table object GetID() called, name=third ID=3
+Mon Feb 05 18:56:53 2018  [INFO]: Table object GetID() called, name=fourth ID=4
+Mon Feb 05 18:56:53 2018  [INFO]: Table object GetID() called, name=fifth ID=5
+Mon Feb 05 18:56:53 2018  [INFO]: Table object GetID() called, name=test ID=6
+Mon Feb 05 18:56:53 2018  [INFO]: Table object GetID() called, name=test2 ID=7
+Mon Feb 05 18:56:53 2018  [INFO]: Table object GetID() called, name=fifth ID=8
+Mon Feb 05 18:56:53 2018  [INFO]: Table object GetID() called, name=testxz ID=9
+Mon Feb 05 18:56:53 2018  [INFO]: Table object Show() called, name=fourth ID=4
+Mon Feb 05 18:56:53 2018  [TRACE]: String object Show() called
+Mon Feb 05 18:56:53 2018  [TRACE]: Integer object Show() called
+Mon Feb 05 18:56:53 2018  [INFO]: Table object GetID() called, name=fourth ID=4
+Mon Feb 05 18:57:27 2018  [ALARM]: LOG_LEVEL changed to INFO
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetID() called, name=third ID=1
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetName() called, name=third ID=1
+Mon Feb 05 18:57:46 2018  [INFO]: Table object Show() called, name=third ID=1
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetID() called, name=second_table ID=2
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetName() called, name=second_table ID=2
+Mon Feb 05 18:57:46 2018  [INFO]: Table object Show() called, name=second_table ID=2
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetID() called, name=third ID=3
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetName() called, name=third ID=3
+Mon Feb 05 18:57:46 2018  [INFO]: Table object Show() called, name=third ID=3
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetID() called, name=fourth ID=4
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetName() called, name=fourth ID=4
+Mon Feb 05 18:57:46 2018  [INFO]: Table object Show() called, name=fourth ID=4
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetID() called, name=fifth ID=5
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetName() called, name=fifth ID=5
+Mon Feb 05 18:57:46 2018  [INFO]: Table object Show() called, name=fifth ID=5
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetID() called, name=test ID=6
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetName() called, name=test ID=6
+Mon Feb 05 18:57:46 2018  [INFO]: Table object Show() called, name=test ID=6
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetID() called, name=test2 ID=7
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetName() called, name=test2 ID=7
+Mon Feb 05 18:57:46 2018  [INFO]: Table object Show() called, name=test2 ID=7
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetID() called, name=fifth ID=8
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetName() called, name=fifth ID=8
+Mon Feb 05 18:57:46 2018  [INFO]: Table object Show() called, name=fifth ID=8
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetID() called, name=testxz ID=9
+Mon Feb 05 18:57:46 2018  [INFO]: Table object GetName() called, name=testxz ID=9
+Mon Feb 05 18:57:46 2018  [INFO]: Table object Show() called, name=testxz ID=9
+Mon Feb 05 18:57:49 2018  [INFO]: Table object destructor called, name=third ID=1
+Mon Feb 05 18:57:49 2018  [INFO]: Table object destructor called, name=second_table ID=2
+Mon Feb 05 18:57:49 2018  [INFO]: Table object destructor called, name=third ID=3
+Mon Feb 05 18:57:49 2018  [INFO]: Table object destructor called, name=fourth ID=4
+Mon Feb 05 18:57:49 2018  [INFO]: Table object destructor called, name=fifth ID=5
+Mon Feb 05 18:57:49 2018  [INFO]: Table object destructor called, name=test ID=6
+Mon Feb 05 18:57:49 2018  [INFO]: Table object destructor called, name=test2 ID=7
+Mon Feb 05 18:57:49 2018  [INFO]: Table object destructor called, name=fifth ID=8
+Mon Feb 05 18:57:49 2018  [INFO]: Table object destructor called, name=testxz ID=9
