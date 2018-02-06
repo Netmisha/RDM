@@ -12,5 +12,7 @@ __declspec(dllexport) Table* BuildTable(Table& tb, unsigned int id);
 __declspec(dllexport) void DeleteTable(unsigned int id);
 __declspec(dllexport) void Clear();
 __declspec(dllexport) std::string GetName(unsigned int ID);
+__declspec(dllexport) int* GetID();
+__declspec(dllexport) int GetLastID();
 	
 #endif

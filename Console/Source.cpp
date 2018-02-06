@@ -1,7 +1,10 @@
 #include"Table.h"
 #include"XML.h"
 #include"Logger.h"
+
 #include<sstream>
+#include<map>
+
 bool check(char* argv, char* val)
 {
 	if (strcmp(argv, "end") == 0)
@@ -29,8 +32,31 @@ void Fill(std::vector<Table>& vec)
 		vec.push_back(tb);
 	}
 }
+void Fill(std::map<int, Table>& mapa)
+{
+	int *idarr = new int[Count() + 1];
+	idarr = GetID();
+	for (unsigned int i = 1; i < Count()+1; i++)
+	{
+		if (i == Count())
+		{
+			Table tb(GetName(i));
+			BuildTable(tb, idarr[i-1]);
+			mapa.insert(std::pair<int, Table>(idarr[i-1], tb));
+		}
+		else
+		{
+			Table tb(GetName(i));
+			BuildTable(tb, idarr[i - 1]);
+			mapa.insert(std::pair<int, Table>(idarr[i]-1, tb));
+		}
+
+	}
+}
 int main(int argc,char** argv)
 {
+	std::map<int, Table> database;
+	Fill(database);
 	Logger *log = NULL;
 	log = Logger::getInstance();
 	log->updateLogLevel(LOG_LEVEL_INFO);
@@ -76,7 +102,8 @@ int main(int argc,char** argv)
 			tb->Create(colnames, coltypes);
 			out << "table created \n";
 			tb->Show(out);
-			Tvec.push_back(*tb);
+			//Tvec.push_back(*tb);
+			database.insert(std::pair<int, Table>(GetLastID()+1,*tb));
 			TID = tb->GetID();
 		}
 		else if (strcmp(argv[1], "build_t") == 0)
@@ -84,8 +111,8 @@ int main(int argc,char** argv)
 			tablecheck = true;
 			delete tb;
 			int x = atoi(argv[2]);
-			tb = &Tvec[(int)argv[2]-1];
-			
+			//tb = &Tvec[(int)argv[2]-1];
+			tb = &database[x];
 			xmlTableID = x;
 			tb->ChangeID(Count() + 1);
 			out << "table built \n";
@@ -264,7 +291,8 @@ int main(int argc,char** argv)
 				out << "table created \n";
 				tb->Show(out);
 				xmlTableID = tb->GetID();
-				Tvec.push_back(*tb);
+				//Tvec.push_back(*tb);
+				database.insert(std::pair<int, Table>(GetLastID() + 1, *tb));
 				TID = tb->GetID();
 			}
 			else if (inputs[0] == "build_t")
@@ -272,9 +300,9 @@ int main(int argc,char** argv)
 				if (SizeCheck(inputs, 2, out))
 					continue;
 				bool check = false;
-				for (unsigned int i = 0; i < Tvec.size(); i++)
+				for (unsigned int i = 0; i < database.size(); i++)
 				{
-					if (Tvec[i].GetID() == std::stoi(inputs[1]))
+					if (database[i+1].GetID() == std::stoi(inputs[1]))
 						check = true;
 				}
 				if (!check)
@@ -286,7 +314,7 @@ int main(int argc,char** argv)
 				{
 					tablecheck = true;
 					int x = stoi(inputs[1]);
-					tb = &Tvec[x - 1];
+					tb = &database[x];
 					xmlTableID = x;
 					out << "table built \n";
 					tb->Show(out);
@@ -340,7 +368,7 @@ int main(int argc,char** argv)
 					i++;
 				}
 				tb->AddRecord(values);
-				Tvec[TID-1] = *tb;
+				database[TID] = *tb;
 				out << "new record added \n";
 			}
 			else if (inputs[0] == "addcol")
@@ -403,22 +431,18 @@ int main(int argc,char** argv)
 				if (SizeCheck(inputs, 2, out))
 					continue;
 				bool check = false;
-				for (unsigned int i = 0; i < Tvec.size(); i++)
-				{
-					if (std::stoi(inputs[1]) == Tvec[i].GetID())
-					{
-						Tvec.erase(Tvec.begin() + i);
-						check = true;
-						break;
-					}
-				}
+				if (database.count(std::stoi(inputs[1])) == 1)
+					check = true;
 				if (!check)
 				{
 					out << "there is no table with " << inputs[1] << " ID\n";
 					continue;
 				}
-				out << "Table " << Tvec[std::stoi(inputs[1])-1].GetName() << "deleted \n";
-				Tvec.erase(Tvec.begin() + std::stoi(inputs[1])-1);
+				else
+				{
+					out << "Table " << database[std::stoi(inputs[1])].GetName() << "deleted \n";
+					database.erase(std::stoi(inputs[1]));
+				}
 			}
 			else if (inputs[0] == "find")
 			{
@@ -456,10 +480,10 @@ int main(int argc,char** argv)
 				if (SizeCheck(inputs, 2, out))
 					continue;
 				if (inputs[1] == "-a")
-				for (unsigned int i = 0; i < Tvec.size(); i++)
+				for (unsigned int i = 1; i <= database.size(); i++)
 				{
-					out << "Table "<<Tvec[i].GetName() << " ID="<<Tvec[i].GetID()<<"\n";
-					Tvec[i].Show(out);
+					out << "Table "<<database[i].GetName() << " ID="<<database[i].GetID()<<"\n";
+					database[i].Show(out);
 					out << "\n";
 				}
 				
@@ -539,7 +563,7 @@ int main(int argc,char** argv)
 					out << "there is no current table,please create or build one\n";
 					continue;
 				}
-				tb->AddTable(Tvec[std::stoi(inputs[1])]);
+				tb->AddTable(database[std::stoi(inputs[1])]);
 				out << "table inherited \n";
 			}
 			else if (inputs[0] == "get")
@@ -560,10 +584,10 @@ int main(int argc,char** argv)
 			}
 			else if (inputs[0] == "update_xml")
 			{
-				for (unsigned int i = 0; i < Tvec.size(); i++)
+				for (unsigned int i = 1; i < database.size(); i++)
 				{
-					AddData(Tvec[i]);
-					AddStructure(Tvec[i]);
+					AddData(database[i]);
+					AddStructure(database[i]);
 				}
 				out << "XML updated \n";
 			}
