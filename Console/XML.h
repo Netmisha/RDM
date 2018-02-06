@@ -14,5 +14,6 @@ __declspec(dllexport) void Clear();
 __declspec(dllexport) std::string GetName(unsigned int ID);
 __declspec(dllexport) int* GetID();
 __declspec(dllexport) int GetLastID();
+__declspec(dllexport) void GColector();
 	
 #endif

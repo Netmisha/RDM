@@ -10,6 +10,7 @@ $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LocalDebuggerEnvironment>C:\Users\vitaliy.pyza\RDBM\Console\Release</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>build_t 1 quit</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>
+    </LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>

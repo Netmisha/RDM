@@ -1,56 +1,12 @@
 <?xml version="1.0" ?>
 <List>
-    <Table name="third" ID="1">
+    <Table name="first" ID="1">
         <Record ID="1">
-            <Value ID="1">vit</Value>
+            <Value ID="1">vir</Value>
         </Record>
     </Table>
-    <Table name="second_table" ID="2">
-        <Record ID="1">
-            <Value ID="1">1</Value>
-            <Value ID="2">2.300000</Value>
-        </Record>
-    </Table>
-    <Table name="third" ID="3">
-        <Record ID="1">
-            <Value ID="1">vit</Value>
-        </Record>
-    </Table>
-    <Table name="fourth" ID="4">
-        <Record ID="1">
-            <Value ID="1">34</Value>
-        </Record>
-    </Table>
-    <Table name="fifth" ID="5">
-        <Record ID="1">
-            <Value ID="1">23</Value>
-        </Record>
-    </Table>
-    <Table name="test" ID="6">
-        <Record ID="1">
-            <Value ID="1">text</Value>
-        </Record>
-    </Table>
-    <Table name="test2" ID="7">
-        <Record ID="1">
-            <Value ID="1">1</Value>
-            <Value ID="2">2.300000</Value>
-        </Record>
-    </Table>
-    <Table name="fifth" ID="8">
-        <Record ID="1">
-            <Value ID="1">text</Value>
-            <Value ID="2">_</Value>
-        </Record>
-    </Table>
-    <Table name="testxz" ID="9">
-        <Record ID="1">
-            <Value ID="1">smth</Value>
-            <Value ID="2">8</Value>
-        </Record>
-        <Record ID="2">
-            <Value ID="1">text</Value>
-            <Value ID="2">5</Value>
-        </Record>
-    </Table>
+    <Table name="second" ID="3" />
+    <Table name="IDtest2" ID="6" />
+    <Table name="Dtest" ID="7" />
+    <Table name="target" ID="8" />
 </List>
