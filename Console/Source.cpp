@@ -5,24 +5,6 @@
 #include<sstream>
 #include<map>
 
-void replace_key(std::map<int, Table>& container, const std::map<int, Table>::key_type& oldKey, const std::map<int, Table>::key_type& newKey)
-{
-	if (!container.key_comp()(oldKey, newKey) && !container.key_comp()(newKey, oldKey)){
-		return;
-	} 
-	std::map<int, Table>::iterator begin(container.find(oldKey));
-	for (;;){
-		if (begin != container.end()){
-			container.insert(std::map<int, Table>::value_type(newKey, begin->second));
-			container.erase(begin); 
-			begin = container.find(oldKey);
-		}
-		else
-		{
-			return;
-		}
-	}
-}
 
 bool SizeCheck(std::vector<std::string>& vec,int size,std::ostream& out)
 {
@@ -65,6 +47,7 @@ void Fill(std::map<int, Table*>& mapa)
 
 int main(int argc, char** argv)
 {
+	LOG_INFO("Build started, thread ID=" + std::to_string(GetCurrentThreadId()));
 	static int ID = GetLastID()+1;
 	std::map<int, Table*> database;
 	Fill(database);
@@ -73,6 +56,12 @@ int main(int argc, char** argv)
 	log->updateLogLevel(LOG_LEVEL_INFO);
 	std::ostream out(nullptr);
 	out.rdbuf(std::cout.rdbuf());
+	if (!IsExist())
+	{
+		out << "XML files missing.\nNew dbdata.xml and dbstructure.xml were created automaticaly \n";
+		CreateXML();
+	}
+	
 	bool tablecheck = false;
 	Table *tb = new Table("temp_table");
 	std::string input;
@@ -685,6 +674,6 @@ int main(int argc, char** argv)
 			out << "\t set -s 'ID' 'index' 'value' - set cell in current table record woth position 'index' to 'value'\n";
 		}
 	}
-	system("pause");
+	LOG_INFO("Build ended, thread ID=" + std::to_string(GetCurrentThreadId()));
 	return 0;
 }

@@ -15,5 +15,7 @@ MYLIBRARY_EXPORT std::string GetName(unsigned int ID);
 MYLIBRARY_EXPORT int* GetID();
 MYLIBRARY_EXPORT int GetLastID();
 MYLIBRARY_EXPORT void GColector();
+MYLIBRARY_EXPORT bool IsExist();
+MYLIBRARY_EXPORT bool IsEmpty();
 	
 #endif
