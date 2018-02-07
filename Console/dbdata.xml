@@ -6,7 +6,20 @@
         </Record>
     </Table>
     <Table name="second" ID="3" />
-    <Table name="IDtest2" ID="6" />
-    <Table name="Dtest" ID="7" />
-    <Table name="target" ID="8" />
+    <Table name="IDtest2" ID="6">
+        <Record ID="1">
+            <Value ID="1">3</Value>
+            <Value ID="2">text</Value>
+        </Record>
+    </Table>
+    <Table name="Dtest" ID="7">
+        <Record ID="1">
+            <Value ID="1">3</Value>
+        </Record>
+    </Table>
+    <Table name="target" ID="8">
+        <Record ID="1">
+            <Value ID="1">text</Value>
+        </Record>
+    </Table>
 </List>

@@ -12,11 +12,11 @@ public:
 	Integer(int &val);
 	Integer(const Integer &val);
 	void Set(const int val);
-	void Set(std::istream &in)override;
-	void Set(std::string& val)override;
+	void Set(std::istream &in) override;
+	void Set(std::string& val) override;
 	void Show(std::ostream &out) override;
 	int& Get();
-	void* Getv()override;
+	void* Getv() override;
 	~Integer(){ LOG_INFO("Double object destructor called"); };
 	friend std::ostream& operator<<(std::ostream& os, const Integer& dt);
 };

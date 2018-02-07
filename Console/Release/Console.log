@@ -1,10 +1,12 @@
-﻿Build started 2/6/2018 6:44:05 PM.
+﻿Build started 2/7/2018 1:49:51 PM.
      1>Project "C:\Users\vitaliy.pyza\RDBM\Console\Console.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (DBdll.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\vitaliy.pyza\RDBM\Console /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\vitaliy.pyza\RDBM\Console\dll /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
          Source.cpp
      1>c:\users\vitaliy.pyza\rdbm\console\Logger.h(109): warning C4251: 'CPlusPlusLogging::Logger::m_File' : class 'std::basic_ofstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'CPlusPlusLogging::Logger'
+     1>c:\users\vitaliy.pyza\rdbm\console\BaseForType.h(7): warning C4005: 'MYLIBRARY_EXPORT' : macro redefinition
+                 c:\users\vitaliy.pyza\rdbm\console\Logger.h(6) : see previous definition of 'MYLIBRARY_EXPORT'
      1>c:\users\vitaliy.pyza\rdbm\console\MyString.h(10): warning C4251: 'String::value' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'String'
      1>c:\users\vitaliy.pyza\rdbm\console\Record.h(17): warning C4251: 'Record::record' : class 'std::vector<BaseForType *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Record'
                  with
@@ -23,10 +25,10 @@
                  [
                      _Ty=Record *
                  ]
-     1>Source.cpp(10): warning C4018: '<' : signed/unsigned mismatch
-     1>Source.cpp(25): warning C4018: '<' : signed/unsigned mismatch
-     1>Source.cpp(410): warning C4018: '<' : signed/unsigned mismatch
-     1>Source.cpp(541): warning C4018: '>' : signed/unsigned mismatch
+     1>Source.cpp(29): warning C4018: '<' : signed/unsigned mismatch
+     1>Source.cpp(44): warning C4018: '<' : signed/unsigned mismatch
+     1>Source.cpp(430): warning C4018: '<' : signed/unsigned mismatch
+     1>Source.cpp(561): warning C4018: '>' : signed/unsigned mismatch
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\vitaliy.pyza\RDBM\Console\Release\Console.exe" /INCREMENTAL:NO /NOLOGO DBdll.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\vitaliy.pyza\RDBM\Console\Release\Console.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\vitaliy.pyza\RDBM\Console\Release\Console.lib" /MACHINE:X86 /SAFESEH Release\Source.obj
             Creating library C:\Users\vitaliy.pyza\RDBM\Console\Release\Console.lib and object C:\Users\vitaliy.pyza\RDBM\Console\Release\Console.exp
@@ -37,4 +39,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.63
+Time Elapsed 00:00:02.93

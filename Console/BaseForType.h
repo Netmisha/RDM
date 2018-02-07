@@ -4,7 +4,7 @@
 #ifndef MYLIBRARY_EXPORT 
 #define MYLIBRARY_EXPORT __declspec(dllexport)
 #else  
-#define MYLIBRARY_EXPORT //__declspec(dllimport)
+#define MYLIBRARY_EXPORT __declspec(dllimport)
 #endif
 
 #include<iostream>
@@ -15,7 +15,7 @@ using namespace CPlusPlusLogging;
 class MYLIBRARY_EXPORT BaseForType
 {
 public:
-	virtual ~BaseForType(){};
+	virtual ~BaseForType()=default;
 	virtual void Set(std::istream &in) = 0;
 	virtual void Set(std::string& value) = 0;
 	virtual void Show(std::ostream &out) = 0;

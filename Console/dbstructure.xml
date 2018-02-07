@@ -17,6 +17,10 @@
             <Type>Integer</Type>
             <Name>int2</Name>
         </Column>
+        <Column ID="2">
+            <Type>String</Type>
+            <Name>something</Name>
+        </Column>
     </Table>
     <Table name="Dtest" ID="7">
         <Column ID="1">

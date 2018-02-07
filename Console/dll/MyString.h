@@ -14,11 +14,11 @@ public:
 	String(const String &val);
 	void Set(const std::string val);
 	void Set(std::istream &in) override;
-	void Set(std::string& val)override;
+	void Set(std::string& val) override;
 	void Show(std::ostream &out) override;
-	std::string Get();
-	void* Getv()override;
-	~String(){};
+	std::string& Get();
+	void* Getv() override;
+	~String(){ LOG_INFO("Double object destructor called"); };
 	friend std::ostream& operator<<(std::ostream& os, const String& dt);
 };
 #endif

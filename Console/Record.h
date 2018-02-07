@@ -16,14 +16,14 @@ private:
 public:
 	std::vector<BaseForType*> record;
 	Record();
-	Record& Add(const std::string& value);
+	Record& Add(const std::string value);
 	Record& Show(std::ostream &out);
 	Record& Set(unsigned int index, std::istream &in);
 	Record& Set(unsigned int index, std::string value);
 	Record& Delete(unsigned int index);
-	bool Find(const std::string& value);
+	bool Find(const std::string value);
 	int GetId();
 	~Record();
 };
-__declspec(dllexport) char TypeFinder(std::string value);
+__declspec(dllexport) char TypeFinder(const std::string value);
 #endif

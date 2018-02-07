@@ -12,12 +12,12 @@ public:
 	Double(double &val);
 	Double(const Double &val);
 	void Set(const double val);
-	void Set(std::istream &in)override;
-	void Set(std::string& val)override;
+	void Set(std::istream &in) override;
+	void Set(std::string& val) override;
 	void Show(std::ostream &out) override;
 	double& Get();
-	void* Getv()override;
-	~Double(){};
+	void* Getv() override;
+	~Double(){ LOG_INFO("Double object destructor called"); };
 	friend std::ostream& operator<<(std::ostream& os, const Double& dt);
 };
 #endif

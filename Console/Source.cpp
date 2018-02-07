@@ -1,9 +1,28 @@
+#include"Logger.h"
 #include"Table.h"
 #include"XML.h"
-#include"Logger.h"
 
 #include<sstream>
 #include<map>
+
+void replace_key(std::map<int, Table>& container, const std::map<int, Table>::key_type& oldKey, const std::map<int, Table>::key_type& newKey)
+{
+	if (!container.key_comp()(oldKey, newKey) && !container.key_comp()(newKey, oldKey)){
+		return;
+	} 
+	std::map<int, Table>::iterator begin(container.find(oldKey));
+	for (;;){
+		if (begin != container.end()){
+			container.insert(std::map<int, Table>::value_type(newKey, begin->second));
+			container.erase(begin); 
+			begin = container.find(oldKey);
+		}
+		else
+		{
+			return;
+		}
+	}
+}
 
 bool SizeCheck(std::vector<std::string>& vec,int size,std::ostream& out)
 {
@@ -16,7 +35,7 @@ bool SizeCheck(std::vector<std::string>& vec,int size,std::ostream& out)
 		return false;
 }
 
-void Fill(std::map<int, Table>& mapa)
+void Fill(std::map<int, Table*>& mapa)
 {
 	int *idarr = new int[Count()];
 	idarr = GetID();
@@ -27,17 +46,17 @@ void Fill(std::map<int, Table>& mapa)
 		j++;
 		if (j == Count())
 		{
-			Table tb(GetName(i));
-			BuildTable(tb, i);
-			tb.ChangeID(i);
-			mapa.insert(std::pair<int, Table>(idarr[j - 1], tb));
+			Table *tb = new Table(GetName(i));
+			BuildTable(*tb, i);
+			tb->ChangeID(i);
+			mapa.insert(std::pair<int, Table*>(idarr[j - 1], tb));
 		}
 		else
 		{
-			Table tb(GetName(idarr[j-1]));
-			BuildTable(tb, idarr[j - 1]);
-			tb.ChangeID(idarr[j - 1]);
-			mapa.insert(std::pair<int, Table>(idarr[j] - 1, tb));
+			Table *tb=new Table(GetName(idarr[j-1]));
+			BuildTable(*tb, idarr[j - 1]);
+			tb->ChangeID(idarr[j - 1]);
+			mapa.insert(std::pair<int, Table*>(idarr[j-1], tb));
 		}
 		
 		i = idarr[j];
@@ -47,7 +66,7 @@ void Fill(std::map<int, Table>& mapa)
 int main(int argc, char** argv)
 {
 	static int ID = GetLastID()+1;
-	std::map<int, Table> database;
+	std::map<int, Table*> database;
 	Fill(database);
 	Logger *log = NULL;
 	log = Logger::getInstance();
@@ -55,7 +74,7 @@ int main(int argc, char** argv)
 	std::ostream out(nullptr);
 	out.rdbuf(std::cout.rdbuf());
 	bool tablecheck = false;
-	Table *tb = new Table("null");
+	Table *tb = new Table("temp_table");
 	std::string input;
 	out << "create new table(create_t -i)or build table from XML(build_t ID) \n";
 	static int xmlTableID = 1;
@@ -93,7 +112,7 @@ int main(int argc, char** argv)
 			tb->Create(colnames, coltypes);
 			out << "table created \n";
 			tb->Show(out);
-			database.insert(std::pair<int, Table>(GetLastID() + 1, *tb));
+			database.insert(std::pair<int, Table*>(GetLastID() + 1, tb));
 			TID = tb->GetID();
 		}
 		else if (strcmp(argv[1], "build_t") == 0)
@@ -101,7 +120,7 @@ int main(int argc, char** argv)
 			tablecheck = true;
 			delete tb;
 			int x = atoi(argv[2]);
-			tb = &database[x];
+			tb = database[x];
 			xmlTableID = x;
 			tb->ChangeID(GetLastID() + 1);
 			out << "table built \n";
@@ -132,8 +151,8 @@ int main(int argc, char** argv)
 				for (auto p = database.begin(); p != database.end(); p++)
 				{
 					i = p->first;
-					out << database[i].GetName() << " ID=" << database[i].GetID() << "\n";
-					database[i].Show(out);
+					out << database[i]->GetName() << " ID=" << database[i]->GetID() << "\n";
+					database[i]->Show(out);
 					out << "\n";
 				}
 			}
@@ -307,7 +326,7 @@ int main(int argc, char** argv)
 			out << "table created \n";
 			tb->Show(out);
 			xmlTableID = tb->GetID();
-			database.insert(std::pair<int, Table>(ID++, *tb));
+			database.insert(std::pair<int, Table*>(ID++, tb));
 			TID = tb->GetID();
 		}
 		else if (inputs[0] == "build_t")
@@ -318,7 +337,7 @@ int main(int argc, char** argv)
 			int *idarr = GetID();
 			for (unsigned int i = 1; i < database.size() + 1; i++)
 			{
-				if (database[idarr[i-1]].GetID() == std::stoi(inputs[1]))
+				if (database[idarr[i-1]]->GetID() == std::stoi(inputs[1]))
 					check = true;
 			}
 			if (!check)
@@ -330,7 +349,7 @@ int main(int argc, char** argv)
 			{
 				tablecheck = true;
 				int x = stoi(inputs[1]);
-				tb = &database[x];
+				tb = database[x];
 				xmlTableID = x;
 				out << "table built \n";
 				tb->Show(out);
@@ -343,8 +362,8 @@ int main(int argc, char** argv)
 			for (auto p = database.begin(); p != database.end(); p++)
 			{
 				i = p->first;
-				AddData(database[i]);
-				AddStructure(database[i]);
+				AddData(*database[i]);
+				AddStructure(*database[i]);
 				GColector();
 			}
 			out << "XML updated \n";
@@ -363,9 +382,10 @@ int main(int argc, char** argv)
 			}
 			else
 			{
-				out << "Table " << database[std::stoi(inputs[1])].GetName() << " deleted \n";
+				out << "Table " << database[std::stoi(inputs[1])]->GetName() << " deleted \n";
 				database.erase(std::stoi(inputs[1]));
 				tablecheck = false;
+				//int *idarr = GetID();
 			}
 		}
 		else if (inputs[0] == "end")
@@ -418,7 +438,7 @@ int main(int argc, char** argv)
 				i++;
 			}
 			tb->AddRecord(values);
-			database[TID] = *tb;
+			database[TID] = tb;
 			out << "new record added \n";
 		}
 		else if (inputs[0] == "addcol")
@@ -573,7 +593,7 @@ int main(int argc, char** argv)
 				out << "there is no current table,please create or build one\n";
 				continue;
 			}
-			tb->AddTable(database[std::stoi(inputs[1])]);
+			tb->AddTable(*database[std::stoi(inputs[1])]);
 			out << "table inherited \n";
 		}
 		else if (inputs[0] == "get")

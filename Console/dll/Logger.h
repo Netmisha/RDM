@@ -4,8 +4,8 @@
 
 #ifndef MYLIBRARY_EXPORT 
 #define MYLIBRARY_EXPORT __declspec(dllexport)
-#else  
-#define MYLIBRARY_EXPORT //__declspec(dllimport)
+//#else  
+//#define MYLIBRARY_EXPORT //__declspec(dllimport)
 #endif
 
 #include <iostream>
@@ -24,7 +24,7 @@
 namespace CPlusPlusLogging
 {
 #define LOG_ERROR(x)    Logger::getInstance()->error(x)
-#define LOG_ALARM(x)	   Logger::getInstance()->alarm(x)
+#define LOG_ALARM(x)	Logger::getInstance()->alarm(x)
 #define LOG_ALWAYS(x)   Logger::getInstance()->always(x)
 #define LOG_INFO(x)     Logger::getInstance()->info(x)
 #define LOG_BUFFER(x)   Logger::getInstance()->buffer(x)
