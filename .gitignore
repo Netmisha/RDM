@@ -1,3 +1,5 @@
 *.opensdf
+*.lib
+*.log
 Debug/
 Release/
