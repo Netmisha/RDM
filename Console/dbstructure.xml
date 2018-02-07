@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<List>
+    <Table name="first" ID="1">
+        <Column ID="1">
+            <Type>String</Type>
+            <Name>name</Name>
+        </Column>
+    </Table>
+    <Table name="second" ID="3">
+        <Column ID="1">
+            <Type>Double</Type>
+            <Name>dbl</Name>
+        </Column>
+    </Table>
+    <Table name="IDtest2" ID="6">
+        <Column ID="1">
+            <Type>Integer</Type>
+            <Name>int2</Name>
+        </Column>
+        <Column ID="2">
+            <Type>String</Type>
+            <Name>something</Name>
+        </Column>
+    </Table>
+    <Table name="Dtest" ID="7">
+        <Column ID="1">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+    </Table>
+    <Table name="target" ID="8">
+        <Column ID="1">
+            <Type>String</Type>
+            <Name>str</Name>
+        </Column>
+    </Table>
+</List>
