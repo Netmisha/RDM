@@ -1,6 +1,7 @@
 *.opensdf
 *.lib
 !Console/DBdll.lib
+!Console/Debug/Dbdll.dll
 *.log
 Debug/
 Release/
