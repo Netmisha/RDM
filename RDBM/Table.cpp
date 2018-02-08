@@ -163,7 +163,6 @@ Record* Table::FindRecord(unsigned int index)
 	}
 	else
 	{
-
 		for (unsigned int i = 0; i < table.size(); i++)
 		{
 			if (table[i]->GetId() == index)
