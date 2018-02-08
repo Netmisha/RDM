@@ -5,6 +5,64 @@
 #include<sstream>
 #include<map>
 
+void Help()
+{
+	std::ostream out(nullptr);
+	out.rdbuf(std::cout.rdbuf());
+	out << "\nto work with table:\n";
+	out << "\t create_t -i 'table name' 'column type' 'column name'... - create new table\n";
+	out << "\t build_t ID - build table from XML\n";
+	out << "\t create_xml - create new XML files\n";
+	out << "\t clear - clear the content of current table\n";
+	out << "\t addrec -i 'value' ... - add new record to current table\n";
+	out << "\t addcol 'column type' 'column name' - add new colemn to current table\n";
+	out << "\t delrec ID - delete record from current table\n";
+	out << "\t delcol ID - delete column from current table\n";
+	out << "\t delete_t - delete current table\n";
+	out << "\t show -t - show current table content\n";
+	out << "\t show -a - show content of all tables\n";
+	out << "\t find -d ID - show record at ID position\n";
+	out << "\t find -s 'value' - show first record that contain 'value'\n";
+	out << "\t findall -s 'value' - show all recolds that contain 'value'\n";
+	out << "\t select 'column name' 'column name'-show choosed columns content\n";
+	out << "\t set -s rowindex columnindex 'value' -set cell at 'rowindex' 'columnindex' position to value\n";
+	out << "\t set -c rowindex 'column name' 'value' - set cell \n";
+	out << "\t set -r 'index' 'value' ... - set record with index position 'value'...\n";
+	out << "\t update_xml - update content of XML files\n";
+	out << "\t get -id - show id of current table\n";
+	out << "\t get -name - show name of current table\n";
+	out << "\t get -size - show size of current table\n";
+	out << "\t inherit_t ID - update current table with table[ID] structure\n";
+	out << "\nto work with chosen record:\n";
+	out << "\t getrec index - choose record with index posirion\n";
+	out << "\t add 'value' - add 'value' to current record\n";
+	out << "\t show - show current record\n";
+	out << "\t set -s 'ID' 'index' 'value' - set cell in current table record woth position 'index' to 'value'\n";
+	out << "\t back - go back to work with table\n";
+	out << "\nto work with logger:\n";
+	out << "\t logger - go to logger settings\n";
+	out << "\t error type 'message' - insert error type message\n";
+	out << "\t alarm type 'message' - insert alarm type message\n";
+	out << "\t always type 'message' - insert always type message\n";
+	out << "\t info type 'message' - insert info type message\n";
+	out << "\t buffer type 'message' - insert buffer type message\n";
+	out << "\t trace type 'message' - insert trace type message\n";
+	out << "\t debug type 'message' - insert debug typemessage\n";
+	out << "\t update_log_level 'level type' - change logging level to 'level type'\n";
+	out << "\n\t level types:\n";
+	out << "\t\t disable\n";
+	out << "\t\t level_info\n";
+	out << "\t\t level_buffer\n";
+	out << "\t\t level_trace\n";
+	out << "\t\t level_debug\n";
+	out << "\t\t enable\n";
+	out << "\n\t update_log_type 'log type' - change logging type typ 'log type'\n";
+	out << "\n\t log levels:\n";
+	out << "\t\t console - log into console\n";
+	out << "\t\t file - log into logfile\n";
+	out << "\t\t no_log - disable logging\n";
+	out << "\t back - go back to work with table\n";
+}
 
 bool SizeCheck(std::vector<std::string>& vec,int size,std::ostream& out)
 {
@@ -132,59 +190,7 @@ int main(int argc, char** argv)
 			inputs.push_back(buff);
 		if (inputs[0] == "help")
 		{
-			out << "\nto work with table:\n";
-			out << "\t create_t -i 'table name' 'column type' 'column name'... - create new table\n";
-			out << "\t build_t ID - build table from XML\n";
-			out << "\t create_xml - create new XML files\n";
-			out << "\t clear - clear the content of current table\n";
-			out << "\t addrec -i 'value' ... - add new record to current table\n";
-			out << "\t addcol 'column type' 'column name' - add new colemn to current table\n";
-			out << "\t delrec ID - delete record from current table\n";
-			out << "\t delcol ID - delete column from current table\n";
-			out << "\t delete_t - delete current table\n";
-			out << "\t show -t - show current table content\n";
-			out << "\t show -a - show content of all tables\n";
-			out << "\t find -d ID - show record at ID position\n";
-			out << "\t find -s 'value' - show first record that contain 'value'\n";
-			out << "\t findall -s 'value' - show all recolds that contain 'value'\n";
-			out << "\t select 'column name' 'column name'-show choosed columns content\n";
-			out << "\t set -s rowindex columnindex 'value' -set cell at 'rowindex' 'columnindex' position to value\n";
-			out << "\t set -c rowindex 'column name' 'value' - set cell \n";
-			out << "\t set -r 'index' 'value' ... - set record with index position 'value'...\n";
-			out << "\t update_xml - update content of XML files\n";
-			out << "\t get -id - show id of current table\n";
-			out << "\t get -name - show name of current table\n";
-			out << "\t get -size - show size of current table\n";
-			out << "\t inherit_t ID - update current table with table[ID] structure\n";
-			out << "\nto work with chosen record:\n";
-			out << "\t getrec index - choose record with index posirion\n";
-			out << "\t add 'value' - add 'value' to current record\n";
-			out << "\t show - show current record\n";
-			out << "\t set -s 'ID' 'index' 'value' - set cell in current table record woth position 'index' to 'value'\n";
-			out << "\t back - go back to work with table\n";
-			out << "\nto work with logger:\n";
-			out << "\t logger - go to logger settings\n";
-			out << "\t error type 'message' - insert error type message\n";
-			out << "\t alarm type 'message' - insert alarm type message\n";
-			out << "\t always type 'message' - insert always type message\n";
-			out << "\t info type 'message' - insert info type message\n";
-			out << "\t buffer type 'message' - insert buffer type message\n";
-			out << "\t trace type 'message' - insert trace type message\n";
-			out << "\t debug type 'message' - insert debug typemessage\n";
-			out << "\t update_log_level 'level type' - change logging level to 'level type'\n";
-			out << "\n\t level types:\n";
-			out << "\t\t disable\n";
-			out << "\t\t level_info\n";
-			out << "\t\t level_buffer\n";
-			out << "\t\t level_trace\n";
-			out << "\t\t level_debug\n";
-			out << "\t\t enable\n";
-			out << "\n\t update_log_type 'log type' - change logging type typ 'log type'\n";
-			out << "\n\t log levels:\n";
-			out << "\t\t console - log into console\n";
-			out << "\t\t file - log into logfile\n";
-			out << "\t\t no_log - disable logging\n";
-			out << "\t back - go back to work with table\n";
+			Help();
 		}
 		else if (inputs[0] == "show")
 		{
@@ -225,7 +231,11 @@ int main(int argc, char** argv)
 				std::vector<std::string> loginputs;
 				while (logss >> logbuff)
 					loginputs.push_back(logbuff);
-				if (loginputs[0] == "error")
+				if (loginputs[0] == "help")
+				{
+					Help();
+				}
+				else if (loginputs[0] == "error")
 				{
 					for (unsigned int i = 1; i < loginputs.size(); i++)
 					{
@@ -678,7 +688,11 @@ int main(int argc, char** argv)
 					std::vector<std::string> input;
 					while (ss3 >> buff3)
 						input.push_back(buff3);
-					if (input[0] == "add")
+					if (input[0] == "help")
+					{
+						Help();
+					}
+					else if (input[0] == "add")
 						tb->GetRecord(std::stoi(inputs[1]))->Add(input[1]);
 					else if (input[0] == "show")
 						tb->GetRecord(std::stoi(inputs[1]))->Show(out);
