@@ -3,6 +3,7 @@
 
 #include"BaseForType.h"
 
+
 class MYLIBRARY_EXPORT Double : public BaseForType
 {
 private:
@@ -17,7 +18,7 @@ public:
 	void Show(std::ostream &out) override;
 	double& Get();
 	void* Getv() override;
-	~Double(){ LOG_INFO("Double object destructor called"); };
+	~Double();
 	friend std::ostream& operator<<(std::ostream& os, const Double& dt);
 };
 #endif

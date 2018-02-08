@@ -15,7 +15,8 @@ using namespace CPlusPlusLogging;
 class MYLIBRARY_EXPORT BaseForType
 {
 public:
-	virtual ~BaseForType()=default;
+	BaseForType();
+	virtual ~BaseForType();
 	virtual void Set(std::istream &in) = 0;
 	virtual void Set(std::string& value) = 0;
 	virtual void Show(std::ostream &out) = 0;

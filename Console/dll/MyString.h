@@ -4,6 +4,7 @@
 #include"BaseForType.h"
 #include<string>
 
+
 class MYLIBRARY_EXPORT String : public BaseForType
 {
 private:
@@ -18,7 +19,7 @@ public:
 	void Show(std::ostream &out) override;
 	std::string& Get();
 	void* Getv() override;
-	~String(){ LOG_INFO("Double object destructor called"); };
+	~String();
 	friend std::ostream& operator<<(std::ostream& os, const String& dt);
 };
 #endif

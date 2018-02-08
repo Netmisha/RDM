@@ -1,11 +1,10 @@
-
 #ifndef _LOGGER_H_
 #define _LOGGER_H_
 
 #ifndef MYLIBRARY_EXPORT 
 #define MYLIBRARY_EXPORT __declspec(dllexport)
 //#else  
-//#define MYLIBRARY_EXPORT //__declspec(dllimport)
+//#define MYLIBRARY_EXPORT __declspec(dllimport)
 #endif
 
 #include <iostream>
