@@ -1,10 +1,10 @@
 #ifndef _LOGGER_H_
 #define _LOGGER_H_
 
-#ifndef MYLIBRARY_EXPORT 
-#define MYLIBRARY_EXPORT __declspec(dllexport)
-//#else  
-//#define MYLIBRARY_EXPORT __declspec(dllimport)
+#ifndef MYLIBRARY_EXPORT_LOG 
+#define MYLIBRARY_EXPORT_LOG __declspec(dllexport)
+#else  
+#define MYLIBRARY_EXPORT_LOG __declspec(dllimport)
 #endif
 
 #include <iostream>
@@ -47,7 +47,7 @@ namespace CPlusPlusLogging
 		FILE_LOG = 3,
 	}LogType;
 
-	class MYLIBRARY_EXPORT Logger
+	class MYLIBRARY_EXPORT_LOG Logger
 	{
 	public:
 		static Logger* getInstance() throw ();
