@@ -25,5 +25,5 @@ public:
 	int GetId();
 	~Record();
 };
-__declspec(dllexport) char TypeFinder(const std::string value);
+MYLIBRARY_EXPORT char TypeFinder(const std::string value);
 #endif
