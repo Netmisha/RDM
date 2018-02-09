@@ -256,9 +256,26 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 			list_c.InsertItem(i, 0);
 			for (unsigned int j = 0; j < database[std::stoi(inputs[1])]->GetCName().size(); j++)
 			{
+				std::string ptrval;
 				void* pval = database[std::stoi(inputs[1])]->GetRecord(i + 1)->record[j]->Getv();
-				std::string *ptr = static_cast<std::string*>(pval);
-				std::string val = *ptr;
+				if (database[std::stoi(inputs[1])]->GetCType()[j] == 's')
+				{
+					std::string *ptr = static_cast<std::string*>(pval);
+					ptrval = *ptr;
+				}
+				else if (database[std::stoi(inputs[1])]->GetCType()[j] == 'i')
+				{
+					int *ptr = static_cast<int*>(pval);
+					ptrval = std::to_string(*ptr);
+				}
+				else if (database[std::stoi(inputs[1])]->GetCType()[j] == 'd')
+				{
+					double *ptr = static_cast<double*>(pval);
+					ptrval = std::to_string(*ptr);
+				}
+				
+				MessageBoxA(NULL,ptrval.c_str(),0,MB_OK);
+				std::string val = ptrval;
 				std::wstring wtemp(val.begin(), val.end());
 				list_c.SetItemText(i, j, wtemp.c_str());
 			}
@@ -267,16 +284,6 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		//	}
 
 	}
-	/*list_c.InsertColumn(0, _T("name"), LVCFMT_LEFT, 90);
-	list_c.InsertColumn(1, _T("age"), LVCFMT_LEFT, 90);
-	list_c.InsertColumn(2, _T("smth"), LVCFMT_LEFT, 90);
-
-	list_c.InsertItem(0, _T("vit"));
-	list_c.SetItemText(0,1, _T("21"));
-	list_c.SetItemText(0, 2, _T("21"));
-
-	list_c.InsertItem(1, _T("vit2"));
-	list_c.SetItemText(1, 1, _T("212"));
-	list_c.SetItemText(1, 2, _T("212"));*/
+	
 	// TODO: Add your control notification handler code here
 }
