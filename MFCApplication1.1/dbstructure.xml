@@ -112,4 +112,14 @@
             <Name>some_int</Name>
         </Column>
     </Table>
+    <Table name="viewtest" ID="7">
+        <Column ID="1">
+            <Type>String</Type>
+            <Name>name</Name>
+        </Column>
+        <Column ID="2">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+    </Table>
 </List>

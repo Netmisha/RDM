@@ -21,6 +21,11 @@
             <Value ID="2">4</Value>
             <Value ID="3">4.400000</Value>
         </Record>
+        <Record ID="5">
+            <Value ID="1">name5</Value>
+            <Value ID="2">5</Value>
+            <Value ID="3">5.500000</Value>
+        </Record>
     </Table>
     <Table name="table 2" ID="2">
         <Record ID="1">
@@ -135,4 +140,5 @@
             <Value ID="8">0</Value>
         </Record>
     </Table>
+    <Table name="viewtest" ID="7" />
 </List>
