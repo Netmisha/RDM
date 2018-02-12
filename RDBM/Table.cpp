@@ -163,7 +163,6 @@ Record* Table::FindRecord(unsigned int index)
 	}
 	else
 	{
-
 		for (unsigned int i = 0; i < table.size(); i++)
 		{
 			if (table[i]->GetId() == index)
@@ -195,6 +194,7 @@ void Table::FindRecords(const std::string& value, std::ostream &out)
 		}
 	}
 }
+
 Table& Table::Show(std::ostream &out)
 {
 	for (unsigned int i = 0; i < colname.size(); i++)

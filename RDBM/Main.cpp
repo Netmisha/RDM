@@ -33,7 +33,8 @@ int main()
 	tb4.AddRecord({ "1", "str" }).AddRecord({ "2", "str2" });
 	BuildTable(tb3, 2);
 	tb3.AddRecord({ "3", "q", "4", "w", "3", "4.4", "3" });
-	AddData(tb3);
+	
+	(tb3);
 	Table tb5;
 	BuildTable(tb5,4);
 	tb5.AddTable(tb2);

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<List>
+    <Table name="first" ID="1">
+        <Record ID="1">
+            <Value ID="1">vir</Value>
+        </Record>
+    </Table>
+    <Table name="second" ID="3" />
+    <Table name="IDtest2" ID="6">
+        <Record ID="1">
+            <Value ID="1">3</Value>
+            <Value ID="2">text</Value>
+        </Record>
+    </Table>
+    <Table name="Dtest" ID="7">
+        <Record ID="1">
+            <Value ID="1">3</Value>
+        </Record>
+    </Table>
+    <Table name="target" ID="8">
+        <Record ID="1">
+            <Value ID="1">text</Value>
+        </Record>
+    </Table>
+</List>
