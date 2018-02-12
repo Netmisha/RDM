@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<List>
+    <Table name="table 1" ID="1">
+        <Column ID="1">
+            <Type>String</Type>
+            <Name>name</Name>
+        </Column>
+        <Column ID="2">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="3">
+            <Type>Double</Type>
+            <Name>double</Name>
+        </Column>
+    </Table>
+    <Table name="table 2" ID="2">
+        <Column ID="1">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="2">
+            <Type>String</Type>
+            <Name>str</Name>
+        </Column>
+        <Column ID="3">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="4">
+            <Type>String</Type>
+            <Name>name</Name>
+        </Column>
+        <Column ID="5">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="6">
+            <Type>Double</Type>
+            <Name>double</Name>
+        </Column>
+        <Column ID="7">
+            <Type>Integer</Type>
+            <Name>i</Name>
+        </Column>
+    </Table>
+    <Table name="table 3" ID="3">
+        <Column ID="1">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="2">
+            <Type>String</Type>
+            <Name>str</Name>
+        </Column>
+        <Column ID="3">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="4">
+            <Type>String</Type>
+            <Name>name</Name>
+        </Column>
+        <Column ID="5">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="6">
+            <Type>Double</Type>
+            <Name>double</Name>
+        </Column>
+        <Column ID="7">
+            <Type>Integer</Type>
+            <Name>i</Name>
+        </Column>
+        <Column ID="8">
+            <Type>Integer</Type>
+            <Name>some_int</Name>
+        </Column>
+    </Table>
+    <Table name="table 6" ID="6">
+        <Column ID="1">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="2">
+            <Type>String</Type>
+            <Name>str</Name>
+        </Column>
+        <Column ID="3">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="4">
+            <Type>String</Type>
+            <Name>name</Name>
+        </Column>
+        <Column ID="5">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+        <Column ID="6">
+            <Type>Double</Type>
+            <Name>double</Name>
+        </Column>
+        <Column ID="7">
+            <Type>Integer</Type>
+            <Name>i</Name>
+        </Column>
+        <Column ID="8">
+            <Type>Integer</Type>
+            <Name>some_int</Name>
+        </Column>
+    </Table>
+    <Table name="viewtest" ID="7">
+        <Column ID="1">
+            <Type>String</Type>
+            <Name>name</Name>
+        </Column>
+        <Column ID="2">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+    </Table>
+</List>
