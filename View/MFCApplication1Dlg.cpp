@@ -390,7 +390,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 			if (tb->GetCType()[inputs.size()-1] == 'i')
 				inputs.push_back("0");
 			else if (tb->GetCType()[inputs.size()-1] == 'd')
-				inputs.push_back("0");
+				inputs.push_back("0.0");
 			else if (tb->GetCType()[inputs.size()-1] == 's')
 				inputs.push_back("_");
 		}
@@ -635,7 +635,6 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 						std::wstring wtemp(val.begin(), val.end());
 						list_c.SetItemText(0, i, wtemp.c_str());
 					}
-
 				}
 			}
 		}
@@ -782,6 +781,59 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 					}
 				}
 			}
+		}
+	}
+	else if (inputs[0] == "set")
+	{
+		if (!tablecheck)
+		{
+			MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
+		}
+		else
+		{
+			if (inputs[1] == "-s")
+			{
+				if (std::stoi(inputs[2]) > tb->Size())
+				{
+					MessageBox(_T("No mathces found"), _T("Not found"), NULL);
+				}
+				else
+				{
+					tb->Set(std::stoi(inputs[2]), std::stoi(inputs[3]), inputs[4]);
+				}
+			}
+			else if (inputs[1] == "-c")
+			{
+				tb->Set(std::stoi(inputs[2]), inputs[3], inputs[4]);
+			}
+			else if (inputs[1] == "-r")
+			{
+				if (std::stoi(inputs[2]) > tb->Size())
+				{
+					MessageBox(_T("Record ID out of range"), _T("Out of range"), NULL);
+				}
+				else
+				{
+					for (unsigned int i = 3; i < inputs.size(); i++)
+					{
+						if (i>tb->GetCName().size() + 2)
+							continue;
+						else
+							tb->Set(std::stoi(inputs[2]), i - 2, inputs[i]);
+					}
+				}
+			}
+		}
+	}
+	else if (inputs[0] == "inherit")
+	{
+		if (!tablecheck)
+		{
+			MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
+		}
+		else
+		{
+			tb->AddTable(*database[std::stoi(inputs[1])]);
 		}
 	}
 }
