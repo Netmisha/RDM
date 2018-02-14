@@ -11,8 +11,8 @@ private:
 	std::string value;
 public:
 	String();
-	String(const std::string &val);
-	String(const String &val);
+	String(const std::string& val);
+	String(const String& val);
 	void Set(const std::string val);
 	void Set(std::istream &in) override;
 	void Set(std::string& val) override;

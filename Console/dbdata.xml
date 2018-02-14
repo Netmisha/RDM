@@ -3,6 +3,11 @@
     <Table name="first" ID="1">
         <Record ID="1">
             <Value ID="1">vir</Value>
+            <Value ID="2">0.000000</Value>
+        </Record>
+        <Record ID="2">
+            <Value ID="1">mish</Value>
+            <Value ID="2">-0.000000</Value>
         </Record>
     </Table>
     <Table name="second" ID="3" />

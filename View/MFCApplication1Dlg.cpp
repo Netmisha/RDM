@@ -463,7 +463,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 	{
 		m_Edit2.SetWindowTextW(_T(""));
 		
-		if (!tablecheck)
+		if (tablecheck)
 		{
 			MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
 		}
@@ -526,7 +526,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 	}
 	else if (inputs[0] == "delrec")
 	{
-		if (!tablecheck)
+		if (tablecheck)
 		{
 			MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
 		}
@@ -579,82 +579,70 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		{
 			MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
 		}
-		if (inputs[1] == "-d")
+		else
 		{
-			std::string temp;
-			for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+			if (tb->FindRecord(inputs[1]) == NULL)
 			{
-				temp = tb->GetCName()[i];
-				std::wstring wtemp(temp.begin(), temp.end());
-				wnames.push_back(wtemp);
+				MessageBox(_T("No match"), _T("Not found"), NULL);
 			}
-			for (int i = 0; i < tb->GetCName().size(); i++)
-				list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
-			list_c.InsertItem(0,0);
-			for (int i = 0; i < tb->GetCName().size(); i++)
+			else
 			{
-				std::string ptrval;
-				void* pval = tb->FindRecord(std::stoi(inputs[2]))->record[i]->Getv();
-				if (tb->GetCType()[i] == 's')
+				std::string temp;
+				for (unsigned int i = 0; i < tb->GetCName().size(); i++)
 				{
-					std::string *ptr = static_cast<std::string*>(pval);
-					ptrval = *ptr;
+					temp = tb->GetCName()[i];
+					std::wstring wtemp(temp.begin(), temp.end());
+					wnames.push_back(wtemp);
 				}
-				else if (tb->GetCType()[i] == 'i')
+				for (int i = 0; i < tb->GetCName().size(); i++)
+					list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+				list_c.InsertItem(0, 0);
+				for (int i = 0; i < tb->GetCName().size(); i++)
 				{
-					int *ptr = static_cast<int*>(pval);
-					ptrval = std::to_string(*ptr);
+					std::string ptrval;
+
+					void* pval = tb->FindRecord(inputs[1])->record[i]->Getv();
+					if (pval == NULL)
+					{
+						MessageBox(_T("No match"), _T("Not found"), NULL);
+					}
+					else
+					{
+						if (tb->GetCType()[i] == 's')
+						{
+							std::string *ptr = static_cast<std::string*>(pval);
+							if (ptr == NULL)
+								MessageBox(_T("No match"), _T("Not found"), NULL);
+							else
+								ptrval = *ptr;
+						}
+						else if (tb->GetCType()[i] == 'i')
+						{
+							int *ptr = static_cast<int*>(pval);
+							if (ptr == NULL)
+								MessageBox(_T("No match"), _T("Not found"), NULL);
+							else
+								ptrval = std::to_string(*ptr);
+						}
+						else if (tb->GetCType()[i] == 'd')
+						{
+							double *ptr = static_cast<double*>(pval); if (ptr == NULL)
+								MessageBox(_T("No match"), _T("Not found"), NULL);
+							else
+								ptrval = std::to_string(*ptr);
+						}
+						std::string val = ptrval;
+						std::wstring wtemp(val.begin(), val.end());
+						list_c.SetItemText(0, i, wtemp.c_str());
+					}
+
 				}
-				else if (tb->GetCType()[i] == 'd')
-				{
-					double *ptr = static_cast<double*>(pval);
-					ptrval = std::to_string(*ptr);
-				}
-				std::string val = ptrval;
-				std::wstring wtemp(val.begin(), val.end());
-				list_c.SetItemText(0, i, wtemp.c_str());
-			}
-		}
-		else if (inputs[1] == "-s")
-		{
-			std::string temp;
-			for (unsigned int i = 0; i < tb->GetCName().size(); i++)
-			{
-				temp = tb->GetCName()[i];
-				std::wstring wtemp(temp.begin(), temp.end());
-				wnames.push_back(wtemp);
-			}
-			for (int i = 0; i < tb->GetCName().size(); i++)
-				list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
-			list_c.InsertItem(0, 0);
-			for (int i = 0; i < tb->GetCName().size(); i++)
-			{
-				std::string ptrval;
-				void* pval = tb->FindRecord(inputs[2])->record[i]->Getv();
-				if (tb->GetCType()[i] == 's')
-				{
-					std::string *ptr = static_cast<std::string*>(pval);
-					ptrval = *ptr;
-				}
-				else if (tb->GetCType()[i] == 'i')
-				{
-					int *ptr = static_cast<int*>(pval);
-					ptrval = std::to_string(*ptr);
-				}
-				else if (tb->GetCType()[i] == 'd')
-				{
-					double *ptr = static_cast<double*>(pval);
-					ptrval = std::to_string(*ptr);
-				}
-				std::string val = ptrval;
-				std::wstring wtemp(val.begin(), val.end());
-				list_c.SetItemText(0, i, wtemp.c_str());
 			}
 		}
 	}
 	else if (inputs[0] == "select") //does not work now
 	{
-		if (!tablecheck)
+		if (tablecheck)
 		{
 			MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
 		}
@@ -698,44 +686,72 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 	}
 	else if (inputs[0] == "findall")
 	{
-		if (!tablecheck)
+		if (tb->FindRecord(inputs[1]) == NULL)
 		{
-			MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
+			MessageBox(_T("No match"), _T("Not found"), NULL);
 		}
-		std::string temp;
-		for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+		else
 		{
-			temp = tb->GetCName()[i];
-			std::wstring wtemp(temp.begin(), temp.end());
-			wnames.push_back(wtemp);
-		}
-		for (int i = 0; i < tb->GetCName().size(); i++)
-			list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
-		for (int j = 0; j < tb->Size(); j++)
-		{
-			list_c.InsertItem(j, 0);
-			for (int i = 0; i < tb->GetCName().size(); i++)
+			if (!tablecheck)
 			{
-				std::string ptrval;
-				void* pval = tb->FindRecord(inputs[1])->record[i]->Getv();
-				if (tb->GetCType()[i] == 's')
+				MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
+			}
+			std::string temp;
+			for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+			{
+				temp = tb->GetCName()[i];
+				std::wstring wtemp(temp.begin(), temp.end());
+				wnames.push_back(wtemp);
+			}
+			for (int i = 0; i < tb->GetCName().size(); i++)
+				list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+			for (int j = 0; j < tb->Size(); j++)
+			{
+				list_c.InsertItem(j, 0);
+				for (int i = 0; i < tb->GetCName().size(); i++)
 				{
-					std::string *ptr = static_cast<std::string*>(pval);
-					ptrval = *ptr;
+					std::string ptrval;
+					void* pval;
+					if (tb->GetRecord(i + 1)->Find(inputs[1]))
+					{
+						pval=tb->GetRecord(i + 1)->record[j]->Getv();
+					}
+					else break;
+					if (pval == NULL)
+					{
+						MessageBox(_T("No match"), _T("Not found"), NULL);
+					}
+					else
+					{
+						if (tb->GetCType()[i] == 's')
+						{
+							std::string *ptr = static_cast<std::string*>(pval);
+							if (ptr == NULL)
+								MessageBox(_T("No match"), _T("Not found"), NULL);
+							else
+								ptrval = *ptr;
+						}
+						else if (tb->GetCType()[i] == 'i')
+						{
+							int *ptr = static_cast<int*>(pval);
+							if (ptr == NULL)
+								MessageBox(_T("No match"), _T("Not found"), NULL);
+							else
+								ptrval = std::to_string(*ptr);
+						}
+						else if (tb->GetCType()[i] == 'd')
+						{
+							double *ptr = static_cast<double*>(pval);
+							if (ptr == NULL)
+								MessageBox(_T("No match"), _T("Not found"), NULL);
+							else
+								ptrval = std::to_string(*ptr);
+						}
+						std::string val = ptrval;
+						std::wstring wtemp(val.begin(), val.end());
+						list_c.SetItemText(j, i, wtemp.c_str());
+					}
 				}
-				else if (tb->GetCType()[i] == 'i')
-				{
-					int *ptr = static_cast<int*>(pval);
-					ptrval = std::to_string(*ptr);
-				}
-				else if (tb->GetCType()[i] == 'd')
-				{
-					double *ptr = static_cast<double*>(pval);
-					ptrval = std::to_string(*ptr);
-				}
-				std::string val = ptrval;
-				std::wstring wtemp(val.begin(), val.end());
-				list_c.SetItemText(j, i, wtemp.c_str());
 			}
 		}
 	}
