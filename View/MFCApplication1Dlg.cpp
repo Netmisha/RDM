@@ -640,9 +640,9 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 			}
 		}
 	}
-	else if (inputs[0] == "select") //does not work now
+	else if (inputs[0] == "select") 
 	{
-		if (tablecheck)
+		if (!tablecheck)
 		{
 			MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
 		}
@@ -666,7 +666,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		int i = 0;
 		for (auto p = position.begin(); p != position.end(); p++)
 		{
-			std::wstring name(tb->GetCName()[position[*p]].begin(), tb->GetCName()[position[*p]].end());
+			std::wstring name(tb->GetCName()[position[i]].begin(), tb->GetCName()[position[i]].end());
 			list_c.InsertColumn(i, name.c_str(), LVCFMT_LEFT, 90);
 			i++;
 		}
@@ -675,9 +675,31 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		{
 			for (unsigned int j = 0; j < tb->GetRecord(i+1)->record.size(); j++)
 			{
+				list_c.InsertItem(i, 0);
 				for (auto p = position.begin(); p != position.end(); p++)
 				{
-
+					std::string temp;
+					if (tb->GetCType()[position[j]] == 'i')
+					{
+						int* ptr = (int*)tb->GetRecord(i + 1)->record[*p]->Getv();
+						int test = *ptr;
+						temp = std::to_string(test);
+					}
+					else if (tb->GetCType()[position[j]] == 'd')
+					{
+						double* ptr = (double*)tb->GetRecord(i + 1)->record[*p]->Getv();
+						double test = *ptr;
+						temp = std::to_string(test);
+					}
+					else if (tb->GetCType()[position[j]] == 's')
+					{
+						std::string* ptr = (std::string*)tb->GetRecord(i + 1)->record[*p]->Getv();
+						std::string test = *ptr;
+						temp = test;
+					}
+					std::wstring val(temp.begin(), temp.end());
+					list_c.SetItemText(i,j,val.c_str());
+					j++;
 				}
 				break;
 			}
