@@ -712,9 +712,9 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				{
 					std::string ptrval;
 					void* pval;
-					if (tb->GetRecord(i + 1)->Find(inputs[1]))
+					if (tb->GetRecord(j + 1)->Find(inputs[1]))
 					{
-						pval=tb->GetRecord(i + 1)->record[j]->Getv();
+						pval=tb->GetRecord(j + 1)->record[i]->Getv();
 					}
 					else break;
 					if (pval == NULL)
@@ -723,13 +723,16 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 					}
 					else
 					{
+						
 						if (tb->GetCType()[i] == 's')
 						{
 							std::string *ptr = static_cast<std::string*>(pval);
 							if (ptr == NULL)
 								MessageBox(_T("No match"), _T("Not found"), NULL);
 							else
+							{
 								ptrval = *ptr;
+							}
 						}
 						else if (tb->GetCType()[i] == 'i')
 						{
@@ -737,7 +740,9 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 							if (ptr == NULL)
 								MessageBox(_T("No match"), _T("Not found"), NULL);
 							else
+							{
 								ptrval = std::to_string(*ptr);
+							}
 						}
 						else if (tb->GetCType()[i] == 'd')
 						{
@@ -745,7 +750,9 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 							if (ptr == NULL)
 								MessageBox(_T("No match"), _T("Not found"), NULL);
 							else
+							{
 								ptrval = std::to_string(*ptr);
+							}
 						}
 						std::string val = ptrval;
 						std::wstring wtemp(val.begin(), val.end());
