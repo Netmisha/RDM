@@ -44,4 +44,5 @@ public:
 	CButton m_EditC;
 	CEdit m_Edit2;
 	CListCtrl list_c;
+	CEdit status_c;
 };
