@@ -23,7 +23,6 @@ class CMFCApplication1App : public CWinApp
 {
 public:
 	CMFCApplication1App();
-
 // Overrides
 public:
 	virtual BOOL InitInstance();

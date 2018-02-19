@@ -35,6 +35,7 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	DECLARE_MESSAGE_MAP()
 public:
 	CString m_Edit;
@@ -45,4 +46,5 @@ public:
 	CEdit m_Edit2;
 	CListCtrl list_c;
 	CEdit status_c;
+	Logger *log;
 };

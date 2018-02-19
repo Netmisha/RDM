@@ -17,7 +17,6 @@
 
 
 
-
 // CAboutDlg dialog used for App About
 
 
@@ -26,7 +25,6 @@ class CAboutDlg : public CDialogEx
 {
 public:
 	CAboutDlg();
-
 // Dialog Data
 	enum { IDD = IDD_ABOUTBOX };
 	
@@ -82,6 +80,7 @@ void CMFCApplication1Dlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
+	ON_WM_SIZE()
 	ON_WM_QUERYDRAGICON()
 	ON_EN_CHANGE(IDC_EDIT1, &CMFCApplication1Dlg::OnEnChangeEdit1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CMFCApplication1Dlg::OnBnClickedButton2)
@@ -90,6 +89,7 @@ END_MESSAGE_MAP()
 
 // CMFCApplication1Dlg message handlers
 
+
 void CMFCApplication1Dlg::GetDB(std::map<int, Table*>& ddatabase)
 {
 	database = ddatabase;
@@ -97,6 +97,7 @@ void CMFCApplication1Dlg::GetDB(std::map<int, Table*>& ddatabase)
 
 BOOL CMFCApplication1Dlg::OnInitDialog()
 {
+	log = NULL;
 	CDialogEx::OnInitDialog();
 	
 	// Add "About..." menu item to system menu.
@@ -125,7 +126,6 @@ BOOL CMFCApplication1Dlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -178,7 +178,23 @@ HCURSOR CMFCApplication1Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+void CMFCApplication1Dlg::OnSize(UINT nType, int cx, int cy)
+{
 
+	/*CRect rect;
+	CRect clientRect;
+	CDialog::OnSize(nType, cx, cy);
+	GetWindowRect(&rect);
+	clientRect.top = 0;
+	clientRect.left = 0;
+	clientRect.right = rect.right - rect.left-100;
+	clientRect.bottom = rect.bottom - rect.top-50;
+	m_Edit2.SetWindowPos(&m_Edit2, 210, 40, clientRect.right/2,
+	clientRect.bottom/10, SWP_NOZORDER | SWP_SHOWWINDOW);
+	list_c.SetWindowPos(&m_Edit2, 50, 170, clientRect.right / 2,
+		clientRect.bottom / 5, SWP_NOZORDER | SWP_SHOWWINDOW);*/
+	
+}
 
 void CMFCApplication1Dlg::OnEnChangeEdit1()
 {
@@ -202,8 +218,8 @@ bool SizeCheck(std::vector<std::string>& vec, int size)
 
 void CMFCApplication1Dlg::OnBnClickedButton2()
 {
-	
-	
+	log = Logger::getInstance();
+	log->updateLogLevel(LOG_LEVEL_INFO);
 	list_c.DeleteAllItems();
 	while (true)
 	{
@@ -356,9 +372,79 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 			status_c.SetWindowTextW(_T("Table created"));
 		}
 	}
-	else if (inputs[0] == "logger")
+	else if (inputs[0] == "log")
 	{
 		m_Edit2.SetWindowTextW(_T(""));
+		std::string logtemp;
+		for (int i = 2; i < inputs.size(); i++)
+		{
+			logtemp += inputs[i];
+			logtemp += " ";
+		}
+		if (inputs[1] == "error")
+		{
+			LOG_ERROR(logtemp);
+		}
+		else if (inputs[1] == "alarm")
+		{
+			LOG_ALARM(logtemp);
+		}
+		else if (inputs[1] == "always")
+		{
+			LOG_ALWAYS(logtemp);
+		}
+		else if (inputs[1] == "info")
+		{
+			LOG_INFO(logtemp);
+		}
+		else if (inputs[1] == "buffer")
+		{
+			LOG_BUFFER(logtemp);
+		}
+		else if (inputs[1] == "trace")
+		{
+			LOG_TRACE(logtemp);
+		}
+		else if (inputs[1] == "debug")
+		{
+			LOG_DEBUG(logtemp);
+		}
+		status_c.SetWindowTextW(_T("User log inserted"));
+	}
+	else if (inputs[0] == "upgrade_log_level")
+	{
+		m_Edit2.SetWindowTextW(_T(""));
+		if (inputs[1] == "disable")
+		{
+			LOG_ALARM("LOG_LEVEL changed to DISABLE");
+			log->updateLogLevel(DISABLE_LOG);
+		}
+		else if (inputs[1] == "level_info")
+		{
+			LOG_ALARM("LOG_LEVEL changed to INFO");
+			log->updateLogLevel(LOG_LEVEL_INFO);
+		}
+		else if (inputs[1] == "level_buffer")
+		{
+			LOG_ALARM("LOG_LEVEL changed to BUFFER");
+			log->updateLogLevel(LOG_LEVEL_BUFFER);
+		}
+		else if (inputs[1] == "level_trace")
+		{
+			LOG_ALARM("LOG_LEVEL changed to TRACE");
+			log->updateLogLevel(LOG_LEVEL_TRACE);
+		}
+		else if (inputs[1] == "level_debug")
+		{
+			LOG_ALARM("LOG_LEVEL changed to DEBUG");
+			log->updateLogLevel(LOG_LEVEL_DEBUG);
+		}
+		else if (inputs[1] == "enable")
+		{
+			LOG_ALARM("LOG_LEVEL changed to ENABLE");
+			log->updateLogLevel(ENABLE_LOG);
+		}
+		status_c.SetWindowTextW(_T("Log level updated"));
 	}
 	else if (inputs[0] == "update_xml")
 	{
@@ -951,6 +1037,47 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				tb->DeleteColumn(inputs[2]);
 				status_c.SetWindowTextW(_T("Column deleted"));
 			}
+		}
+	}
+	else if (inputs[0] == "clear")
+	{
+		if (!tablecheck)
+		{
+			MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
+			status_c.SetWindowTextW(_T("Wrong input"));
+		}
+		else
+		{
+			tb->Clear();
+			status_c.SetWindowTextW(_T("Table cleared"));
+		}
+	}
+	else if (inputs[0] == "get")
+	{
+		if (!tablecheck)
+		{
+			MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
+			status_c.SetWindowTextW(_T("Wrong input"));
+		}
+		else if (inputs[1] == "-id")
+		{
+			std::string ID;
+			ID = std::to_string(tb->GetID());
+			std::wstring wID(ID.begin(),ID.end());
+			MessageBox(wID.c_str(), _T("Table ID"), NULL);
+		}
+		else if (inputs[1] == "name")
+		{
+			std::string name = tb->GetName();
+			std::wstring wname(name.begin(),name.end());
+			MessageBox(wname.c_str(), _T("Table name"), NULL);
+		}
+		else if (inputs[1] == "-size")
+		{
+			std::string size;
+			size = std::to_string(tb->Size());
+			std::wstring wsize(size.begin(), size.end());
+			MessageBox(wsize.c_str(), _T("Table size"), NULL);
 		}
 	}
 }

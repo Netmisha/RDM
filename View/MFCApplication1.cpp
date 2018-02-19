@@ -67,6 +67,7 @@ CMFCApplication1App theApp;
 
 BOOL CMFCApplication1App::InitInstance()
 {
+	Logger *log = NULL;
 	std::map<int, Table*> database;
 	GColector();
 	Fill(database);
