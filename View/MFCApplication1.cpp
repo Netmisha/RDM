@@ -68,6 +68,7 @@ CMFCApplication1App theApp;
 BOOL CMFCApplication1App::InitInstance()
 {
 	Logger *log = NULL;
+	LOG_INFO("Build started, thread ID=" + std::to_string(GetCurrentThreadId()));
 	std::map<int, Table*> database;
 	GColector();
 	Fill(database);
@@ -102,7 +103,6 @@ BOOL CMFCApplication1App::InitInstance()
 	// TODO: You should modify this string to be something appropriate
 	// such as the name of your company or organization
 	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
-
 	CMFCApplication1Dlg dlg;
 	dlg.GetDB(database);
 	m_pMainWnd = &dlg;

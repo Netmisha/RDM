@@ -10,6 +10,7 @@
 #include<map>
 #include "afxwin.h"
 #include "afxcmn.h"
+#include "MyDialog.h"
 
 
 // CMFCApplication1Dlg dialog
@@ -47,4 +48,5 @@ public:
 	CListCtrl list_c;
 	CEdit status_c;
 	Logger *log;
+	afx_msg void OnHelpCommands();
 };
