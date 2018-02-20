@@ -10,6 +10,7 @@
 #include<string>
 #include<sstream>
 #include<vector>
+#include<algorithm>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -85,6 +86,9 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_EN_CHANGE(IDC_EDIT1, &CMFCApplication1Dlg::OnEnChangeEdit1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CMFCApplication1Dlg::OnBnClickedButton2)
 	ON_COMMAND(ID_HELP_COMMANDS, &CMFCApplication1Dlg::OnHelpCommands)
+	ON_COMMAND(ID_FILE_NEWXML, &CMFCApplication1Dlg::OnFileNewxml)
+	ON_COMMAND(ID_FILE_SAVE32775, &CMFCApplication1Dlg::OnFileSave32775)
+	ON_COMMAND(ID_FILE_SHOW, &CMFCApplication1Dlg::OnFileShow)
 END_MESSAGE_MAP()
 
 
@@ -371,6 +375,65 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				_TID = tb->GetID();
 				m_Edit2.SetWindowTextW(_T(""));
 				status_c.SetWindowTextW(_T("Table created"));
+			}
+		}
+		else if (inputs[0] == "show")
+		{
+			if (!tablecheck)
+			{
+				MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
+				status_c.SetWindowTextW(_T("No table"));
+			}
+			else
+			{
+				if (!SizeCheck(inputs,2) && inputs[1] == "-t")
+				{
+
+					std::string temp;
+
+					for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+					{
+						temp = tb->GetCName()[i];
+						std::wstring wtemp(temp.begin(), temp.end());
+						wnames.push_back(wtemp);
+					}
+					for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+					{
+						list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+					}
+					for (unsigned int i = 0; i < tb->Size(); i++)
+					{
+						list_c.InsertItem(i, 0);
+						for (unsigned int j = 0; j < database[_TID]->GetCName().size(); j++)
+						{
+							std::string ptrval;
+							void* pval = database[_TID]->GetRecord(i + 1)->record[j]->Getv();
+							if (database[_TID]->GetCType()[j] == 's')
+							{
+								std::string *ptr = static_cast<std::string*>(pval);
+								ptrval = *ptr;
+							}
+							else if (database[_TID]->GetCType()[j] == 'i')
+							{
+								int *ptr = static_cast<int*>(pval);
+								ptrval = std::to_string(*ptr);
+							}
+							else if (database[_TID]->GetCType()[j] == 'd')
+							{
+								double *ptr = static_cast<double*>(pval);
+								ptrval = std::to_string(*ptr);
+							}
+							std::string val = ptrval;
+							std::wstring wtemp(val.begin(), val.end());
+							list_c.SetItemText(i, j, wtemp.c_str());
+						}
+					}
+				}
+				else
+				{
+					MessageBox(_T("Wrong input or probably you lost something"), _T("Wrong input"), NULL);
+					status_c.SetWindowTextW(_T("Wrong input"));
+				}
 			}
 		}
 		else if (inputs[0] == "log")
@@ -1011,7 +1074,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 			}
 			else
 			{
-				if (inputs[1] == "id")
+				if (inputs[1] == "-id")
 				{
 					if (std::stoi(inputs[2]) > tb->GetCName().size())
 					{
@@ -1066,12 +1129,14 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				ID = std::to_string(tb->GetID());
 				std::wstring wID(ID.begin(), ID.end());
 				MessageBox(wID.c_str(), _T("Table ID"), NULL);
+				status_c.SetWindowTextW(_T("Got ID"));
 			}
 			else if (inputs[1] == "-name")
 			{
 				std::string name = tb->GetName();
 				std::wstring wname(name.begin(), name.end());
 				MessageBox(wname.c_str(), _T("Table name"), NULL);
+				status_c.SetWindowTextW(_T("Got name"));
 			}
 			else if (inputs[1] == "-size")
 			{
@@ -1079,7 +1144,13 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				size = std::to_string(tb->Size());
 				std::wstring wsize(size.begin(), size.end());
 				MessageBox(wsize.c_str(), _T("Table size"), NULL);
+				status_c.SetWindowTextW(_T("Got size"));
 			}
+		}
+		else
+		{
+			MessageBox(_T("There is no such command, use help"), _T("Wrong input"), NULL);
+			status_c.SetWindowTextW(_T("Wrong input"));
 		}
 	}
 }
@@ -1089,7 +1160,34 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 void CMFCApplication1Dlg::OnHelpCommands()
 {
 	CMyDialog diag;
-	//diag.edit.SetWindowTextW(_T("Hello"));
+	diag.DoModal();
+	// TODO: Add your command handler code here
+}
+
+
+void CMFCApplication1Dlg::OnFileNewxml()
+{
+	CreateXML();
+	status_c.SetWindowTextW(_T("New XML"));
+	// TODO: Add your command handler code here
+}
+
+
+void CMFCApplication1Dlg::OnFileSave32775()
+{
+	for each (std::pair<int,Table*> var in database)
+	{
+		AddData(*var.second);
+		AddStructure(*var.second);
+	}
+	status_c.SetWindowTextW(_T("Saved"));
+	// TODO: Add your command handler code here
+}
+
+
+void CMFCApplication1Dlg::OnFileShow()
+{
+	ShowDialog diag(database);
 	diag.DoModal();
 	// TODO: Add your command handler code here
 }

@@ -36,6 +36,9 @@
     <ClInclude Include="MyDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ShowDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCApplication1.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MyDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

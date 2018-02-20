@@ -11,6 +11,7 @@
 #include "afxwin.h"
 #include "afxcmn.h"
 #include "MyDialog.h"
+#include"ShowDialog.h"
 
 
 // CMFCApplication1Dlg dialog
@@ -49,4 +50,7 @@ public:
 	CEdit status_c;
 	Logger *log;
 	afx_msg void OnHelpCommands();
+	afx_msg void OnFileNewxml();
+	afx_msg void OnFileSave32775();
+	afx_msg void OnFileShow();
 };

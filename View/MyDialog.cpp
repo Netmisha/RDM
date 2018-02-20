@@ -20,7 +20,7 @@ CMyDialog::~CMyDialog()
 
 BOOL CMyDialog::OnInitDialog()
 {
-	CDialog::OnInitDialog();
+	CDialogEx::OnInitDialog();
 
 	// TODO: Add extra initialization here
 	std::string temp;
@@ -29,7 +29,7 @@ BOOL CMyDialog::OnInitDialog()
 	temp += "\t build_t ID - build table from XML\r\n";
 	temp += "\t create_xml - create new XML files\r\n";
 	temp += "\t clear - clear the content of current table\r\n";
-	temp += "\t addrec -i 'value' ... - add new record to current table \r\n";
+	temp += "\t addrec 'value' ... - add new record to current table \r\n";
 	temp += "\t addcol 'column type' 'column name' - add new colemn to current table\r\n";
 	temp += "\t delrec ID - delete record from current table\r\n";
 	temp += "\t delcol ID - delete column from current table\r\n";
