@@ -224,12 +224,6 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 {
 	log = Logger::getInstance();
 	log->updateLogLevel(LOG_LEVEL_INFO);
-	list_c.DeleteAllItems();
-	while (true)
-	{
-		if (list_c.DeleteColumn(0) == false)
-			break;
-	}
 	std::string tname = "temp_table";
 	Table *tb;
 	if (worktableid == 0)
@@ -256,12 +250,24 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 	{
 		if (inputs[0] == "create_xml")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			CreateXML();
 			m_Edit2.SetWindowTextW(_T(""));
 			status_c.SetWindowTextW(_T("XML created"));
 		}
 		else if (inputs[0] == "build_t")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			if (SizeCheck(inputs, 2))
 			{
 				MessageBox(_T("Please provide correct command"), _T("Wrong input"), NULL);
@@ -338,6 +344,12 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		}
 		else if (inputs[0] == "create_t"&&inputs[1] == "-i")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			if (SizeCheck(inputs, 5))
 			{
 				MessageBox(_T("Please provide correct command"), _T("Wrong input"), NULL);
@@ -379,6 +391,12 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		}
 		else if (inputs[0] == "show")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			if (!tablecheck)
 			{
 				MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
@@ -525,6 +543,12 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		}
 		else if (inputs[0] == "delete_t")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			if (SizeCheck(inputs, 2))
 			{
 				MessageBox(_T("Please provide correct command"), _T("Wrong input"), NULL);
@@ -552,6 +576,12 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		}
 		else if (inputs[0] == "addrec")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			m_Edit2.SetWindowTextW(_T(""));
 			if (!tablecheck)
 			{
@@ -636,6 +666,12 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		}
 		else if (inputs[0] == "addcol")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			m_Edit2.SetWindowTextW(_T(""));
 			if (!tablecheck)
 			{
@@ -703,6 +739,12 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		}
 		else if (inputs[0] == "delrec")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			if (!tablecheck)
 			{
 				MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
@@ -755,6 +797,12 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		}
 		else if (inputs[0] == "find")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			if (!tablecheck)
 			{
 				MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
@@ -843,6 +891,12 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		}
 		else if (inputs[0] == "select")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			if (!tablecheck)
 			{
 				MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
@@ -913,6 +967,12 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		}
 		else if (inputs[0] == "findall")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			if (tb->FindRecord(inputs[1]) == NULL)
 			{
 				MessageBox(_T("No match"), _T("Not found"), NULL);
@@ -1006,6 +1066,12 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 		}
 		else if (inputs[0] == "set")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			if (!tablecheck)
 			{
 				MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
@@ -1050,10 +1116,54 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 					}
 					status_c.SetWindowTextW(_T("New record set"));
 				}
+				std::string temp;
+				for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+				{
+					temp = tb->GetCName()[i];
+					std::wstring wtemp(temp.begin(), temp.end());
+					wnames.push_back(wtemp);
+				}
+				for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+				{
+					list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+				}
+				for (unsigned int i = 0; i < tb->Size(); i++)
+				{
+					list_c.InsertItem(i, 0);
+					for (unsigned int j = 0; j < tb->GetCName().size(); j++)
+					{
+						std::string ptrval;
+						void* pval = tb->GetRecord(i + 1)->record[j]->Getv();
+						if (tb->GetCType()[j] == 's')
+						{
+							std::string *ptr = static_cast<std::string*>(pval);
+							ptrval = *ptr;
+						}
+						else if (tb->GetCType()[j] == 'i')
+						{
+							int *ptr = static_cast<int*>(pval);
+							ptrval = std::to_string(*ptr);
+						}
+						else if (tb->GetCType()[j] == 'd')
+						{
+							double *ptr = static_cast<double*>(pval);
+							ptrval = std::to_string(*ptr);
+						}
+						std::string val = ptrval;
+						std::wstring wtemp(val.begin(), val.end());
+						list_c.SetItemText(i, j, wtemp.c_str());
+					}
+				}
 			}
 		}
 		else if (inputs[0] == "inherit")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			if (!tablecheck)
 			{
 				MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
@@ -1063,10 +1173,54 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 			{
 				tb->AddTable(*database[std::stoi(inputs[1])]);
 				status_c.SetWindowTextW(_T("Table inherited"));
+				std::string temp;
+				for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+				{
+					temp = tb->GetCName()[i];
+					std::wstring wtemp(temp.begin(), temp.end());
+					wnames.push_back(wtemp);
+				}
+				for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+				{
+					list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+				}
+				for (unsigned int i = 0; i < tb->Size(); i++)
+				{
+					list_c.InsertItem(i, 0);
+					for (unsigned int j = 0; j < tb->GetCName().size(); j++)
+					{
+						std::string ptrval;
+						void* pval = tb->GetRecord(i + 1)->record[j]->Getv();
+						if (tb->GetCType()[j] == 's')
+						{
+							std::string *ptr = static_cast<std::string*>(pval);
+							ptrval = *ptr;
+						}
+						else if (tb->GetCType()[j] == 'i')
+						{
+							int *ptr = static_cast<int*>(pval);
+							ptrval = std::to_string(*ptr);
+						}
+						else if (tb->GetCType()[j] == 'd')
+						{
+							double *ptr = static_cast<double*>(pval);
+							ptrval = std::to_string(*ptr);
+						}
+						std::string val = ptrval;
+						std::wstring wtemp(val.begin(), val.end());
+						list_c.SetItemText(i, j, wtemp.c_str());
+					}
+				}
 			}
 		}
 		else if (inputs[0] == "delcol")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			if (!tablecheck)
 			{
 				MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
@@ -1101,10 +1255,56 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 					tb->DeleteColumn(inputs[2]);
 					status_c.SetWindowTextW(_T("Column deleted"));
 				}
+
+				std::string temp;
+				for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+				{
+					temp = tb->GetCName()[i];
+					std::wstring wtemp(temp.begin(), temp.end());
+					wnames.push_back(wtemp);
+				}
+				for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+				{
+					list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+				}
+				for (unsigned int i = 0; i < tb->Size(); i++)
+				{
+					list_c.InsertItem(i, 0);
+					for (unsigned int j = 0; j < tb->GetCName().size(); j++)
+					{
+						std::string ptrval;
+						void* pval = tb->GetRecord(i + 1)->record[j]->Getv();
+						if (tb->GetCType()[j] == 's')
+						{
+							std::string *ptr = static_cast<std::string*>(pval);
+							ptrval = *ptr;
+						}
+						else if (tb->GetCType()[j] == 'i')
+						{
+							int *ptr = static_cast<int*>(pval);
+							ptrval = std::to_string(*ptr);
+						}
+						else if (tb->GetCType()[j] == 'd')
+						{
+							double *ptr = static_cast<double*>(pval);
+							ptrval = std::to_string(*ptr);
+						}
+						std::string val = ptrval;
+						std::wstring wtemp(val.begin(), val.end());
+						list_c.SetItemText(i, j, wtemp.c_str());
+					}
+
+				}
 			}
 		}
 		else if (inputs[0] == "clear")
 		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
 			if (!tablecheck)
 			{
 				MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);

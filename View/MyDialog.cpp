@@ -48,12 +48,12 @@ BOOL CMyDialog::OnInitDialog()
 	temp += "\t get -name - show name of current table\r\n";
 	temp += "\t get -size - show size of current table\r\n";
 	temp += "\t inherit_t ID - update current table with table[ID] structure\r\n";
-	temp += "\nto work with chosen record:\r\n";
+	/*temp += "\nto work with chosen record:\r\n";
 	temp += "\t getrec index - choose record with index posirion\r\n";
 	temp += "\t add 'value' - add 'value' to current record\r\n";
 	temp += "\t show - show current record\r\n";
 	temp += "\t set -s 'ID' 'index' 'value' - set cell in current table record woth position 'index' to 'value'\r\n";
-	temp += "\t back - go back to work with table\r\n";
+	temp += "\t back - go back to work with table\r\n";*/
 	temp += "\nto work with logger:\r\n";
 	temp += "\t logger - go to logger settings\r\n";
 	temp += "\t error type 'message' - insert error type message\r\n";
@@ -76,7 +76,7 @@ BOOL CMyDialog::OnInitDialog()
 	temp += "\t\t console - log into console\r\n";
 	temp += "\t\t file - log into logfile\r\n";
 	temp += "\t\t no_log - disable logging\r\n";
-	temp += "\t back - go back to work with table\r\n";
+	//temp += "\t back - go back to work with table\r\n";
 	std::wstring wtemp(temp.begin(), temp.end());
 	edit.SetWindowText(wtemp.c_str()); // Initialize control values
 	edit.ShowWindow(SW_SHOW);      // Show or hide a control, etc.
