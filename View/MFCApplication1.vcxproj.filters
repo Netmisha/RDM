@@ -39,6 +39,9 @@
     <ClInclude Include="ShowDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EasySize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCApplication1.cpp">

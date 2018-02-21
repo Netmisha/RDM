@@ -7,6 +7,7 @@
 #include"dll\Table.h"
 #include"dll\Logger.h"
 #include"dll\XML.h"
+#include"EasySize.h"
 #include<map>
 #include "afxwin.h"
 #include "afxcmn.h"
@@ -17,6 +18,7 @@
 // CMFCApplication1Dlg dialog
 class CMFCApplication1Dlg : public CDialogEx
 {
+	DECLARE_EASYSIZE
 // Construction
 public:
 	CMFCApplication1Dlg(CWnd* pParent = NULL);	// standard constructor
@@ -31,13 +33,13 @@ public:
 // Implementation
 protected:
 	HICON m_hIcon;
-
 	// Generated message map functions
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnSizing(UINT fwSide, LPRECT pRect);
 	DECLARE_MESSAGE_MAP()
 public:
 	CString m_Edit;

@@ -6,6 +6,7 @@
 #include "MFCApplication1.h"
 #include "MFCApplication1Dlg.h"
 #include "afxdialogex.h"
+#include"EasySize.h"
 #include<Windows.h>
 #include<string>
 #include<sstream>
@@ -68,7 +69,7 @@ CMFCApplication1Dlg::CMFCApplication1Dlg(CWnd* pParent /*=NULL*/)
 void CMFCApplication1Dlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-	DDX_Text(pDX, IDC_EDIT1, m_Edit);
+	//DDX_Text(pDX, IDC_EDIT1, m_Edit);
 	DDV_MaxChars(pDX, m_Edit, 100);
 	DDX_Control(pDX, IDC_BUTTON2, m_EditC);
 	DDX_Control(pDX, IDC_EDIT1, m_Edit2);
@@ -82,6 +83,7 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_SIZE()
+	ON_WM_SIZING()
 	ON_WM_QUERYDRAGICON()
 	ON_EN_CHANGE(IDC_EDIT1, &CMFCApplication1Dlg::OnEnChangeEdit1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CMFCApplication1Dlg::OnBnClickedButton2)
@@ -91,6 +93,12 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_COMMAND(ID_FILE_SHOW, &CMFCApplication1Dlg::OnFileShow)
 END_MESSAGE_MAP()
 
+BEGIN_EASYSIZE_MAP(CMFCApplication1Dlg)
+	EASYSIZE(IDC_EDIT1, ES_BORDER, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_LIST1, ES_BORDER, ES_BORDER, ES_BORDER, ES_BORDER, 0)
+	EASYSIZE(IDC_EDIT2, ES_BORDER, ES_KEEPSIZE, ES_KEEPSIZE, ES_BORDER, 0)
+	EASYSIZE(IDC_STATIC, ES_BORDER, ES_KEEPSIZE, ES_KEEPSIZE, ES_BORDER, 0)
+END_EASYSIZE_MAP
 
 // CMFCApplication1Dlg message handlers
 
@@ -123,12 +131,13 @@ BOOL CMFCApplication1Dlg::OnInitDialog()
 			pSysMenu->AppendMenu(MF_STRING, IDM_ABOUTBOX, strAboutMenu);
 		}
 	}
-
+	
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
+	INIT_EASYSIZE;
 	// TODO: Add extra initialization here
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -157,7 +166,6 @@ void CMFCApplication1Dlg::OnPaint()
 		CPaintDC dc(this); // device context for painting
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
-
 		// Center icon in client rectangle
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
@@ -166,8 +174,18 @@ void CMFCApplication1Dlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// Draw the icon
-		dc.DrawIcon(x, y, m_hIcon);
+		//CRect rect2;
+		//status_c.GetWindowRect(rect2);
+		//int dx = rect2.Width();
+		//int dy = rect2.Height();
+		//GetWindowRect(rect2);
+		//rect2.left = rect2.right - dx;
+		//rect2.bottom = rect2.top + dy;
+		//status_c.MoveWindow(rect2);
+		//status_c.ShowWindow(SW_SHOW);
+		//// Draw the icon
+		//dc.DrawIcon(x, y, m_hIcon);
+
 	}
 	else
 	{
@@ -184,22 +202,33 @@ HCURSOR CMFCApplication1Dlg::OnQueryDragIcon()
 
 void CMFCApplication1Dlg::OnSize(UINT nType, int cx, int cy)
 {
-
-	/*CRect rect;
-	CRect clientRect;
 	CDialog::OnSize(nType, cx, cy);
-	GetWindowRect(&rect);
-	clientRect.top = 0;
-	clientRect.left = 0;
-	clientRect.right = rect.right - rect.left-100;
-	clientRect.bottom = rect.bottom - rect.top-50;
-	m_Edit2.SetWindowPos(&m_Edit2, 210, 40, clientRect.right/2,
-	clientRect.bottom/10, SWP_NOZORDER | SWP_SHOWWINDOW);
-	list_c.SetWindowPos(&m_Edit2, 50, 170, clientRect.right / 2,
-		clientRect.bottom / 5, SWP_NOZORDER | SWP_SHOWWINDOW);*/
-	
-}
 
+	UPDATE_EASYSIZE;
+}
+//void CMFCApplication1Dlg::OnSize(UINT nType, int cx, int cy)
+//{
+//	/*CDialog::OnSize(nType, cx, cy);
+//	UPDATE_EASYSIZE;*/
+//	CRect rect;
+//	CRect clientRect;
+//	CDialog::OnSize(nType, cx, cy);
+//	GetWindowRect(&rect);
+//	clientRect.top = 0;
+//	clientRect.left = 0;
+//	clientRect.right = rect.right - rect.left-100;
+//	clientRect.bottom = rect.bottom - rect.top-50;
+//	m_Edit2.SetWindowPos(&m_Edit2, 210, 40, clientRect.right/2,
+//	clientRect.bottom/10, SWP_NOZORDER | SWP_SHOWWINDOW);
+//	list_c.SetWindowPos(&m_Edit2, 50, 170, clientRect.right / 2,
+//		clientRect.bottom / 5, SWP_NOZORDER | SWP_SHOWWINDOW);
+//	
+//}
+void CMFCApplication1Dlg::OnSizing(UINT fwSide, LPRECT pRect)
+{
+	CDialog::OnSizing(fwSide, pRect);
+	EASYSIZE_MINSIZE(400, 400, fwSide, pRect);
+}
 void CMFCApplication1Dlg::OnEnChangeEdit1()
 {
 	
