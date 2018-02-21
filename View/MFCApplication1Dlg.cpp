@@ -173,19 +173,6 @@ void CMFCApplication1Dlg::OnPaint()
 		GetClientRect(&rect);
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
-
-		//CRect rect2;
-		//status_c.GetWindowRect(rect2);
-		//int dx = rect2.Width();
-		//int dy = rect2.Height();
-		//GetWindowRect(rect2);
-		//rect2.left = rect2.right - dx;
-		//rect2.bottom = rect2.top + dy;
-		//status_c.MoveWindow(rect2);
-		//status_c.ShowWindow(SW_SHOW);
-		//// Draw the icon
-		//dc.DrawIcon(x, y, m_hIcon);
-
 	}
 	else
 	{
@@ -203,27 +190,9 @@ HCURSOR CMFCApplication1Dlg::OnQueryDragIcon()
 void CMFCApplication1Dlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
-
 	UPDATE_EASYSIZE;
 }
-//void CMFCApplication1Dlg::OnSize(UINT nType, int cx, int cy)
-//{
-//	/*CDialog::OnSize(nType, cx, cy);
-//	UPDATE_EASYSIZE;*/
-//	CRect rect;
-//	CRect clientRect;
-//	CDialog::OnSize(nType, cx, cy);
-//	GetWindowRect(&rect);
-//	clientRect.top = 0;
-//	clientRect.left = 0;
-//	clientRect.right = rect.right - rect.left-100;
-//	clientRect.bottom = rect.bottom - rect.top-50;
-//	m_Edit2.SetWindowPos(&m_Edit2, 210, 40, clientRect.right/2,
-//	clientRect.bottom/10, SWP_NOZORDER | SWP_SHOWWINDOW);
-//	list_c.SetWindowPos(&m_Edit2, 50, 170, clientRect.right / 2,
-//		clientRect.bottom / 5, SWP_NOZORDER | SWP_SHOWWINDOW);
-//	
-//}
+
 void CMFCApplication1Dlg::OnSizing(UINT fwSide, LPRECT pRect)
 {
 	CDialog::OnSizing(fwSide, pRect);

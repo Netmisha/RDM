@@ -20,6 +20,18 @@ ShowDialog::ShowDialog(std::map<int, Table*>db,CWnd* pParent /*=NULL*/)
 ShowDialog::~ShowDialog()
 {
 }
+BEGIN_MESSAGE_MAP(ShowDialog, CDialogEx)
+	ON_WM_SIZE()
+	ON_WM_SIZING()
+	ON_BN_CLICKED(IDC_BUTTON1, &ShowDialog::OnBnClickedButton1)
+	ON_WM_WINDOWPOSCHANGING()
+	ON_BN_CLICKED(IDC_BUTTON2, &ShowDialog::OnBnClickedButton2)
+END_MESSAGE_MAP()
+
+BEGIN_EASYSIZE_MAP(ShowDialog)
+	EASYSIZE(IDC_LIST1, ES_BORDER, ES_BORDER, ES_BORDER, ES_BORDER, 0)
+	EASYSIZE(IDC_COMBO1, ES_BORDER, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 100)
+END_EASYSIZE_MAP
 
 void ShowDialog::DoDataExchange(CDataExchange* pDX)
 {
@@ -27,6 +39,19 @@ void ShowDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMBO1, show_combo_c);
 	DDX_Control(pDX, IDC_LIST1, show_list_c);
 }
+
+void ShowDialog::OnSize(UINT nType, int cx, int cy)
+{
+	CDialog::OnSize(nType, cx, cy);
+	UPDATE_EASYSIZE;
+}
+void ShowDialog::OnSizing(UINT fwSide, LPRECT pRect)
+{
+	CDialog::OnSizing(fwSide, pRect);
+
+	EASYSIZE_MINSIZE(300, 300, fwSide, pRect);
+}
+
 
 BOOL ShowDialog::OnInitDialog()
 {
@@ -38,13 +63,12 @@ BOOL ShowDialog::OnInitDialog()
 		std::wstring wname(temp.begin(), temp.end());
 		show_combo_c.AddString(wname.c_str()); 
 	}
-
+	ModifyStyle(WS_SYSMENU, 0);
+	ModifyStyle(DS_MODALFRAME, WS_THICKFRAME);
+	
+	INIT_EASYSIZE;
 	return true;
 }
-
-BEGIN_MESSAGE_MAP(ShowDialog, CDialogEx)
-	ON_BN_CLICKED(IDC_BUTTON1, &ShowDialog::OnBnClickedButton1)
-END_MESSAGE_MAP()
 
 
 // ShowDialog message handlers
@@ -117,4 +141,12 @@ void ShowDialog::OnBnClickedButton1()
 		}
 	}
 	// TODO: Add your control notification handler code here}
+}
+
+
+
+void ShowDialog::OnBnClickedButton2()
+{
+	OnOK();
+	// TODO: Add your control notification handler code here
 }
