@@ -13,6 +13,7 @@
 #include "afxcmn.h"
 #include "MyDialog.h"
 #include"ShowDialog.h"
+#include"CreateDialog.h"
 
 
 // CMFCApplication1Dlg dialog
@@ -55,4 +56,9 @@ public:
 	afx_msg void OnFileNewxml();
 	afx_msg void OnFileSave32775();
 	afx_msg void OnFileShow();
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedButton3();
+	afx_msg void OnCbnSelchangeCombo1();
+	CComboBox showt_combo_c;
+	afx_msg void OnBnClickedButton6();
 };

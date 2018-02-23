@@ -141,4 +141,8 @@
         </Record>
     </Table>
     <Table name="viewtest" ID="7" />
+    <Table name="test" ID="8" />
+    <Table name="create_test" ID="9" />
+    <Table name="" ID="10" />
+    <Table name="wert" ID="11" />
 </List>

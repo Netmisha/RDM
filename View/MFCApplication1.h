@@ -31,5 +31,5 @@ public:
 
 	DECLARE_MESSAGE_MAP()
 };
-
+void Fill(std::map<int, Table*>& mapa);
 extern CMFCApplication1App theApp;

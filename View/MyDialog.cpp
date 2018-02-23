@@ -35,7 +35,7 @@ BOOL CMyDialog::OnInitDialog()
 	temp += "\t delcol ID - delete column from current table\r\n";
 	temp += "\t delete_t - delete current table\r\n";
 	temp += "\t show -t - show current table content\r\n";
-	temp += "\t show -a - show content of all tables\r\n";
+	//temp += "\t show -a - show content of all tables\r\n";
 	temp += "\t find -d ID - show record at ID position\r\n";
 	temp += "\t find -s 'value' - show first record that contain 'value'\r\n";
 	temp += "\t findall -s 'value' - show all recolds that contain 'value'\r\n";

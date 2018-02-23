@@ -102,7 +102,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CreateDialog.h" />
     <ClInclude Include="EasySize.h" />
+    <ClInclude Include="EditDialog.h" />
     <ClInclude Include="MFCApplication1.h" />
     <ClInclude Include="MFCApplication1Dlg.h" />
     <ClInclude Include="MyDialog.h" />
@@ -112,6 +114,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CreateDialog.cpp" />
+    <ClCompile Include="EditDialog.cpp" />
     <ClCompile Include="MFCApplication1.cpp" />
     <ClCompile Include="MFCApplication1Dlg.cpp" />
     <ClCompile Include="MyDialog.cpp" />

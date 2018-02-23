@@ -7,12 +7,13 @@
 #include "MFCApplication1Dlg.h"
 #include "afxdialogex.h"
 #include"EasySize.h"
+#include"CreateDialog.h"
+#include"EditDialog.h"
 #include<Windows.h>
 #include<string>
 #include<sstream>
 #include<vector>
 #include<algorithm>
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -58,6 +59,7 @@ static bool tablecheck = false;
 static int _ID = GetLastID() + 1;
 static int xmlTableID = 1;
 static int _TID;
+Table *tb;
 
 CMFCApplication1Dlg::CMFCApplication1Dlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CMFCApplication1Dlg::IDD, pParent)
@@ -75,6 +77,7 @@ void CMFCApplication1Dlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT1, m_Edit2);
 	DDX_Control(pDX, IDC_LIST1, list_c);
 	DDX_Control(pDX, IDC_EDIT2, status_c);
+	DDX_Control(pDX, IDC_COMBO1, showt_combo_c);
 }
 
 
@@ -91,6 +94,10 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_COMMAND(ID_FILE_NEWXML, &CMFCApplication1Dlg::OnFileNewxml)
 	ON_COMMAND(ID_FILE_SAVE32775, &CMFCApplication1Dlg::OnFileSave32775)
 	ON_COMMAND(ID_FILE_SHOW, &CMFCApplication1Dlg::OnFileShow)
+	ON_BN_CLICKED(IDC_BUTTON1, &CMFCApplication1Dlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON3, &CMFCApplication1Dlg::OnBnClickedButton3)
+	ON_CBN_SELCHANGE(IDC_COMBO1, &CMFCApplication1Dlg::OnCbnSelchangeCombo1)
+	ON_BN_CLICKED(IDC_BUTTON6, &CMFCApplication1Dlg::OnBnClickedButton6)
 END_MESSAGE_MAP()
 
 BEGIN_EASYSIZE_MAP(CMFCApplication1Dlg)
@@ -137,6 +144,13 @@ BOOL CMFCApplication1Dlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
+	std::string temp;
+	for (auto p = database.begin(); p != database.end(); p++)
+	{
+		temp = p->second->GetName();
+		std::wstring wname(temp.begin(), temp.end());
+		showt_combo_c.AddString(wname.c_str());
+	}
 	INIT_EASYSIZE;
 	// TODO: Add extra initialization here
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -223,7 +237,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 	log = Logger::getInstance();
 	log->updateLogLevel(LOG_LEVEL_INFO);
 	std::string tname = "temp_table";
-	Table *tb;
+	//Table *tb;
 	if (worktableid == 0)
 		tb = new Table(tname);
 	else
@@ -291,7 +305,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				else
 				{
 					tablecheck = true;
-					int x = stoi(inputs[1]);
+					int x = std::stoi(inputs[1]);
 					tb = database[x];
 					worktableid = x;
 					xmlTableID = x;
@@ -1388,4 +1402,110 @@ void CMFCApplication1Dlg::OnFileShow()
 	ShowDialog diag(database);
 	diag.DoModal();
 	// TODO: Add your command handler code here
+}
+
+
+void CMFCApplication1Dlg::OnBnClickedButton1()
+{
+	::CreateDlg d(database);
+	d.DoModal();
+	Fill(database);
+	// TODO: Add your control notification handler code here
+}
+
+
+void CMFCApplication1Dlg::OnBnClickedButton3()
+{
+	tablecheck = true;
+	CString cname;
+	showt_combo_c.GetWindowTextW(cname);
+	CT2CA convertedname(cname);
+	std::string name(convertedname);
+	for (auto p = database.begin(); p != database.end(); p++)
+	{
+		if (p->second->GetName() == name)
+		{
+			worktableid = p->second->GetID();
+			_TID = worktableid;
+			break;
+		}
+	}
+	list_c.DeleteAllItems();
+	while (true)
+	{
+		if (list_c.DeleteColumn(0) == false)
+			break;
+	}
+	CString item;
+	showt_combo_c.GetWindowTextW(item);
+	bool check = false;
+	for (auto p = database.begin(); p != database.end(); p++)
+	{
+		if (p->second->GetName() == item)
+		{
+			tb = p->second;
+			check = true;
+		}
+	}
+	if (!check)
+	{
+		MessageBox(_T("There is no table with such name"), _T("No mathc"), NULL);
+	}
+	else
+	{
+		std::vector<std::wstring> wnames;
+		std::string temp;
+		for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+		{
+			temp = tb->GetCName()[i];
+			std::wstring wtemp(temp.begin(), temp.end());
+			wnames.push_back(wtemp);
+		}
+		for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+		{
+			list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+		}
+		for (unsigned int i = 0; i < tb->Size(); i++)
+		{
+			list_c.InsertItem(i, 0);
+			for (unsigned int j = 0; j < tb->GetCName().size(); j++)
+			{
+				std::string ptrval;
+				void* pval = tb->GetRecord(i + 1)->record[j]->Getv();
+				if (tb->GetCType()[j] == 's')
+				{
+					std::string *ptr = static_cast<std::string*>(pval);
+					ptrval = *ptr;
+				}
+				else if (tb->GetCType()[j] == 'i')
+				{
+					int *ptr = static_cast<int*>(pval);
+					ptrval = std::to_string(*ptr);
+				}
+				else if (tb->GetCType()[j] == 'd')
+				{
+					double *ptr = static_cast<double*>(pval);
+					ptrval = std::to_string(*ptr);
+				}
+				std::string val = ptrval;
+				std::wstring wtemp(val.begin(), val.end());
+				list_c.SetItemText(i, j, wtemp.c_str());
+			}
+		}
+	}
+	// TODO: Add your control notification handler code here
+}
+
+
+void CMFCApplication1Dlg::OnCbnSelchangeCombo1()
+{
+	// TODO: Add your control notification handler code here
+}
+
+
+void CMFCApplication1Dlg::OnBnClickedButton6()
+{
+	EditDialog diag(tb);
+	diag.DoModal();
+	// TODO: Add your control notification handler code here
 }

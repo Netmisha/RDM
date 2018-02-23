@@ -23,6 +23,7 @@ public:
 	Record& Delete(unsigned int index);
 	bool Find(const std::string value);
 	int GetId();
+	void ChangeID(int x);
 	~Record();
 };
 MYLIBRARY_EXPORT char TypeFinder(const std::string value);

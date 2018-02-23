@@ -10,6 +10,7 @@ class MYLIBRARY_EXPORT Table
 {
 private:
 	int id;
+	int recid;
 	std::string name;
 	std::vector<std::string> colname;
 	std::vector<char> coltype;

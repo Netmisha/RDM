@@ -147,6 +147,7 @@ void ShowDialog::OnBnClickedButton1()
 
 void ShowDialog::OnBnClickedButton2()
 {
-	OnOK();
+	OnOK(); 
+
 	// TODO: Add your control notification handler code here
 }

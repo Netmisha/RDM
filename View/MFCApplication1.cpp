@@ -8,6 +8,7 @@
 
 void Fill(std::map<int, Table*>& mapa)
 {
+	mapa.clear();
 	int *idarr = new int[Count()];
 	idarr = GetID();
 	int i = idarr[0];
