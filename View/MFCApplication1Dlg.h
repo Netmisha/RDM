@@ -61,4 +61,11 @@ public:
 	afx_msg void OnCbnSelchangeCombo1();
 	CComboBox showt_combo_c;
 	afx_msg void OnBnClickedButton6();
+	CEdit find_c;
+	afx_msg void OnBnClickedButton8();
+	CButton find_first_radio_c;
+	bool find_first;
+	bool find_all;
+	afx_msg void OnBnClickedRadio1();
+	afx_msg void OnBnClickedRadio2();
 };

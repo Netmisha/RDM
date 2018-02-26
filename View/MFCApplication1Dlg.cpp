@@ -78,6 +78,8 @@ void CMFCApplication1Dlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_LIST1, list_c);
 	DDX_Control(pDX, IDC_EDIT2, status_c);
 	DDX_Control(pDX, IDC_COMBO1, showt_combo_c);
+	DDX_Control(pDX, IDC_EDIT4, find_c);
+	DDX_Control(pDX, IDC_BUTTON1, find_first_radio_c);
 }
 
 
@@ -98,6 +100,9 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON3, &CMFCApplication1Dlg::OnBnClickedButton3)
 	ON_CBN_SELCHANGE(IDC_COMBO1, &CMFCApplication1Dlg::OnCbnSelchangeCombo1)
 	ON_BN_CLICKED(IDC_BUTTON6, &CMFCApplication1Dlg::OnBnClickedButton6)
+	ON_BN_CLICKED(IDC_BUTTON8, &CMFCApplication1Dlg::OnBnClickedButton8)
+	ON_BN_CLICKED(IDC_RADIO1, &CMFCApplication1Dlg::OnBnClickedRadio1)
+	ON_BN_CLICKED(IDC_RADIO2, &CMFCApplication1Dlg::OnBnClickedRadio2)
 END_MESSAGE_MAP()
 
 BEGIN_EASYSIZE_MAP(CMFCApplication1Dlg)
@@ -1577,5 +1582,247 @@ void CMFCApplication1Dlg::OnBnClickedButton6()
 	{
 		MessageBox(_T("There is no current table"), _T("Nothing to work with"), NULL);
 	}
+	// TODO: Add your control notification handler code here
+}
+
+
+void CMFCApplication1Dlg::OnBnClickedButton8()
+{
+	if (worktableid != 0)
+	{
+		CString ctext;
+		find_c.GetWindowTextW(ctext);
+		CT2CA textconvert(ctext);
+		std::string text(textconvert);
+		std::vector<std::wstring> wnames;
+		if (find_first)
+		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
+			if (!tablecheck)
+			{
+				MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
+				status_c.SetWindowTextW(_T("Wrong input"));
+			}
+			else
+			{
+				if (tb->FindRecord(text) == NULL)
+				{
+					MessageBox(_T("No match"), _T("Not found"), NULL);
+					status_c.SetWindowTextW(_T("Wrong input"));
+				}
+				else
+				{
+					std::string temp;
+					for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+					{
+						temp = tb->GetCName()[i];
+						std::wstring wtemp(temp.begin(), temp.end());
+						wnames.push_back(wtemp);
+					}
+					for (int i = 0; i < tb->GetCName().size(); i++)
+						list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+					list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
+					list_c.InsertItem(0, 0);
+					for (int i = 0; i < tb->GetCName().size(); i++)
+					{
+						std::string ptrval;
+
+						void* pval = tb->FindRecord(text)->record[i]->Getv();
+						if (pval == NULL)
+						{
+							MessageBox(_T("No match"), _T("Not found"), NULL);
+							status_c.SetWindowTextW(_T("Wrong input"));
+						}
+						else
+						{
+							if (tb->GetCType()[i] == 's')
+							{
+								std::string *ptr = static_cast<std::string*>(pval);
+								if (ptr == NULL)
+								{
+									MessageBox(_T("No match"), _T("Not found"), NULL);
+									status_c.SetWindowTextW(_T("Wrong input"));
+								}
+								else
+								{
+									ptrval = *ptr;
+									status_c.SetWindowTextW(_T("Record found"));
+								}
+							}
+							else if (tb->GetCType()[i] == 'i')
+							{
+								int *ptr = static_cast<int*>(pval);
+								if (ptr == NULL)
+								{
+									MessageBox(_T("No match"), _T("Not found"), NULL);
+									status_c.SetWindowTextW(_T("Wrong input"));
+								}
+								else
+								{
+									ptrval = std::to_string(*ptr);
+									status_c.SetWindowTextW(_T("Record found"));
+								}
+							}
+							else if (tb->GetCType()[i] == 'd')
+							{
+								double *ptr = static_cast<double*>(pval);
+								if (ptr == NULL)
+								{
+									MessageBox(_T("No match"), _T("Not found"), NULL);
+									status_c.SetWindowTextW(_T("Wrong input"));
+								}
+								else
+								{
+									ptrval = std::to_string(*ptr);
+									status_c.SetWindowTextW(_T("Record found"));
+								}
+							}
+							std::string val = ptrval;
+							std::wstring wtemp(val.begin(), val.end());
+							std::string id = std::to_string(tb->FindRecord(text)->GetId());
+							std::wstring wid(id.begin(), id.end());
+							list_c.SetItemText(i, 0, wid.c_str());
+
+							list_c.SetItemText(0, i + 1, wtemp.c_str());
+						}
+					}
+				}
+			}
+		}
+		else if (find_all)
+		{
+			list_c.DeleteAllItems();
+			while (true)
+			{
+				if (list_c.DeleteColumn(0) == false)
+					break;
+			}
+			if (tb->FindRecord(text) == NULL)
+			{
+				MessageBox(_T("No match"), _T("Not found"), NULL);
+				status_c.SetWindowTextW(_T("Wrong input"));
+			}
+			else
+			{
+				if (!tablecheck)
+				{
+					MessageBox(_T("There is no current table, please create or build one"), _T("Table does not exist"), NULL);
+					status_c.SetWindowTextW(_T("Wrong input"));
+				}
+				std::string temp;
+				for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+				{
+					temp = tb->GetCName()[i];
+					std::wstring wtemp(temp.begin(), temp.end());
+					wnames.push_back(wtemp);
+				}
+				for (int i = 0; i < tb->GetCName().size(); i++)
+					list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+				list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
+
+				for (int j = 0; j < tb->Size(); j++)
+				{
+					if (tb->GetRecord(j + 1)->Find(text))
+					{
+						int count = 0;
+						list_c.InsertItem(count, 0);
+						std::string id = std::to_string(tb->GetRecord(j + 1)->GetId());
+						std::wstring wid(id.begin(), id.end());
+						list_c.SetItemText(count, 0, wid.c_str());
+
+						for (int i = 0; i < tb->GetCName().size(); i++)
+						{
+							std::string ptrval;
+							void* pval;
+							pval = tb->GetRecord(j + 1)->record[i]->Getv();
+							if (pval == NULL)
+							{
+								MessageBox(_T("No match"), _T("Not found"), NULL);
+								status_c.SetWindowTextW(_T("Wrong input"));
+								break;
+							}
+							else
+							{
+								if (tb->GetCType()[i] == 's')
+								{
+									std::string *ptr = static_cast<std::string*>(pval);
+									if (ptr == NULL)
+									{
+										MessageBox(_T("No match"), _T("Not found"), NULL);
+										status_c.SetWindowTextW(_T("Wrong input"));
+										break;
+									}
+									else
+									{
+										status_c.SetWindowTextW(_T("Records found"));
+										ptrval = *ptr;
+									}
+								}
+								else if (tb->GetCType()[i] == 'i')
+								{
+									int *ptr = static_cast<int*>(pval);
+									if (ptr == NULL)
+									{
+										MessageBox(_T("No match"), _T("Not found"), NULL);
+										status_c.SetWindowTextW(_T("Wrong input"));
+										break;
+									}
+									else
+									{
+										status_c.SetWindowTextW(_T("Records found"));
+										ptrval = std::to_string(*ptr);
+									}
+								}
+								else if (tb->GetCType()[i] == 'd')
+								{
+									double *ptr = static_cast<double*>(pval);
+									if (ptr == NULL)
+									{
+										MessageBox(_T("No match"), _T("Not found"), NULL);
+										status_c.SetWindowTextW(_T("Wrong input"));
+										break;
+									}
+									else
+									{
+										status_c.SetWindowTextW(_T("Records found"));
+										ptrval = std::to_string(*ptr);
+									}
+								}
+								std::string val = ptrval;
+								std::wstring wtemp(val.begin(), val.end());
+
+								list_c.SetItemText(count, i + 1, wtemp.c_str());
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		MessageBox(_T("There is no current table"), _T("Nothing to work with"), NULL);
+	}
+	// TODO: Add your control notification handler code here
+}
+
+
+void CMFCApplication1Dlg::OnBnClickedRadio1()
+{
+	find_first = true;
+	find_all == false;
+	// TODO: Add your control notification handler code here
+}
+
+
+void CMFCApplication1Dlg::OnBnClickedRadio2()
+{
+	find_first = false;
+	find_all == true;
 	// TODO: Add your control notification handler code here
 }
