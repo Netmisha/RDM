@@ -151,6 +151,7 @@ BOOL CMFCApplication1Dlg::OnInitDialog()
 		std::wstring wname(temp.begin(), temp.end());
 		showt_combo_c.AddString(wname.c_str());
 	}
+	showt_combo_c.SetCurSel(0);
 	INIT_EASYSIZE;
 	// TODO: Add extra initialization here
 	return TRUE;  // return TRUE  unless you set the focus to a control

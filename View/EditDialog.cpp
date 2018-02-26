@@ -19,16 +19,16 @@ EditDialog::EditDialog(Table* tb, CWnd* pParent /*=NULL*/)
 BOOL EditDialog::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
-	std::string type = "integer";
+	std::string type = "string";
 	std::wstring wtype(type.begin(), type.end());
 	add_col_type_combo_c.AddString(wtype.c_str());
-	type = "double";
+	type = "integer";
 	std::wstring wtype2(type.begin(), type.end());
 	add_col_type_combo_c.AddString(wtype2.c_str());
-	type = "string";
+	type = "double";
 	std::wstring wtype3(type.begin(), type.end());
 	add_col_type_combo_c.AddString(wtype3.c_str());
-
+	add_col_type_combo_c.SetCurSel(2);
 	return TRUE;
 }
 
@@ -95,8 +95,19 @@ void EditDialog::OnBnClickedButton3()
 	edit_delrec_c.GetWindowTextW(cid);
 	CT2CA pconvert(cid);
 	std::string id(pconvert);
-	table->DeleteRecord(std::stoi(id));
-	OnOK();
+	bool check = false;
+	for (int i = 0; i < table->Size(); i++)
+	{
+		if (std::stoi(id) == table->GetRecord(i)->GetId())
+			check = true;
+	}
+	if (check)
+	{
+		table->DeleteRecord(std::stoi(id));
+		OnOK();
+	}
+	else
+		MessageBox(_T("There is no record with such ID"), _T("Not found"), NULL);
 	// TODO: Add your control notification handler code here
 }
 
