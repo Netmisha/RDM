@@ -103,6 +103,8 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON8, &CMFCApplication1Dlg::OnBnClickedButton8)
 	ON_BN_CLICKED(IDC_RADIO1, &CMFCApplication1Dlg::OnBnClickedRadio1)
 	ON_BN_CLICKED(IDC_RADIO2, &CMFCApplication1Dlg::OnBnClickedRadio2)
+	ON_BN_CLICKED(IDC_BUTTON4, &CMFCApplication1Dlg::OnBnClickedButton4)
+	ON_BN_CLICKED(IDC_BUTTON7, &CMFCApplication1Dlg::OnBnClickedButton7)
 END_MESSAGE_MAP()
 
 BEGIN_EASYSIZE_MAP(CMFCApplication1Dlg)
@@ -1466,7 +1468,7 @@ void CMFCApplication1Dlg::OnFileShow()
 
 void CMFCApplication1Dlg::OnBnClickedButton1()
 {
-	::CreateDlg d(database);
+	::CreateDlg d(database,&status_c,&showt_combo_c);
 	d.DoModal();
 	Fill(database);
 	// TODO: Add your control notification handler code here
@@ -1575,7 +1577,7 @@ void CMFCApplication1Dlg::OnBnClickedButton6()
 {
 	if (worktableid != 0)
 	{
-		EditDialog diag(tb);
+		EditDialog diag(tb,&status_c);
 		diag.DoModal();
 	}
 	else
@@ -1807,6 +1809,7 @@ void CMFCApplication1Dlg::OnBnClickedButton8()
 	else
 	{
 		MessageBox(_T("There is no current table"), _T("Nothing to work with"), NULL);
+		status_c.SetWindowTextW(_T("Find failed"));
 	}
 	// TODO: Add your control notification handler code here
 }
@@ -1824,5 +1827,52 @@ void CMFCApplication1Dlg::OnBnClickedRadio2()
 {
 	find_first = false;
 	find_all == true;
+	// TODO: Add your control notification handler code here
+}
+
+
+void CMFCApplication1Dlg::OnBnClickedButton4()
+{
+	if (worktableid!=0)
+
+	{
+		std::map<int, Table*>::iterator it;
+		it = database.find(worktableid);
+		database.erase(it);
+		std::string temp;
+		showt_combo_c.ResetContent();
+		for (auto p = database.begin(); p != database.end(); p++)
+		{
+			temp = p->second->GetName();
+			std::wstring wname(temp.begin(), temp.end());
+			showt_combo_c.AddString(wname.c_str());
+		}
+		showt_combo_c.SetCurSel(0);
+	}
+	else
+	{
+		MessageBox(_T("There is no current table"), _T("Nothing to delete"), NULL);
+		status_c.SetWindowTextW(_T("Table delete failed"));
+	}
+	// TODO: Add your control notification handler code here
+}
+
+
+void CMFCApplication1Dlg::OnBnClickedButton7()
+{
+	//database.clear();
+	int msgboxID=MessageBox(_T("Are you sure?"),_T("Database clear"), MB_YESNO);
+	
+	if(msgboxID==IDYES)
+	{
+		MessageBox(_T("As you wish"));
+		//database.clear();
+		status_c.SetWindowTextW(_T("Database cleared"));
+	}
+	else if (msgboxID==IDNO)
+	{
+		MessageBox(_T("It was close"));
+		status_c.SetWindowTextW(_T("Database clear canceled"));
+	}
 	// TODO: Add your control notification handler code here
 }

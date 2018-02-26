@@ -12,9 +12,9 @@ class EditDialog : public CDialogEx
 	DECLARE_DYNAMIC(EditDialog)
 
 public:
-	EditDialog(Table* db,CWnd* pParent = NULL);   // standard constructor
+	EditDialog(Table* db,CEdit* statusc, CWnd* pParent = NULL);   // standard constructor
 	virtual ~EditDialog();
-
+	CEdit* main_status_c;
 // Dialog Data
 	enum { IDD = IDD_EditDialog };
 	BOOL OnInitDialog();
@@ -40,4 +40,5 @@ public:
 	CComboBox add_col_type_combo_c;
 	CEdit add_col_name_c;
 	afx_msg void OnBnClickedButton8();
+	afx_msg void OnBnClickedButton6();
 };

@@ -12,10 +12,12 @@
 
 IMPLEMENT_DYNAMIC(CreateDlg, CDialogEx)
 
-CreateDlg::CreateDlg(std::map<int,Table*>& db,CWnd* pParent /*=NULL*/)
+CreateDlg::CreateDlg(std::map<int, Table*>& db, CEdit* statusc, CComboBox* comboc, CWnd* pParent /*=NULL*/)
 : CDialogEx(CreateDlg::IDD, pParent)
 {
 	database = db;
+	main_status = statusc;
+	main_combo = comboc;
 }
 
 CreateDlg::~CreateDlg()
@@ -48,7 +50,17 @@ END_MESSAGE_MAP()
 void CreateDlg::OnBnClickedButton3()
 {
 	Create();
-
+	std::string temp;
+	main_combo->ResetContent();
+	for (auto p = database.begin(); p != database.end(); p++)
+	{
+		temp = p->second->GetName();
+		std::wstring wname(temp.begin(), temp.end());
+		main_combo->AddString(wname.c_str());
+	}
+	main_combo->SetCurSel(0);
+	main_status->SetWindowTextW(_T("Table created"));
+	OnOK();
 	// TODO: Add your control notification handler code here
 }
 void CreateDlg::Create()
@@ -107,11 +119,11 @@ void CreateDlg::Create()
 			p--;
 			int id = p->second->GetID() + 1;
 			temp->ChangeID(id);
+			database.insert(std::pair<int,Table*>(id,temp));
 			AddData(*temp);
 			AddStructure(*temp);
 		}
 	}
-	OnOK();
 }
 
 

@@ -10,7 +10,7 @@ class CreateDlg : public CDialogEx
 	DECLARE_DYNAMIC(CreateDlg)
 
 public:
-	CreateDlg(std::map<int,Table*>& db,CWnd* pParent = NULL);   // standard constructor
+	CreateDlg(std::map<int, Table*>& db, CEdit* statusc, CComboBox* comboc, CWnd* pParent = NULL);   // standard constructor
 	virtual ~CreateDlg();
 
 // Dialog Data
@@ -18,6 +18,8 @@ public:
 	BOOL OnInitDialog();
 	void Create();
 protected:
+	CEdit* main_status;
+	CComboBox* main_combo;
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	std::map<int, Table*> database;
 	DECLARE_MESSAGE_MAP()

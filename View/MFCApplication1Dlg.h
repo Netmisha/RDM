@@ -68,4 +68,6 @@ public:
 	bool find_all;
 	afx_msg void OnBnClickedRadio1();
 	afx_msg void OnBnClickedRadio2();
+	afx_msg void OnBnClickedButton4();
+	afx_msg void OnBnClickedButton7();
 };

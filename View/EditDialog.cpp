@@ -10,10 +10,11 @@
 
 IMPLEMENT_DYNAMIC(EditDialog, CDialogEx)
 
-EditDialog::EditDialog(Table* tb, CWnd* pParent /*=NULL*/)
+EditDialog::EditDialog(Table* tb,CEdit* statusc, CWnd* pParent /*=NULL*/)
 : CDialogEx(EditDialog::IDD, pParent)
 {
 	table = tb;
+	main_status_c=statusc;
 }
 
 BOOL EditDialog::OnInitDialog()
@@ -59,6 +60,7 @@ BEGIN_MESSAGE_MAP(EditDialog, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON2, &EditDialog::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON5, &EditDialog::OnBnClickedButton5)
 	ON_BN_CLICKED(IDC_BUTTON8, &EditDialog::OnBnClickedButton8)
+	ON_BN_CLICKED(IDC_BUTTON6, &EditDialog::OnBnClickedButton6)
 END_MESSAGE_MAP()
 
 
@@ -83,8 +85,17 @@ void EditDialog::OnBnClickedButton1()
 	std::vector<std::string> inputs;
 	while (ss >> buff)
 		inputs.push_back(buff);
-	table->AddRecord(inputs);
-	OnOK();
+	if (inputs.empty())
+	{
+		MessageBox(_T("Provide at least some info"), _T("Empty input"), NULL);
+		main_status_c->SetWindowTextW(_T("Record add failed"));
+	}
+	else
+	{
+		table->AddRecord(inputs);
+		main_status_c->SetWindowTextW(_T("Record added"));
+		OnOK();
+	}
 	// TODO: Add your control notification handler code here
 }
 
@@ -98,12 +109,13 @@ void EditDialog::OnBnClickedButton3()
 	bool check = false;
 	for (int i = 0; i < table->Size(); i++)
 	{
-		if (std::stoi(id) == table->GetRecord(i)->GetId())
+		if (std::stoi(id) == table->GetRecord(i+1)->GetId())
 			check = true;
 	}
 	if (check)
 	{
 		table->DeleteRecord(std::stoi(id));
+		main_status_c->SetWindowTextW(_T("Record deleted"));
 		OnOK();
 	}
 	else
@@ -137,6 +149,7 @@ void EditDialog::OnBnClickedButton4()
 			else
 			{
 				table->Set(std::stoi(row), std::stoi(col), val);
+				main_status_c->SetWindowTextW(_T("Value set"));
 				OnOK();
 			}
 		}
@@ -153,6 +166,7 @@ void EditDialog::OnBnClickedButton4()
 			else
 			{
 				table->Set(std::stoi(row), col, val);
+				main_status_c->SetWindowTextW(_T("Value set"));
 				OnOK();
 			}
 		}
@@ -184,6 +198,7 @@ void EditDialog::OnBnClickedButton2()
 		{
 			table->Set(std::stoi(id), i + 1, inputs[i]);
 		}
+		main_status_c->SetWindowTextW(_T("Record set"));
 		OnOK();
 	}
 	else
@@ -203,6 +218,7 @@ void EditDialog::OnBnClickedButton5()
 	CT2CA typeconvert(ctype);
 	std::string type(typeconvert);
 	table->AddColumn(type,name);
+	main_status_c->SetWindowTextW(_T("Column added"));
 	OnOK();
 	// TODO: Add your control notification handler code here
 }
@@ -216,9 +232,10 @@ void EditDialog::OnBnClickedButton8()
 	std::string id_name(id_nameconvert);
 	if (TypeFinder(id_name) == 'i')
 	{
-		if (std::stoi(id_name) > 0 && std::stoi(id_name) < table->GetCName().size())
+		if (std::stoi(id_name) > 0 && std::stoi(id_name) < table->GetCName().size()+1)
 		{
 			table->DeleteColumn(std::stoi(id_name));
+			main_status_c->SetWindowTextW(_T("Column deleted"));
 			OnOK();
 		}
 		else
@@ -237,8 +254,17 @@ void EditDialog::OnBnClickedButton8()
 		else
 		{
 			table->DeleteColumn(id_name);
+			main_status_c->SetWindowTextW(_T("Column deleted"));
 			OnOK();
 		}
 	}
+	// TODO: Add your control notification handler code here
+}
+
+
+void EditDialog::OnBnClickedButton6()
+{
+	table->Clear();
+	main_status_c->SetWindowTextW(_T("Table cleared"));
 	// TODO: Add your control notification handler code here
 }
