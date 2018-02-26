@@ -61,6 +61,7 @@ BOOL ShowDialog::OnInitDialog()
 	{
 		temp = p->second->GetName();
 		std::wstring wname(temp.begin(), temp.end());
+
 		show_combo_c.AddString(wname.c_str()); 
 	}
 	ModifyStyle(WS_SYSMENU, 0);

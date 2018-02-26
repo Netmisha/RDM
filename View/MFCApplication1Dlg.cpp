@@ -321,9 +321,14 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 					{
 						list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
 					}
+					list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
 					for (unsigned int i = 0; i < tb->Size(); i++)
 					{
 						list_c.InsertItem(i, 0);
+						std::string id = std::to_string(tb->GetRecord(i + 1)->GetId());
+						std::wstring wid(id.begin(), id.end());
+						list_c.SetItemText(i, 0, wid.c_str());
+
 						for (unsigned int j = 0; j < database[std::stoi(inputs[1])]->GetCName().size(); j++)
 						{
 							std::string ptrval;
@@ -345,7 +350,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 							}
 							std::string val = ptrval;
 							std::wstring wtemp(val.begin(), val.end());
-							list_c.SetItemText(i, j, wtemp.c_str());
+							list_c.SetItemText(i, j+1, wtemp.c_str());
 						}
 					}
 					_TID = tb->GetID();
@@ -391,6 +396,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 							coltypes.push_back('s');
 					}
 				}
+				list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
 				tb->ChangeID(_ID);
 				tb->Create(colnames, coltypes);
 				worktableid = _ID;
@@ -431,9 +437,13 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 					{
 						list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
 					}
+					list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
 					for (unsigned int i = 0; i < tb->Size(); i++)
 					{
 						list_c.InsertItem(i, 0);
+						std::string id = std::to_string(tb->GetRecord(i + 1)->GetId());
+						std::wstring wid(id.begin(), id.end());
+						list_c.SetItemText(i, 0, wid.c_str());
 						for (unsigned int j = 0; j < database[_TID]->GetCName().size(); j++)
 						{
 							std::string ptrval;
@@ -455,7 +465,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 							}
 							std::string val = ptrval;
 							std::wstring wtemp(val.begin(), val.end());
-							list_c.SetItemText(i, j, wtemp.c_str());
+							list_c.SetItemText(i, j+1, wtemp.c_str());
 						}
 					}
 				}
@@ -646,9 +656,13 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				{
 					list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
 				}
+				list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
 				for (unsigned int i = 0; i < tb->Size(); i++)
 				{
 					list_c.InsertItem(i, 0);
+					std::string id = std::to_string(tb->GetRecord(i + 1)->GetId());
+					std::wstring wid(id.begin(), id.end());
+					list_c.SetItemText(i, 0, wid.c_str());
 					for (unsigned int j = 0; j < tb->GetCName().size(); j++)
 					{
 						std::string ptrval;
@@ -670,7 +684,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 						}
 						std::string val = ptrval;
 						std::wstring wtemp(val.begin(), val.end());
-						list_c.SetItemText(i, j, wtemp.c_str());
+						list_c.SetItemText(i, j+1, wtemp.c_str());
 					}
 				}
 				status_c.SetWindowTextW(_T("New record added"));
@@ -719,9 +733,13 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				{
 					list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
 				}
+				list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
 				for (unsigned int i = 0; i < tb->Size(); i++)
 				{
 					list_c.InsertItem(i, 0);
+					std::string id = std::to_string(tb->GetRecord(i + 1)->GetId());
+					std::wstring wid(id.begin(), id.end());
+					list_c.SetItemText(i, 0, wid.c_str());
 					for (unsigned int j = 0; j < tb->GetCName().size(); j++)
 					{
 						std::string ptrval;
@@ -743,7 +761,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 						}
 						std::string val = ptrval;
 						std::wstring wtemp(val.begin(), val.end());
-						list_c.SetItemText(i, j, wtemp.c_str());
+						list_c.SetItemText(i, j+1, wtemp.c_str());
 					}
 				}
 				status_c.SetWindowTextW(_T("New column added"));
@@ -777,9 +795,13 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				{
 					list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
 				}
+				list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
 				for (unsigned int i = 0; i < tb->Size(); i++)
 				{
 					list_c.InsertItem(i, 0);
+					std::string id = std::to_string(tb->GetRecord(i + 1)->GetId());
+					std::wstring wid(id.begin(), id.end());
+					list_c.SetItemText(i, 0, wid.c_str());
 					for (unsigned int j = 0; j < tb->GetCName().size(); j++)
 					{
 						std::string ptrval;
@@ -801,7 +823,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 						}
 						std::string val = ptrval;
 						std::wstring wtemp(val.begin(), val.end());
-						list_c.SetItemText(i, j, wtemp.c_str());
+						list_c.SetItemText(i, j+1, wtemp.c_str());
 					}
 				}
 				status_c.SetWindowTextW(_T("Record deleted"));
@@ -838,6 +860,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 					}
 					for (int i = 0; i < tb->GetCName().size(); i++)
 						list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+					list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
 					list_c.InsertItem(0, 0);
 					for (int i = 0; i < tb->GetCName().size(); i++)
 					{
@@ -895,7 +918,11 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 							}
 							std::string val = ptrval;
 							std::wstring wtemp(val.begin(), val.end());
-							list_c.SetItemText(0, i, wtemp.c_str());
+							std::string id = std::to_string(tb->FindRecord(inputs[1])->GetId());
+							std::wstring wid(id.begin(), id.end());
+							list_c.SetItemText(i, 0, wid.c_str());
+
+							list_c.SetItemText(0, i+1, wtemp.c_str());
 						}
 					}
 				}
@@ -940,12 +967,16 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 					list_c.InsertColumn(i, name.c_str(), LVCFMT_LEFT, 90);
 					i++;
 				}
+				list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
 				std::vector<std::string> values;
 				for (unsigned int i = 0; i < tb->Size(); i++)
 				{
 					for (unsigned int j = 0; j < tb->GetRecord(i + 1)->record.size(); j++)
 					{
 						list_c.InsertItem(i, 0);
+						std::string id = std::to_string(tb->GetRecord(i + 1)->GetId());
+						std::wstring wid(id.begin(), id.end());
+						list_c.SetItemText(i, 0, wid.c_str());
 						for (auto p = position.begin(); p != position.end(); p++)
 						{
 							std::string temp;
@@ -968,7 +999,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 								temp = test;
 							}
 							std::wstring val(temp.begin(), temp.end());
-							list_c.SetItemText(i, j, val.c_str());
+							list_c.SetItemText(i, j+1, val.c_str());
 							j++;
 						}
 						break;
@@ -1006,71 +1037,81 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				}
 				for (int i = 0; i < tb->GetCName().size(); i++)
 					list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+				list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
+
 				for (int j = 0; j < tb->Size(); j++)
 				{
-					list_c.InsertItem(j, 0);
-					for (int i = 0; i < tb->GetCName().size(); i++)
+					if (tb->GetRecord(j + 1)->Find(inputs[1]))
 					{
-						std::string ptrval;
-						void* pval;
-						if (tb->GetRecord(j + 1)->Find(inputs[1]))
-						{
-							pval = tb->GetRecord(j + 1)->record[i]->Getv();
-						}
-						else break;
-						if (pval == NULL)
-						{
-							MessageBox(_T("No match"), _T("Not found"), NULL);
-							status_c.SetWindowTextW(_T("Wrong input"));
-						}
-						else
-						{
+						int count = 0;
+						list_c.InsertItem(count, 0);
+						std::string id = std::to_string(tb->GetRecord(j + 1)->GetId());
+						std::wstring wid(id.begin(), id.end());
+						list_c.SetItemText(count, 0, wid.c_str());
 
-							if (tb->GetCType()[i] == 's')
+						for (int i = 0; i < tb->GetCName().size(); i++)
+						{
+							std::string ptrval;
+							void* pval;
+							pval = tb->GetRecord(j + 1)->record[i]->Getv();
+							if (pval == NULL)
 							{
-								std::string *ptr = static_cast<std::string*>(pval);
-								if (ptr == NULL)
-								{
-									MessageBox(_T("No match"), _T("Not found"), NULL);
-									status_c.SetWindowTextW(_T("Wrong input"));
-								}
-								else
-								{
-									status_c.SetWindowTextW(_T("Records found"));
-									ptrval = *ptr;
-								}
+								MessageBox(_T("No match"), _T("Not found"), NULL);
+								status_c.SetWindowTextW(_T("Wrong input"));
+								break;
 							}
-							else if (tb->GetCType()[i] == 'i')
+							else
 							{
-								int *ptr = static_cast<int*>(pval);
-								if (ptr == NULL)
+								if (tb->GetCType()[i] == 's')
 								{
-									MessageBox(_T("No match"), _T("Not found"), NULL);
-									status_c.SetWindowTextW(_T("Wrong input"));
+									std::string *ptr = static_cast<std::string*>(pval);
+									if (ptr == NULL)
+									{
+										MessageBox(_T("No match"), _T("Not found"), NULL);
+										status_c.SetWindowTextW(_T("Wrong input"));
+										break;
+									}
+									else
+									{
+										status_c.SetWindowTextW(_T("Records found"));
+										ptrval = *ptr;
+									}
 								}
-								else
+								else if (tb->GetCType()[i] == 'i')
 								{
-									status_c.SetWindowTextW(_T("Records found"));
-									ptrval = std::to_string(*ptr);
+									int *ptr = static_cast<int*>(pval);
+									if (ptr == NULL)
+									{
+										MessageBox(_T("No match"), _T("Not found"), NULL);
+										status_c.SetWindowTextW(_T("Wrong input"));
+										break;
+									}
+									else
+									{
+										status_c.SetWindowTextW(_T("Records found"));
+										ptrval = std::to_string(*ptr);
+									}
 								}
+								else if (tb->GetCType()[i] == 'd')
+								{
+									double *ptr = static_cast<double*>(pval);
+									if (ptr == NULL)
+									{
+										MessageBox(_T("No match"), _T("Not found"), NULL);
+										status_c.SetWindowTextW(_T("Wrong input"));
+										break;
+									}
+									else
+									{
+										status_c.SetWindowTextW(_T("Records found"));
+										ptrval = std::to_string(*ptr);
+									}
+								}
+								std::string val = ptrval;
+								std::wstring wtemp(val.begin(), val.end());
+
+								list_c.SetItemText(count, i + 1, wtemp.c_str());
 							}
-							else if (tb->GetCType()[i] == 'd')
-							{
-								double *ptr = static_cast<double*>(pval);
-								if (ptr == NULL)
-								{
-									MessageBox(_T("No match"), _T("Not found"), NULL);
-									status_c.SetWindowTextW(_T("Wrong input"));
-								}
-								else
-								{
-									status_c.SetWindowTextW(_T("Records found"));
-									ptrval = std::to_string(*ptr);
-								}
-							}
-							std::string val = ptrval;
-							std::wstring wtemp(val.begin(), val.end());
-							list_c.SetItemText(j, i, wtemp.c_str());
 						}
 					}
 				}
@@ -1139,9 +1180,13 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				{
 					list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
 				}
+				list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
 				for (unsigned int i = 0; i < tb->Size(); i++)
 				{
 					list_c.InsertItem(i, 0);
+					std::string id = std::to_string(tb->GetRecord(i + 1)->GetId());
+					std::wstring wid(id.begin(), id.end());
+					list_c.SetItemText(i, 0, wid.c_str());
 					for (unsigned int j = 0; j < tb->GetCName().size(); j++)
 					{
 						std::string ptrval;
@@ -1163,7 +1208,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 						}
 						std::string val = ptrval;
 						std::wstring wtemp(val.begin(), val.end());
-						list_c.SetItemText(i, j, wtemp.c_str());
+						list_c.SetItemText(i, j+1, wtemp.c_str());
 					}
 				}
 			}
@@ -1196,9 +1241,13 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				{
 					list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
 				}
+				list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
 				for (unsigned int i = 0; i < tb->Size(); i++)
 				{
 					list_c.InsertItem(i, 0);
+					std::string id = std::to_string(tb->GetRecord(i + 1)->GetId());
+					std::wstring wid(id.begin(), id.end());
+					list_c.SetItemText(i, 0, wid.c_str());
 					for (unsigned int j = 0; j < tb->GetCName().size(); j++)
 					{
 						std::string ptrval;
@@ -1220,7 +1269,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 						}
 						std::string val = ptrval;
 						std::wstring wtemp(val.begin(), val.end());
-						list_c.SetItemText(i, j, wtemp.c_str());
+						list_c.SetItemText(i, j+1, wtemp.c_str());
 					}
 				}
 			}
@@ -1279,9 +1328,13 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 				{
 					list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
 				}
+				list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
 				for (unsigned int i = 0; i < tb->Size(); i++)
 				{
 					list_c.InsertItem(i, 0);
+					std::string id = std::to_string(tb->GetRecord(i + 1)->GetId());
+					std::wstring wid(id.begin(), id.end());
+					list_c.SetItemText(i, 0, wid.c_str());
 					for (unsigned int j = 0; j < tb->GetCName().size(); j++)
 					{
 						std::string ptrval;
@@ -1303,7 +1356,7 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 						}
 						std::string val = ptrval;
 						std::wstring wtemp(val.begin(), val.end());
-						list_c.SetItemText(i, j, wtemp.c_str());
+						list_c.SetItemText(i, j+1, wtemp.c_str());
 					}
 
 				}
@@ -1461,13 +1514,20 @@ void CMFCApplication1Dlg::OnBnClickedButton3()
 			std::wstring wtemp(temp.begin(), temp.end());
 			wnames.push_back(wtemp);
 		}
+		
 		for (unsigned int i = 0; i < tb->GetCName().size(); i++)
 		{
 			list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
 		}
+		list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
 		for (unsigned int i = 0; i < tb->Size(); i++)
 		{
 			list_c.InsertItem(i, 0);
+
+			std::string id = std::to_string(tb->GetRecord(i + 1)->GetId());
+			std::wstring wid(id.begin(), id.end());
+			list_c.SetItemText(i, 0, wid.c_str());
+
 			for (unsigned int j = 0; j < tb->GetCName().size(); j++)
 			{
 				std::string ptrval;
@@ -1489,8 +1549,10 @@ void CMFCApplication1Dlg::OnBnClickedButton3()
 				}
 				std::string val = ptrval;
 				std::wstring wtemp(val.begin(), val.end());
-				list_c.SetItemText(i, j, wtemp.c_str());
+
+				list_c.SetItemText(i, j + 1, wtemp.c_str());
 			}
+
 		}
 	}
 	// TODO: Add your control notification handler code here
@@ -1505,7 +1567,14 @@ void CMFCApplication1Dlg::OnCbnSelchangeCombo1()
 
 void CMFCApplication1Dlg::OnBnClickedButton6()
 {
-	EditDialog diag(tb);
-	diag.DoModal();
+	if (worktableid != 0)
+	{
+		EditDialog diag(tb);
+		diag.DoModal();
+	}
+	else
+	{
+		MessageBox(_T("There is no current table"), _T("Nothing to work with"), NULL);
+	}
 	// TODO: Add your control notification handler code here
 }
