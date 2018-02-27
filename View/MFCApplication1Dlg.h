@@ -70,4 +70,5 @@ public:
 	afx_msg void OnBnClickedRadio2();
 	afx_msg void OnBnClickedButton4();
 	afx_msg void OnBnClickedButton7();
+	ShowDialog* showdlg;
 };

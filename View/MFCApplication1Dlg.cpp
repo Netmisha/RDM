@@ -62,7 +62,7 @@ static int _TID;
 Table *tb;
 
 CMFCApplication1Dlg::CMFCApplication1Dlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(CMFCApplication1Dlg::IDD, pParent)
+: CDialogEx(CMFCApplication1Dlg::IDD, pParent), showdlg(NULL)
 	, m_Edit(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -160,6 +160,7 @@ BOOL CMFCApplication1Dlg::OnInitDialog()
 		showt_combo_c.AddString(wname.c_str());
 	}
 	showt_combo_c.SetCurSel(0);
+	showdlg = NULL;
 	INIT_EASYSIZE;
 	// TODO: Add extra initialization here
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -1458,11 +1459,16 @@ void CMFCApplication1Dlg::OnFileSave32775()
 	// TODO: Add your command handler code here
 }
 
-
 void CMFCApplication1Dlg::OnFileShow()
 {
-	ShowDialog diag(database);
-	diag.DoModal();
+	if (showdlg)
+		showdlg->SetForegroundWindow();
+	else
+	{
+		showdlg = new ShowDialog(database,this);
+		showdlg->Create(ShowDialog::IDD, GetDesktopWindow());
+		showdlg->ShowWindow(SW_SHOW);
+	}
 	// TODO: Add your command handler code here
 }
 
