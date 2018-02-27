@@ -10,11 +10,13 @@
 
 IMPLEMENT_DYNAMIC(EditDialog, CDialogEx)
 
-EditDialog::EditDialog(Table* tb,CEdit* statusc, CWnd* pParent /*=NULL*/)
+EditDialog::EditDialog(Table* tb, std::map<int, Table*>& db, CEdit* statusc, CListCtrl* mlist, CWnd* pParent /*=NULL*/)
 : CDialogEx(EditDialog::IDD, pParent)
 {
 	table = tb;
 	main_status_c=statusc;
+	database = db;
+	main_list_c = mlist;
 }
 
 BOOL EditDialog::OnInitDialog()
@@ -30,6 +32,15 @@ BOOL EditDialog::OnInitDialog()
 	std::wstring wtype3(type.begin(), type.end());
 	add_col_type_combo_c.AddString(wtype3.c_str());
 	add_col_type_combo_c.SetCurSel(2);
+
+	std::string temp;
+	for (auto p = database.begin(); p != database.end(); p++)
+	{
+		temp = p->second->GetName();
+		std::wstring wname(temp.begin(), temp.end());
+		edit_inherit_combo_c.AddString(wname.c_str());
+	}
+	edit_inherit_combo_c.SetCurSel(0);
 	return TRUE;
 }
 
@@ -37,6 +48,63 @@ EditDialog::~EditDialog()
 {
 }
 
+void RePaint(Table* table,CListCtrl* main_list_c)
+{
+	main_list_c->DeleteAllItems();
+	while (true)
+	{
+		if (main_list_c->DeleteColumn(0) == false)
+			break;
+	}
+	std::vector<std::wstring> wnames;
+	std::string temp;
+	for (unsigned int i = 0; i < table->GetCName().size(); i++)
+	{
+		temp = table->GetCName()[i];
+		std::wstring wtemp(temp.begin(), temp.end());
+		wnames.push_back(wtemp);
+	}
+
+	for (unsigned int i = 0; i < table->GetCName().size(); i++)
+	{
+		main_list_c->InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+	}
+	main_list_c->InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
+	for (unsigned int i = 0; i < table->Size(); i++)
+	{
+		main_list_c->InsertItem(i, 0);
+
+		std::string id = std::to_string(table->GetRecord(i + 1)->GetId());
+		std::wstring wid(id.begin(), id.end());
+		main_list_c->SetItemText(i, 0, wid.c_str());
+
+		for (unsigned int j = 0; j < table->GetCName().size(); j++)
+		{
+			std::string ptrval;
+			void* pval = table->GetRecord(i + 1)->record[j]->Getv();
+			if (table->GetCType()[j] == 's')
+			{
+				std::string *ptr = static_cast<std::string*>(pval);
+				ptrval = *ptr;
+			}
+			else if (table->GetCType()[j] == 'i')
+			{
+				int *ptr = static_cast<int*>(pval);
+				ptrval = std::to_string(*ptr);
+			}
+			else if (table->GetCType()[j] == 'd')
+			{
+				double *ptr = static_cast<double*>(pval);
+				ptrval = std::to_string(*ptr);
+			}
+			std::string val = ptrval;
+			std::wstring wtemp(val.begin(), val.end());
+
+			main_list_c->SetItemText(i, j + 1, wtemp.c_str());
+		}
+
+	}
+}
 void EditDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
@@ -50,6 +118,7 @@ void EditDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT10, del_col_id_c);
 	DDX_Control(pDX, IDC_COMBO1, add_col_type_combo_c);
 	DDX_Control(pDX, IDC_EDIT12, add_col_name_c);
+	DDX_Control(pDX, IDC_COMBO2, edit_inherit_combo_c);
 }
 
 
@@ -61,6 +130,7 @@ BEGIN_MESSAGE_MAP(EditDialog, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON5, &EditDialog::OnBnClickedButton5)
 	ON_BN_CLICKED(IDC_BUTTON8, &EditDialog::OnBnClickedButton8)
 	ON_BN_CLICKED(IDC_BUTTON6, &EditDialog::OnBnClickedButton6)
+	ON_BN_CLICKED(IDC_BUTTON7, &EditDialog::OnBnClickedButton7)
 END_MESSAGE_MAP()
 
 
@@ -94,6 +164,7 @@ void EditDialog::OnBnClickedButton1()
 	{
 		table->AddRecord(inputs);
 		main_status_c->SetWindowTextW(_T("Record added"));
+		RePaint(table, main_list_c);
 		OnOK();
 	}
 	// TODO: Add your control notification handler code here
@@ -116,6 +187,7 @@ void EditDialog::OnBnClickedButton3()
 	{
 		table->DeleteRecord(std::stoi(id));
 		main_status_c->SetWindowTextW(_T("Record deleted"));
+		RePaint(table, main_list_c);
 		OnOK();
 	}
 	else
@@ -150,6 +222,7 @@ void EditDialog::OnBnClickedButton4()
 			{
 				table->Set(std::stoi(row), std::stoi(col), val);
 				main_status_c->SetWindowTextW(_T("Value set"));
+				RePaint(table, main_list_c);
 				OnOK();
 			}
 		}
@@ -167,6 +240,7 @@ void EditDialog::OnBnClickedButton4()
 			{
 				table->Set(std::stoi(row), col, val);
 				main_status_c->SetWindowTextW(_T("Value set"));
+				RePaint(table, main_list_c);
 				OnOK();
 			}
 		}
@@ -181,7 +255,7 @@ void EditDialog::OnBnClickedButton2()
 	set_rec_id_c.GetWindowTextW(cid);
 	CT2CA idconvert(cid);
 	std::string id(idconvert);
-	if (std::stoi(id) < table->Size() && std::stoi(id) >0)
+	if (std::stoi(id) < table->Size()+1 && std::stoi(id) >0)
 	{
 		wchar_t wbuff[1024];
 		set_rec_val_c.GetWindowTextW(wbuff, 1024);
@@ -199,6 +273,7 @@ void EditDialog::OnBnClickedButton2()
 			table->Set(std::stoi(id), i + 1, inputs[i]);
 		}
 		main_status_c->SetWindowTextW(_T("Record set"));
+		RePaint(table, main_list_c);
 		OnOK();
 	}
 	else
@@ -219,6 +294,7 @@ void EditDialog::OnBnClickedButton5()
 	std::string type(typeconvert);
 	table->AddColumn(type,name);
 	main_status_c->SetWindowTextW(_T("Column added"));
+	RePaint(table, main_list_c);
 	OnOK();
 	// TODO: Add your control notification handler code here
 }
@@ -236,6 +312,7 @@ void EditDialog::OnBnClickedButton8()
 		{
 			table->DeleteColumn(std::stoi(id_name));
 			main_status_c->SetWindowTextW(_T("Column deleted"));
+			RePaint(table, main_list_c);
 			OnOK();
 		}
 		else
@@ -255,6 +332,7 @@ void EditDialog::OnBnClickedButton8()
 		{
 			table->DeleteColumn(id_name);
 			main_status_c->SetWindowTextW(_T("Column deleted"));
+			RePaint(table, main_list_c);
 			OnOK();
 		}
 	}
@@ -266,5 +344,27 @@ void EditDialog::OnBnClickedButton6()
 {
 	table->Clear();
 	main_status_c->SetWindowTextW(_T("Table cleared"));
+	RePaint(table, main_list_c);
+	// TODO: Add your control notification handler code here
+}
+
+
+void EditDialog::OnBnClickedButton7()
+{
+	CString ctablename;
+	edit_inherit_combo_c.GetWindowTextW(ctablename);
+	CT2CA tableconvert(ctablename);
+	std::string tablename(tableconvert);
+	for (auto p = database.begin(); p != database.end(); p++)
+	{
+		if (p->second->GetName() == tablename)
+		{
+			table->AddTable(*p->second);
+			main_status_c->SetWindowTextW(_T("Table inherited"));
+			RePaint(table, main_list_c);
+			break;
+		}
+	}
+	OnOK();
 	// TODO: Add your control notification handler code here
 }

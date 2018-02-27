@@ -140,4 +140,5 @@
             <Value ID="8">0</Value>
         </Record>
     </Table>
+    <Table name="test" ID="7" />
 </List>

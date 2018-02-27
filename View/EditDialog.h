@@ -12,15 +12,17 @@ class EditDialog : public CDialogEx
 	DECLARE_DYNAMIC(EditDialog)
 
 public:
-	EditDialog(Table* db,CEdit* statusc, CWnd* pParent = NULL);   // standard constructor
+	EditDialog(Table* db, std::map<int, Table*>& data, CEdit* statuscCListCtrl, CListCtrl* mlist, CWnd* pParent = NULL);   // standard constructor
 	virtual ~EditDialog();
 	CEdit* main_status_c;
+	CListCtrl* main_list_c;
 // Dialog Data
 	enum { IDD = IDD_EditDialog };
 	BOOL OnInitDialog();
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	Table* table;
+	std::map<int, Table*> database;
 	DECLARE_MESSAGE_MAP()
 public:
 	CEdit edit_addrec_c;
@@ -41,4 +43,6 @@ public:
 	CEdit add_col_name_c;
 	afx_msg void OnBnClickedButton8();
 	afx_msg void OnBnClickedButton6();
+	CComboBox edit_inherit_combo_c;
+	afx_msg void OnBnClickedButton7();
 };

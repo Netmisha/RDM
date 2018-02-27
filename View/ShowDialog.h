@@ -12,7 +12,7 @@ class ShowDialog : public CDialogEx
 	DECLARE_DYNAMIC(ShowDialog)
 	DECLARE_EASYSIZE
 public:
-	ShowDialog(std::map<int, Table*>db, CWnd* pParent = NULL);   // standard constructor
+	ShowDialog(std::map<int, Table*>&db, CWnd* pParent = NULL);   // standard constructor
 	virtual ~ShowDialog();
 	BOOL OnInitDialog();
 // Dialog Data

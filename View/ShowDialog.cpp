@@ -11,7 +11,7 @@
 
 IMPLEMENT_DYNAMIC(ShowDialog, CDialogEx)
 
-ShowDialog::ShowDialog(std::map<int, Table*>db,CWnd* pParent /*=NULL*/)
+ShowDialog::ShowDialog(std::map<int, Table*>& db,CWnd* pParent /*=NULL*/)
 	: CDialogEx(ShowDialog::IDD, pParent)
 {
 	database = db;

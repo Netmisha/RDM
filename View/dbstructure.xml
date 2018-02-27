@@ -112,4 +112,10 @@
             <Name>some_int</Name>
         </Column>
     </Table>
+    <Table name="test" ID="7">
+        <Column ID="1">
+            <Type>Integer</Type>
+            <Name>int</Name>
+        </Column>
+    </Table>
 </List>

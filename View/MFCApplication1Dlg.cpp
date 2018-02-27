@@ -112,6 +112,7 @@ BEGIN_EASYSIZE_MAP(CMFCApplication1Dlg)
 	EASYSIZE(IDC_LIST1, ES_BORDER, ES_BORDER, ES_BORDER, ES_BORDER, 0)
 	EASYSIZE(IDC_EDIT2, ES_BORDER, ES_KEEPSIZE, ES_KEEPSIZE, ES_BORDER, 0)
 	EASYSIZE(IDC_STATIC, ES_BORDER, ES_KEEPSIZE, ES_KEEPSIZE, ES_BORDER, 0)
+	EASYSIZE(IDC_EDIT4, ES_BORDER, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
 END_EASYSIZE_MAP
 
 // CMFCApplication1Dlg message handlers
@@ -218,7 +219,7 @@ void CMFCApplication1Dlg::OnSize(UINT nType, int cx, int cy)
 void CMFCApplication1Dlg::OnSizing(UINT fwSide, LPRECT pRect)
 {
 	CDialog::OnSizing(fwSide, pRect);
-	EASYSIZE_MINSIZE(400, 400, fwSide, pRect);
+	EASYSIZE_MINSIZE(700, 400, fwSide, pRect);
 }
 void CMFCApplication1Dlg::OnEnChangeEdit1()
 {
@@ -1577,7 +1578,7 @@ void CMFCApplication1Dlg::OnBnClickedButton6()
 {
 	if (worktableid != 0)
 	{
-		EditDialog diag(tb,&status_c);
+		EditDialog diag(tb,database,&status_c,&list_c);
 		diag.DoModal();
 	}
 	else
@@ -1860,13 +1861,12 @@ void CMFCApplication1Dlg::OnBnClickedButton4()
 
 void CMFCApplication1Dlg::OnBnClickedButton7()
 {
-	//database.clear();
 	int msgboxID=MessageBox(_T("Are you sure?"),_T("Database clear"), MB_YESNO);
 	
 	if(msgboxID==IDYES)
 	{
 		MessageBox(_T("As you wish"));
-		//database.clear();
+		database.clear();
 		status_c.SetWindowTextW(_T("Database cleared"));
 	}
 	else if (msgboxID==IDNO)
