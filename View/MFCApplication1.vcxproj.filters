@@ -98,5 +98,14 @@
     <Image Include="res\MFCApplication1.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\..\Downloads\if_Database_copy_DynamoDB_259306.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\if_Database_copy_DynamoDB_259306.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

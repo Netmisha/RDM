@@ -136,6 +136,9 @@
     <None Include="res\MFCApplication1.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\Downloads\if_Database_copy_DynamoDB_259306.png" />
+    <Image Include="res\icon1.ico" />
+    <Image Include="res\if_Database_copy_DynamoDB_259306.ico" />
     <Image Include="res\MFCApplication1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

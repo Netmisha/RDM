@@ -67,7 +67,7 @@ CMFCApplication1Dlg::CMFCApplication1Dlg(Logger* lg, CWnd* pParent /*=NULL*/)
 : CDialogEx(CMFCApplication1Dlg::IDD, pParent), showdlg(NULL)
 	, m_Edit(_T(""))
 {
-	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_hIcon = AfxGetApp()->LoadIcon(IDI_ICON1);
 	log = lg;
 }
 
