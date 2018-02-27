@@ -22,7 +22,7 @@ class CMFCApplication1Dlg : public CDialogEx
 	DECLARE_EASYSIZE
 // Construction
 public:
-	CMFCApplication1Dlg(CWnd* pParent = NULL);	// standard constructor
+	CMFCApplication1Dlg(Logger* log,CWnd* pParent = NULL);	// standard constructor
 	std::map<int, Table*> database;
 // Dialog Data
 	enum { IDD = IDD_MFCAPPLICATION1_DIALOG };
@@ -71,4 +71,8 @@ public:
 	afx_msg void OnBnClickedButton4();
 	afx_msg void OnBnClickedButton7();
 	ShowDialog* showdlg;
+	afx_msg void OnLoggerLog();
+	afx_msg void OnLoggerChangelevel();
+	afx_msg void OnChangetypeFilelog();
+	afx_msg void OnChangetypeNolog();
 };

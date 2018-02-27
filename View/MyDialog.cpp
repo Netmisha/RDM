@@ -72,7 +72,7 @@ BOOL CMyDialog::OnInitDialog()
 	temp += "\t\t enable\r\n";
 	temp += "\n\t update_log_type 'log type' - change logging type typ 'log type'\r\n";
 	temp += "\n\t log levels:\r\n";
-	temp += "\t\t console - log into console\r\n";
+	//temp += "\t\t console - log into console\r\n";
 	temp += "\t\t file - log into logfile\r\n";
 	temp += "\t\t no_log - disable logging\r\n";
 	//temp += "\t back - go back to work with table\r\n";

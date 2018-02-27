@@ -49,7 +49,7 @@ void ShowDialog::OnSizing(UINT fwSide, LPRECT pRect)
 {
 	CDialog::OnSizing(fwSide, pRect);
 
-	EASYSIZE_MINSIZE(300, 300, fwSide, pRect);
+	EASYSIZE_MINSIZE(480, 300, fwSide, pRect);
 }
 
 
@@ -148,7 +148,6 @@ void ShowDialog::OnBnClickedButton1()
 
 void ShowDialog::OnBnClickedButton2()
 {
-	OnOK(); 
-
+	DestroyWindow();
 	// TODO: Add your control notification handler code here
 }

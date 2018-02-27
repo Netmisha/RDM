@@ -9,6 +9,8 @@
 #include"EasySize.h"
 #include"CreateDialog.h"
 #include"EditDialog.h"
+#include"LogInsertDlg.h"
+#include"LogLevelDlg.h"
 #include<Windows.h>
 #include<string>
 #include<sstream>
@@ -61,11 +63,12 @@ static int xmlTableID = 1;
 static int _TID;
 Table *tb;
 
-CMFCApplication1Dlg::CMFCApplication1Dlg(CWnd* pParent /*=NULL*/)
+CMFCApplication1Dlg::CMFCApplication1Dlg(Logger* lg, CWnd* pParent /*=NULL*/)
 : CDialogEx(CMFCApplication1Dlg::IDD, pParent), showdlg(NULL)
 	, m_Edit(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	log = lg;
 }
 
 void CMFCApplication1Dlg::DoDataExchange(CDataExchange* pDX)
@@ -105,6 +108,10 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_RADIO2, &CMFCApplication1Dlg::OnBnClickedRadio2)
 	ON_BN_CLICKED(IDC_BUTTON4, &CMFCApplication1Dlg::OnBnClickedButton4)
 	ON_BN_CLICKED(IDC_BUTTON7, &CMFCApplication1Dlg::OnBnClickedButton7)
+	ON_COMMAND(ID_LOGGER_LOG, &CMFCApplication1Dlg::OnLoggerLog)
+	ON_COMMAND(ID_LOGGER_CHANGELEVEL, &CMFCApplication1Dlg::OnLoggerChangelevel)
+	ON_COMMAND(ID_CHANGETYPE_FILELOG, &CMFCApplication1Dlg::OnChangetypeFilelog)
+	ON_COMMAND(ID_CHANGETYPE_NOLOG, &CMFCApplication1Dlg::OnChangetypeNolog)
 END_MESSAGE_MAP()
 
 BEGIN_EASYSIZE_MAP(CMFCApplication1Dlg)
@@ -125,7 +132,6 @@ void CMFCApplication1Dlg::GetDB(std::map<int, Table*>& ddatabase)
 
 BOOL CMFCApplication1Dlg::OnInitDialog()
 {
-	log = NULL;
 	CDialogEx::OnInitDialog();
 	// Add "About..." menu item to system menu.
 
@@ -244,10 +250,8 @@ bool SizeCheck(std::vector<std::string>& vec, int size)
 
 void CMFCApplication1Dlg::OnBnClickedButton2()
 {
-	log = Logger::getInstance();
 	log->updateLogLevel(LOG_LEVEL_INFO);
 	std::string tname = "temp_table";
-	//Table *tb;
 	if (worktableid == 0)
 		tb = new Table(tname);
 	else
@@ -1461,14 +1465,9 @@ void CMFCApplication1Dlg::OnFileSave32775()
 
 void CMFCApplication1Dlg::OnFileShow()
 {
-	if (showdlg)
-		showdlg->SetForegroundWindow();
-	else
-	{
-		showdlg = new ShowDialog(database,this);
-		showdlg->Create(ShowDialog::IDD, GetDesktopWindow());
-		showdlg->ShowWindow(SW_SHOW);
-	}
+	showdlg = new ShowDialog(database,this);
+	showdlg->Create(ShowDialog::IDD, GetDesktopWindow());
+	showdlg->ShowWindow(SW_SHOW);
 	// TODO: Add your command handler code here
 }
 
@@ -1881,4 +1880,34 @@ void CMFCApplication1Dlg::OnBnClickedButton7()
 		status_c.SetWindowTextW(_T("Database clear canceled"));
 	}
 	// TODO: Add your control notification handler code here
+}
+
+
+void CMFCApplication1Dlg::OnLoggerLog()
+{
+	LogInsertDlg dlg(log);
+	dlg.DoModal();
+	// TODO: Add your command handler code here
+}
+
+
+void CMFCApplication1Dlg::OnLoggerChangelevel()
+{
+	LogLevelDlg dlg(log);
+	dlg.DoModal();
+	// TODO: Add your command handler code here
+}
+
+
+void CMFCApplication1Dlg::OnChangetypeFilelog()
+{
+	log->updateLogType(FILE_LOG);
+	// TODO: Add your command handler code here
+}
+
+
+void CMFCApplication1Dlg::OnChangetypeNolog()
+{
+	log->updateLogType(NO_LOG);
+	// TODO: Add your command handler code here
 }
