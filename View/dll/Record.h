@@ -16,6 +16,7 @@ private:
 public:
 	std::vector<BaseForType*> record;
 	Record();
+	Record(const Record& rec);
 	Record& Add(const std::string value);
 	Record& Show(std::ostream &out);
 	Record& Set(unsigned int index, std::istream &in);

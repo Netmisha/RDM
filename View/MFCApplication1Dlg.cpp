@@ -11,6 +11,7 @@
 #include"EditDialog.h"
 #include"LogInsertDlg.h"
 #include"LogLevelDlg.h"
+#include"SelectDlg.h"
 #include<Windows.h>
 #include<string>
 #include<sstream>
@@ -112,6 +113,7 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_COMMAND(ID_LOGGER_CHANGELEVEL, &CMFCApplication1Dlg::OnLoggerChangelevel)
 	ON_COMMAND(ID_CHANGETYPE_FILELOG, &CMFCApplication1Dlg::OnChangetypeFilelog)
 	ON_COMMAND(ID_CHANGETYPE_NOLOG, &CMFCApplication1Dlg::OnChangetypeNolog)
+	ON_BN_CLICKED(IDC_BUTTON5, &CMFCApplication1Dlg::OnBnClickedButton5)
 END_MESSAGE_MAP()
 
 BEGIN_EASYSIZE_MAP(CMFCApplication1Dlg)
@@ -1824,7 +1826,7 @@ void CMFCApplication1Dlg::OnBnClickedButton8()
 void CMFCApplication1Dlg::OnBnClickedRadio1()
 {
 	find_first = true;
-	find_all == false;
+	find_all = false;
 	// TODO: Add your control notification handler code here
 }
 
@@ -1832,7 +1834,7 @@ void CMFCApplication1Dlg::OnBnClickedRadio1()
 void CMFCApplication1Dlg::OnBnClickedRadio2()
 {
 	find_first = false;
-	find_all == true;
+	find_all = true;
 	// TODO: Add your control notification handler code here
 }
 
@@ -1910,4 +1912,12 @@ void CMFCApplication1Dlg::OnChangetypeNolog()
 {
 	log->updateLogType(NO_LOG);
 	// TODO: Add your command handler code here
+}
+
+
+void CMFCApplication1Dlg::OnBnClickedButton5()
+{
+	SelectDlg diag(*tb,database);
+	diag.DoModal();
+	// TODO: Add your control notification handler code here
 }

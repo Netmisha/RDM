@@ -75,4 +75,5 @@ public:
 	afx_msg void OnLoggerChangelevel();
 	afx_msg void OnChangetypeFilelog();
 	afx_msg void OnChangetypeNolog();
+	afx_msg void OnBnClickedButton5();
 };
