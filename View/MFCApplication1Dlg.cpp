@@ -1917,7 +1917,7 @@ void CMFCApplication1Dlg::OnChangetypeNolog()
 
 void CMFCApplication1Dlg::OnBnClickedButton5()
 {
-	SelectDlg diag(*tb,database);
+	SelectDlg diag(tb,database);
 	diag.DoModal();
 	// TODO: Add your control notification handler code here
 }

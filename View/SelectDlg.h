@@ -11,7 +11,7 @@ class SelectDlg : public CDialogEx
 	DECLARE_DYNAMIC(SelectDlg)
 
 public:
-	SelectDlg(Table tb, std::map<int, Table*>& db,CWnd* pParent = NULL);   // standard constructor
+	SelectDlg(Table* tb, std::map<int, Table*>& db,CWnd* pParent = NULL);   // standard constructor
 	virtual ~SelectDlg();
 
 // Dialog Data
@@ -19,7 +19,7 @@ public:
 	BOOL OnInitDialog();
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	Table table;
+	Table* table;
 	std::map<int, Table*> database;
 	DECLARE_MESSAGE_MAP()
 public:

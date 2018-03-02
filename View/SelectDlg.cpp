@@ -5,12 +5,13 @@
 #include "SelectDlg.h"
 #include "afxdialogex.h"
 #include<algorithm>
+#include<map>
 
 // SelectDlg dialog
 
 IMPLEMENT_DYNAMIC(SelectDlg, CDialogEx)
 
-SelectDlg::SelectDlg(Table tb, std::map<int, Table*>& db, CWnd* pParent /*=NULL*/)
+SelectDlg::SelectDlg(Table* tb, std::map<int, Table*>& db, CWnd* pParent /*=NULL*/)
 	: CDialogEx(SelectDlg::IDD, pParent)
 {
 	table = tb;
@@ -25,9 +26,9 @@ BOOL SelectDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 	std::string temp;
-	for (int i = 0; i < table.GetCName().size(); i++)
+	for (int i = 0; i < table->GetCName().size(); i++)
 	{
-		temp = table.GetCName()[i];
+		temp = table->GetCName()[i];
 		std::wstring wname(temp.begin(), temp.end());
 		select_combo_name_c.AddString(wname.c_str());
 		select_combo_filter_c.AddString(wname.c_str());
@@ -73,10 +74,12 @@ void SelectDlg::OnBnClickedButton2()
 		MessageBox(_T("Provide full input"), _T("Empty field"), NULL);
 	else
 	{
-		select = select + " " + name;
-
-		std::wstring wselect(select.begin(), select.end());
-		select_names_c.SetWindowTextW(wselect.c_str());
+		if (!strstr(select.c_str(),name.c_str()))
+		{
+			select = select + " " + name;
+			std::wstring wselect(select.begin(), select.end());
+			select_names_c.SetWindowTextW(wselect.c_str());
+		}
 	}
 	// TODO: Add your control notification handler code here
 }
@@ -101,7 +104,7 @@ void SelectDlg::OnBnClickedButton3()
 		MessageBox(_T("Provide full input"), _T("Empty field"), NULL);
 	else
 	{
-		select = select + " " + name + " =" + val;
+		select = select + " " + name + " = " + val;
 
 		std::wstring wselect(select.begin(), select.end());
 		select_filters_c.SetWindowTextW(wselect.c_str());
@@ -129,7 +132,11 @@ void SelectDlg::OnBnClickedButton4()
 	std::vector<std::string> names;
 	while (ss >> buff)
 		names.push_back(buff);
-
+	for (int i = 1; i < names.size(); i++)
+	{
+		std::wstring temp(names[i].begin(), names[i].end());
+		wnames.push_back(temp);
+	}
 	wchar_t wbuff2[1024];
 	select_filters_c.GetWindowTextW(wbuff2, 1024);
 	std::wstring wtemp2(wbuff2);
@@ -141,20 +148,27 @@ void SelectDlg::OnBnClickedButton4()
 	std::vector<std::string> finds;
 	while (ss2 >> buff2)
 		finds.push_back(buff2);
-
+	for (int i = 1; i < finds.size(); i++)
+	{
+		std::wstring temp(finds[i].begin(), finds[i].end());
+		wnames2.push_back(temp);
+	}
 	std::vector<std::string> columns;
 	for (int i = 1; i < names.size(); i++)
 	{
-		columns.push_back(names[i]);
+		bool check = false;
+		for (int j = 0; j < columns.size(); j++)
+		{
+			if (names[i] == columns[j])
+				check = true;
+		}
+		if (!check)
+			columns.push_back(names[i]);
 	}
-	std::sort(columns.begin(), columns.end());
-	std::vector<std::string>::iterator it;
-	it = unique(columns.begin(), columns.end());
-
-	//columns.resize(std::distance(columns.begin(), it));
-	Table *selected = new Table(table);
+	Table *selected = new Table(*table);
 	int count = 0;
-	for (int i = 0; i < selected->GetCName().size(); i++)
+	int colsize = selected->GetCName().size();
+	for (int i = 0; i < colsize; i++)
 	{
 		bool check = false;
 		for (int j = 0; j < columns.size(); j++)
@@ -168,7 +182,110 @@ void SelectDlg::OnBnClickedButton4()
 			count++;
 		}
 	}
-	int x = 0;
-	x++;
+	std::map<std::string, std::string> filters;
+	for (int i = 1; i < finds.size() ; i++)
+	{
+		std::string first;
+		std::string second;
+		if (i == 1)
+		{
+			first = finds[i];
+			second = finds[i + 2];
+			filters.insert(std::pair<std::string, std::string>(first, second));
+			i += 3;
+		}
+		if (i % 3 == 2)
+		{
+			first = finds[i-1];
+			if ((i + 2) % 3 == 1)
+			{
+				second = finds[i + 1];
+				filters.insert(std::pair<std::string, std::string>(first, second));
+			}
+		}
+	}
+	for (int i = 0; i < wnames.size(); i++)
+		select_list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
+	select_list_c.InsertColumn(0, _T("ID"), LVCFMT_LEFT, 40);
+	
+
+	int index = 0;
+	for (int i = 0; i < table->Size(); i++)
+	{
+		bool unique = true;
+		int check = 1;
+		for (int k = 0; k < table->GetCName().size(); k++)
+		{
+			bool colcheck = false;
+			for (auto p = filters.begin(); p != filters.end(); p++)
+			{
+
+				if (table->GetCName()[k] == p->first)
+				{
+					colcheck = true;
+					std::string temp;
+					if (table->GetCType()[k] == 'i')
+					{
+						int *val = static_cast<int*>(table->GetRecord(i + 1)->record[k]->Getv());
+						temp = std::to_string(*val);
+					}
+					else if (table->GetCType()[k] == 'd')
+					{
+						double *val = static_cast<double*>(table->GetRecord(i + 1)->record[k]->Getv());
+						temp = std::to_string(*val);
+					}
+					else if (table->GetCType()[k] == 's')
+					{
+						std::string *val = static_cast<std::string*>(table->GetRecord(i + 1)->record[k]->Getv());
+						temp = *val;
+					}
+					if (temp == p->second)
+					{
+						//break;
+					}
+					else
+						check = check * 0;
+
+				}
+				if (check == 0)
+					break;
+			}
+			if (check == 1 && colcheck&&unique)
+			{
+				std::string id = std::to_string(selected->GetRecord(i + 1)->GetId());
+				std::wstring wid(id.begin(), id.end());
+
+				int indexprev = index;
+				select_list_c.InsertItem(indexprev, 0);
+				select_list_c.SetItemText(index, 0, wid.c_str());
+				for (int j = 0; j < selected->GetCName().size(); j++)
+				{
+					std::string temp;
+					if (selected->GetCType()[j] == 'i')
+					{
+						int *val = static_cast<int*>(selected->GetRecord(i + 1)->record[j]->Getv());
+						temp = std::to_string(*val);
+					}
+					else if (selected->GetCType()[j] == 'd')
+					{
+						double *val = static_cast<double*>(selected->GetRecord(i + 1)->record[j]->Getv());
+						temp = std::to_string(*val);
+					}
+					else if (selected->GetCType()[j] == 's')
+					{
+						std::string *val = static_cast<std::string*>(selected->GetRecord(i + 1)->record[j]->Getv());
+						temp = *val;
+					}
+					std::wstring wtemp(temp.begin(), temp.end());
+
+					select_list_c.SetItemText(indexprev, j + 1, wtemp.c_str());
+
+					index++;
+				}
+				index = indexprev + 1;
+				unique = false;
+			}
+		}
+	}
 	// TODO: Add your control notification handler code here
 }
