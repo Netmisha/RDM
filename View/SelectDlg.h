@@ -4,12 +4,13 @@
 #include<map>
 #include "afxwin.h"
 #include "afxcmn.h"
+#include"EasySize.h"
 // SelectDlg dialog
 
 class SelectDlg : public CDialogEx
 {
 	DECLARE_DYNAMIC(SelectDlg)
-
+	DECLARE_EASYSIZE
 public:
 	SelectDlg(Table* tb, std::map<int, Table*>& db,CWnd* pParent = NULL);   // standard constructor
 	virtual ~SelectDlg();
@@ -19,6 +20,8 @@ public:
 	BOOL OnInitDialog();
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnSizing(UINT fwSide, LPRECT pRect);
 	Table* table;
 	std::map<int, Table*> database;
 	DECLARE_MESSAGE_MAP()
@@ -32,4 +35,6 @@ public:
 	CEdit select_filter_value_c;
 	afx_msg void OnBnClickedButton4();
 	CListCtrl select_list_c;
+	afx_msg void OnBnClickedButton6();
+	CStatic select_static_c;
 };

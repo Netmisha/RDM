@@ -99,6 +99,9 @@
     <None Include="res\MFCApplication1.rc2">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="resource.hm">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\MFCApplication1.ico">

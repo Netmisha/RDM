@@ -65,7 +65,7 @@ static int _TID;
 Table *tb;
 
 CMFCApplication1Dlg::CMFCApplication1Dlg(Logger* lg, CWnd* pParent /*=NULL*/)
-: CDialogEx(CMFCApplication1Dlg::IDD, pParent), showdlg(NULL)
+: CDialogEx(CMFCApplication1Dlg::IDD, pParent), showdlg(NULL), selectdlg(NULL)
 	, m_Edit(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_ICON1);
@@ -169,6 +169,7 @@ BOOL CMFCApplication1Dlg::OnInitDialog()
 	}
 	showt_combo_c.SetCurSel(0);
 	showdlg = NULL;
+	selectdlg = NULL;
 	INIT_EASYSIZE;
 	// TODO: Add extra initialization here
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -1917,7 +1918,13 @@ void CMFCApplication1Dlg::OnChangetypeNolog()
 
 void CMFCApplication1Dlg::OnBnClickedButton5()
 {
-	SelectDlg diag(tb,database);
-	diag.DoModal();
+	if (worktableid == 0)
+		MessageBox(_T("There is no current table"), _T("Nothing to select"), NULL);
+	else
+	{
+		selectdlg = new SelectDlg(tb, database, this);
+		selectdlg->Create(SelectDlg::IDD, GetDesktopWindow());
+		selectdlg->ShowWindow(SW_SHOW);
+	}
 	// TODO: Add your control notification handler code here
 }

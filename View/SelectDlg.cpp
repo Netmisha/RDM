@@ -35,6 +35,9 @@ BOOL SelectDlg::OnInitDialog()
 	}
 	select_names_c.SetWindowTextW(_T("Select "));
 	select_filters_c.SetWindowTextW(_T("Where "));
+	ModifyStyle(WS_SYSMENU, 0);
+	ModifyStyle(DS_MODALFRAME, WS_THICKFRAME);
+	INIT_EASYSIZE;
 	return TRUE;
 }
 void SelectDlg::DoDataExchange(CDataExchange* pDX)
@@ -46,17 +49,45 @@ void SelectDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT9, select_filters_c);
 	DDX_Control(pDX, IDC_EDIT3, select_filter_value_c);
 	DDX_Control(pDX, IDC_LIST2, select_list_c);
+	DDX_Control(pDX, IDC_STATIC3, select_static_c);
 }
 
 
 BEGIN_MESSAGE_MAP(SelectDlg, CDialogEx)
+	ON_WM_SIZE()
+	ON_WM_SIZING()
 	ON_BN_CLICKED(IDC_BUTTON2, &SelectDlg::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON3, &SelectDlg::OnBnClickedButton3)
 	ON_BN_CLICKED(IDC_BUTTON4, &SelectDlg::OnBnClickedButton4)
+	ON_BN_CLICKED(IDC_BUTTON6, &SelectDlg::OnBnClickedButton6)
 END_MESSAGE_MAP()
 
+BEGIN_EASYSIZE_MAP(SelectDlg)
+	EASYSIZE(IDC_LIST2, ES_BORDER, ES_BORDER, ES_BORDER, ES_BORDER, 0)
+	EASYSIZE(IDC_BUTTON2, ES_KEEPSIZE, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_BUTTON3, ES_KEEPSIZE, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_BUTTON4, ES_KEEPSIZE, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_BUTTON6, ES_KEEPSIZE, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_COMBO1, ES_BORDER, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_COMBO3, ES_BORDER, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_EDIT3, ES_KEEPSIZE, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_EDIT9, ES_BORDER, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_EDIT11, ES_BORDER, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_STATIC3, ES_KEEPSIZE, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+END_EASYSIZE_MAP
 
 // SelectDlg message handlers
+void SelectDlg::OnSize(UINT nType, int cx, int cy)
+{
+	CDialog::OnSize(nType, cx, cy);
+	UPDATE_EASYSIZE;
+}
+void SelectDlg::OnSizing(UINT fwSide, LPRECT pRect)
+{
+	CDialog::OnSizing(fwSide, pRect);
+
+	EASYSIZE_MINSIZE(600, 300, fwSide, pRect);
+}
 
 
 void SelectDlg::OnBnClickedButton2()
@@ -289,3 +320,12 @@ void SelectDlg::OnBnClickedButton4()
 	}
 	// TODO: Add your control notification handler code here
 }
+
+
+void SelectDlg::OnBnClickedButton6()
+{
+	OnOK();
+	// TODO: Add your control notification handler code here
+}
+
+

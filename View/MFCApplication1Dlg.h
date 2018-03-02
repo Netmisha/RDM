@@ -14,6 +14,7 @@
 #include "MyDialog.h"
 #include"ShowDialog.h"
 #include"CreateDialog.h"
+#include"SelectDlg.h"
 
 
 // CMFCApplication1Dlg dialog
@@ -71,6 +72,7 @@ public:
 	afx_msg void OnBnClickedButton4();
 	afx_msg void OnBnClickedButton7();
 	ShowDialog* showdlg;
+	SelectDlg* selectdlg;
 	afx_msg void OnLoggerLog();
 	afx_msg void OnLoggerChangelevel();
 	afx_msg void OnChangetypeFilelog();
