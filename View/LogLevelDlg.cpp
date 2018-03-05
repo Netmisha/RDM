@@ -4,7 +4,8 @@
 #include "stdafx.h"
 #include "LogLevelDlg.h"
 #include "afxdialogex.h"
-
+#include<locale>
+#include<codecvt>
 
 // LogLevelDlg dialog
 
@@ -23,23 +24,24 @@ BOOL LogLevelDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 	std::string level="DISABLE";
-	std::wstring wlevel(level.begin(), level.end());
-	log_level_combo_c.AddString(wlevel.c_str());
+	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+	std::wstring wide = converter.from_bytes(level);
+	log_level_combo_c.AddString(wide.c_str());
 	level = "INFO";
-	std::wstring wlevel2(level.begin(), level.end());
-	log_level_combo_c.AddString(wlevel2.c_str());
+	wide = converter.from_bytes(level);
+	log_level_combo_c.AddString(wide.c_str());
 	level = "BUFFER";
-	std::wstring wlevel3(level.begin(), level.end());
-	log_level_combo_c.AddString(wlevel3.c_str());
+	wide = converter.from_bytes(level);
+	log_level_combo_c.AddString(wide.c_str());
 	level = "TRACE";
-	std::wstring wlevel4(level.begin(), level.end());
-	log_level_combo_c.AddString(wlevel4.c_str());
+	wide = converter.from_bytes(level);
+	log_level_combo_c.AddString(wide.c_str());
 	level = "DEBUG";
-	std::wstring wlevel5(level.begin(), level.end());
-	log_level_combo_c.AddString(wlevel5.c_str());
+	wide = converter.from_bytes(level);
+	log_level_combo_c.AddString(wide.c_str());
 	level = "ENABLE";
-	std::wstring wlevel6(level.begin(), level.end());
-	log_level_combo_c.AddString(wlevel6.c_str());
+	wide = converter.from_bytes(level);
+	log_level_combo_c.AddString(wide.c_str());
 	log_level_combo_c.SetCurSel(1);
 	return TRUE;
 }

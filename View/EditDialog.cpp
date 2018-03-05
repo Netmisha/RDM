@@ -158,7 +158,7 @@ void EditDialog::OnBnClickedButton1()
 	if (inputs.empty())
 	{
 		MessageBox(_T("Provide at least some info"), _T("Empty input"), NULL);
-		main_status_c->SetWindowTextW(_T("Record add failed"));
+		main_status_c->SetWindowTextW(_T("Record adding failed"));
 	}
 	else
 	{

@@ -5,10 +5,10 @@
 
 MYLIBRARY_EXPORT void CreateXML();
 MYLIBRARY_EXPORT unsigned int Count();
-MYLIBRARY_EXPORT bool NeedsToBeUpdated(Table& tb);
+MYLIBRARY_EXPORT bool NeedsToBeUpdated(Table& source);
 MYLIBRARY_EXPORT void AddStructure(Table& source);
 MYLIBRARY_EXPORT void AddData(Table& source);
-MYLIBRARY_EXPORT Table* BuildTable(Table& tb, unsigned int id);
+MYLIBRARY_EXPORT Table* BuildTable(Table& source, unsigned int id);
 MYLIBRARY_EXPORT void DeleteTable(unsigned int id);
 MYLIBRARY_EXPORT void Clear();
 MYLIBRARY_EXPORT std::string& GetName(unsigned int ID);

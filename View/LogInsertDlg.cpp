@@ -6,6 +6,8 @@
 #include "afxdialogex.h"
 #include"dll\Logger.h"
 #include"dll\Table.h"
+#include<locale>
+#include<codecvt>
 
 // LogInsertDlg dialog
 
@@ -25,26 +27,29 @@ BOOL LogInsertDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 	std::string type = "INFO";
-	std::wstring wtype(type.begin(), type.end());
-	log_type_combo_c.AddString(wtype.c_str());
+	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+	std::wstring wide = converter.from_bytes(type);
+	log_type_combo_c.AddString(wide.c_str());
 	type = "TRACE";
-	std::wstring wtype2(type.begin(), type.end());
-	log_type_combo_c.AddString(wtype2.c_str());
+	wide = converter.from_bytes(type);
+	log_type_combo_c.AddString(wide.c_str());
+	type = "TRACE";
+	wide = converter.from_bytes(type);
+	log_type_combo_c.AddString(wide.c_str());
 	type = "DEBUG";
-	std::wstring wtype3(type.begin(), type.end());
-	log_type_combo_c.AddString(wtype3.c_str());
+	wide = converter.from_bytes(type);
+	log_type_combo_c.AddString(wide.c_str());
 	type = "ERROR";
-	std::wstring wtype4(type.begin(), type.end());
-	log_type_combo_c.AddString(wtype4.c_str());
+	wide = converter.from_bytes(type);
+	log_type_combo_c.AddString(wide.c_str());
 	type = "ALWAYS";
-	std::wstring wtype5(type.begin(), type.end());
-	log_type_combo_c.AddString(wtype5.c_str());
-	type = "ALARM";
-	std::wstring wtype6(type.begin(), type.end());
-	log_type_combo_c.AddString(wtype6.c_str());
+	wide = converter.from_bytes(type);
+	log_type_combo_c.AddString(wide.c_str());
+	type = "ALARM"; wide = converter.from_bytes(type);
+	log_type_combo_c.AddString(wide.c_str());
 	type = "BUFFER";
-	std::wstring wtype7(type.begin(), type.end());
-	log_type_combo_c.AddString(wtype7.c_str());
+	wide = converter.from_bytes(type);
+	log_type_combo_c.AddString(wide.c_str());
 	log_type_combo_c.SetCurSel(0);
 	return TRUE;
 }
