@@ -9,9 +9,9 @@
 void Fill(std::map<int, Table*>& mapa)
 {
 	mapa.clear();
-	int *idarr = new int[Count()];
-	idarr = GetID();
-	int i = idarr[0];
+	int *IdArray = new int[Count()];
+	IdArray = GetID();
+	int i = IdArray[0];
 	int j = 0;
 	while (j < Count())
 	{
@@ -21,17 +21,17 @@ void Fill(std::map<int, Table*>& mapa)
 			Table *tb = new Table(GetName(i));
 			BuildTable(*tb, i);
 			tb->ChangeID(i);
-			mapa.insert(std::pair<int, Table*>(idarr[j - 1], tb));
+			mapa.insert(std::pair<int, Table*>(IdArray[j - 1], tb));
 		}
 		else
 		{
-			Table *tb = new Table(GetName(idarr[j - 1]));
-			BuildTable(*tb, idarr[j - 1]);
-			tb->ChangeID(idarr[j - 1]);
-			mapa.insert(std::pair<int, Table*>(idarr[j - 1], tb));
+			Table *tb = new Table(GetName(IdArray[j - 1]));
+			BuildTable(*tb, IdArray[j - 1]);
+			tb->ChangeID(IdArray[j - 1]);
+			mapa.insert(std::pair<int, Table*>(IdArray[j - 1], tb));
 		}
 
-		i = idarr[j];
+		i = IdArray[j];
 	}
 }
 

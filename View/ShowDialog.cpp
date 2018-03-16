@@ -85,13 +85,13 @@ void ShowDialog::OnBnClickedButton1()
 	}
 	CString item;
 	show_combo_c.GetWindowTextW(item);
-	Table *tb;
+	Table *table;
 	bool check = false;
 	for (auto p = database.begin(); p != database.end(); p++)
 	{
 		if (p->second->GetName() == item)
 		{
-			tb = p->second;
+			table = p->second;
 			check = true;
 		}
 	}
@@ -103,34 +103,34 @@ void ShowDialog::OnBnClickedButton1()
 	{
 		std::vector<std::wstring> wnames;
 		std::string temp;
-		for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+		for (unsigned int i = 0; i < table->GetCName().size(); i++)
 		{
-			temp = tb->GetCName()[i];
+			temp = table->GetCName()[i];
 			std::wstring wtemp(temp.begin(), temp.end());
 			wnames.push_back(wtemp);
 		}
-		for (unsigned int i = 0; i < tb->GetCName().size(); i++)
+		for (unsigned int i = 0; i < table->GetCName().size(); i++)
 		{
 			show_list_c.InsertColumn(i, wnames[i].c_str(), LVCFMT_LEFT, 90);
 		}
-		for (unsigned int i = 0; i < tb->Size(); i++)
+		for (unsigned int i = 0; i < table->Size(); i++)
 		{
 			show_list_c.InsertItem(i, 0);
-			for (unsigned int j = 0; j < tb->GetCName().size(); j++)
+			for (unsigned int j = 0; j < table->GetCName().size(); j++)
 			{
 				std::string ptrval;
-				void* pval = tb->GetRecord(i + 1)->record[j]->Getv();
-				if (tb->GetCType()[j] == 's')
+				void* pval = table->GetRecord(i + 1)->record[j]->Getv();
+				if (table->GetCType()[j] == 's')
 				{
 					std::string *ptr = static_cast<std::string*>(pval);
 					ptrval = *ptr;
 				}
-				else if (tb->GetCType()[j] == 'i')
+				else if (table->GetCType()[j] == 'i')
 				{
 					int *ptr = static_cast<int*>(pval);
 					ptrval = std::to_string(*ptr);
 				}
-				else if (tb->GetCType()[j] == 'd')
+				else if (table->GetCType()[j] == 'd')
 				{
 					double *ptr = static_cast<double*>(pval);
 					ptrval = std::to_string(*ptr);

@@ -130,12 +130,12 @@ void SelectDlg::OnBnClickedButton3()
 	CString cval;
 	select_filter_value_c.GetWindowTextW(cval);
 	CT2CA valconvert(cval);
-	std::string val(valconvert);
-	if (val.empty()||name.empty())
+	std::string value(valconvert);
+	if (value.empty()||name.empty())
 		MessageBox(_T("Provide full input"), _T("Empty field"), NULL);
 	else
 	{
-		select = select + " " + name + " = " + val;
+		select = select + " " + name + " = " + value;
 
 		std::wstring wselect(select.begin(), select.end());
 		select_filters_c.SetWindowTextW(wselect.c_str());
@@ -152,37 +152,36 @@ void SelectDlg::OnBnClickedButton4()
 		if (select_list_c.DeleteColumn(0) == false)
 			break;
 	}
-	wchar_t wbuff[1024];
-	select_names_c.GetWindowTextW(wbuff, 1024);
-	std::wstring wtemp(wbuff);
-	std::string transform(wtemp.begin(), wtemp.end());
+	wchar_t WBuffName[1024];
+	select_names_c.GetWindowTextW(WBuffName, 1024);
+	std::wstring WTempName(WBuffName);
+	std::string TransformName(WTempName.begin(), WTempName.end());
 	std::vector<std::wstring> wnames;
-	std::string buff;
+	std::string BuffNames;
 	std::string output = "";
-	std::stringstream ss(transform);
+	std::stringstream ssNames(TransformName);
 	std::vector<std::string> names;
-	while (ss >> buff)
-		names.push_back(buff);
+	while (ssNames >> BuffNames)
+		names.push_back(BuffNames);
 	for (int i = 1; i < names.size(); i++)
 	{
 		std::wstring temp(names[i].begin(), names[i].end());
 		wnames.push_back(temp);
 	}
-	wchar_t wbuff2[1024];
-	select_filters_c.GetWindowTextW(wbuff2, 1024);
-	std::wstring wtemp2(wbuff2);
-	std::string transform2(wtemp2.begin(), wtemp2.end());
-	std::vector<std::wstring> wnames2;
-	std::string buff2;
-	std::string output2 = "";
-	std::stringstream ss2(transform2);
-	std::vector<std::string> finds;
-	while (ss2 >> buff2)
-		finds.push_back(buff2);
-	for (int i = 1; i < finds.size(); i++)
+	wchar_t WBuffValues[1024];
+	select_filters_c.GetWindowTextW(WBuffValues, 1024);
+	std::wstring WTempValues(WBuffValues);
+	std::string TransformValue(WTempValues.begin(), WTempValues.end());
+	std::vector<std::wstring> wvalues;
+	std::string BuffValues;
+	std::stringstream ssValues(TransformValue);
+	std::vector<std::string> values;
+	while (ssValues >> BuffValues)
+		values.push_back(BuffValues);
+	for (int i = 1; i < values.size(); i++)
 	{
-		std::wstring temp(finds[i].begin(), finds[i].end());
-		wnames2.push_back(temp);
+		std::wstring temp(values[i].begin(), values[i].end());
+		wvalues.push_back(temp);
 	}
 	std::vector<std::string> columns;
 	for (int i = 1; i < names.size(); i++)
@@ -214,24 +213,24 @@ void SelectDlg::OnBnClickedButton4()
 		}
 	}
 	std::map<std::string, std::string> filters;
-	for (int i = 1; i < finds.size() ; i++)
+	for (int i = 1; i < values.size() ; i++)
 	{
-		std::string first;
-		std::string second;
+		std::string name;
+		std::string value;
 		if (i == 1)
 		{
-			first = finds[i];
-			second = finds[i + 2];
-			filters.insert(std::pair<std::string, std::string>(first, second));
+			name = values[i];
+			value = values[i + 2];
+			filters.insert(std::pair<std::string, std::string>(name, value));
 			i += 3;
 		}
 		if (i % 3 == 2)
 		{
-			first = finds[i-1];
+			name = values[i - 1];
 			if ((i + 2) % 3 == 1)
 			{
-				second = finds[i + 1];
-				filters.insert(std::pair<std::string, std::string>(first, second));
+				value = values[i + 1];
+				filters.insert(std::pair<std::string, std::string>(name, value));
 			}
 		}
 	}
@@ -270,18 +269,16 @@ void SelectDlg::OnBnClickedButton4()
 						std::string *val = static_cast<std::string*>(table->GetRecord(i + 1)->record[k]->Getv());
 						temp = *val;
 					}
-					if (temp == p->second)
+					if (temp != p->second)
 					{
-						//break;
-					}
-					else
 						check = check * 0;
+					}
 
 				}
 				if (check == 0)
 					break;
 			}
-			if (check == 1 && colcheck&&unique)
+			if (check == 1 && colcheck && unique)
 			{
 				std::string id = std::to_string(selected->GetRecord(i + 1)->GetId());
 				std::wstring wid(id.begin(), id.end());
