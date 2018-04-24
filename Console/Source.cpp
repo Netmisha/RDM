@@ -613,13 +613,13 @@ int main(int argc, char** argv)
 				out << "there is no current table,please create or build one\n";
 				continue;
 			}
-			if (std::stoi(inputs[2]) > tb->GetCName().size())
-			{
-				out << "there is no record with " << inputs[2] << " index\n";
-				continue;
-			}
 			if (inputs[1] == "-s")
 			{
+				if (std::stoi(inputs[2]) > tb->GetCName().size())
+				{
+					out << "there is no record with " << inputs[2] << " index\n";
+					continue;
+				}
 				tb->Set(std::stoi(inputs[2]), std::stoi(inputs[3]), inputs[4]);
 				out << "new value set \n";
 			}

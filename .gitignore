@@ -1,5 +1,5 @@
 *.opensdf
-*.lib
+!DBdll.lib
 *.user
 !Console/DBdll.lib
 !Console/Debug/Dbdll.dll

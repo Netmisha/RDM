@@ -5,6 +5,10 @@
             <Type>String</Type>
             <Name>name</Name>
         </Column>
+        <Column ID="2">
+            <Type>Double</Type>
+            <Name>dbl</Name>
+        </Column>
     </Table>
     <Table name="second" ID="3">
         <Column ID="1">
