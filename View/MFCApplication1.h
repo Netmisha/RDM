@@ -11,7 +11,7 @@
 #include "resource.h"		// main symbols
 #include"dll\Table.h"
 #include"dll\Logger.h"
-#include"dll\XML.h"
+//#include"dll\XML.h"
 #include<map>
 
 

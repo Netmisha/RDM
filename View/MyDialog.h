@@ -11,10 +11,9 @@ class CMyDialog : public CDialogEx
 public:
 	CMyDialog(CWnd* pParent = NULL);   // standard constructor
 	virtual ~CMyDialog();
-
+	BOOL OnInitDialog();
 // Dialog Data
 	enum { IDD = IDD_DIALOG1 };
-	BOOL OnInitDialog();
 	
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
@@ -22,4 +21,5 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CEdit edit;
+	afx_msg void OnBnClickedOk();
 };

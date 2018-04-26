@@ -1441,8 +1441,11 @@ void CMFCApplication1Dlg::OnBnClickedButton2()
 
 void CMFCApplication1Dlg::OnHelpCommands()
 {
-	CMyDialog diag;
-	diag.DoModal();
+	helpdlg = new CMyDialog(this);
+	helpdlg->Create(CMyDialog::IDD, GetDesktopWindow());
+	helpdlg->ShowWindow(SW_SHOW);
+	//CMyDialog diag;
+	//diag.DoModal();
 	// TODO: Add your command handler code here
 }
 

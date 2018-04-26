@@ -83,7 +83,16 @@ void CMyDialog::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(CMyDialog, CDialogEx)
+	ON_BN_CLICKED(IDOK, &CMyDialog::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
+
 // CMyDialog message handlers
+
+
+void CMyDialog::OnBnClickedOk()
+{
+	// TODO: Add your control notification handler code here
+	CDialogEx::OnOK();
+}
